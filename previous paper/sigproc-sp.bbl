@@ -1,0 +1,44 @@
+\begin{thebibliography}{1}
+
+\bibitem{Demiryurek2010}
+U.~Demiryurek, F.~Banaei-kashani, and C.~Shahabi.
+\newblock {\em {A Case for Time-Dependent Shortest Path Computation in Spatial
+  Networks}}.
+\newblock Advances in Spatial and Temporal Databases Lecture Notes in Computer
+  Science, 2010.
+
+\bibitem{Lee2011}
+W.-H. Lee, S.-S. Tseng, J.-L. Shieh, and H.-H. Chen.
+\newblock {Discovering Traffic Bottlenecks in an Urban Network by
+  Spatiotemporal Data Mining on Location-Based Services}.
+\newblock {\em IEEE Transactions on Intelligent Transportation Systems},
+  12(4):1047--1056, 2011.
+
+\bibitem{moh2013approximate}
+{M. Otair}.
+\newblock Approximate k-nearest neighbour based spatial clustering using k-d
+  tree.
+\newblock {\em International Journal of Database Management Systems}, 5(1),
+  2013.
+
+\bibitem{noh1998map}
+Noh and Kim.
+\newblock A comprehensive analysis of map matching algorithms for its.
+\newblock {\em Hongik Journal of Science and Technology}, 9:pp. 303--313, 1998.
+
+\bibitem{posgis}
+PostGis.
+\newblock http://postgis.net/.
+
+\bibitem{backendposgis}
+Wikipedia.
+\newblock User section: http://en.wikipedia.org/wiki/postgis.
+
+\bibitem{yang2005map}
+{Y. Jae-seok}, {K. Seung-pil}, and {C. Kyung-soo}.
+\newblock The map matching algorithm of gps data with relatively long polling
+  time intervals.
+\newblock {\em Journal of the Eastern Asia Society for Transportation Studies},
+  6:pp. 2561--2573, 2005.
+
+\end{thebibliography}
