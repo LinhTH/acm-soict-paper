@@ -118,64 +118,48 @@ As BigData create non-conventional challenges, current ITS management systems st
 
 This paper is organised in 7 parts. In Section 2, we discuss an overall architecture of our system framework. In Section~3, we go into the details of the technologies and components of GPSInsights. In Section~4, we establish a simple demonstration map matching algorithm. Section~5 presents experimental results for the algorithm presented in Section~4. Section~6 discusses related works on existed map matching algorithms and on storing spatio-time data. We conclude and discuss future work in Section~7.
 	
-\section{GPSInsights: System design} 
+\section{The general system design} 
 	
-In order to deal with the challenges of big volume and big velocity, it is necessary to construct a scalable system with scalable components as following:
-
-\textbf{Spatiotemporal datastore:} As GPS data consist of geolocation information and timestamp in which the data is recorded, GPSInsights favours spatio-temporal queries. At the storage level of GPSInsights is a distributed spatio-temporal data storage aimed at storing the large datasets dispersedly on a large cluster. 
-
-\textbf{Scalable processing engine:} After constructing a system scale to store and manage data, we also need distribution and parallel processing engines. The purpose of these is to communicate with the scale for reading and writing data.
-
-\textbf{Map engine:} Map engine is used to allow plotting location-based data for real-time traffic monitoring and for map-based distance calculations in our mining algorithms. 
-
-\textbf{Data importer-exporter:} This two components are API servers that expose interface for data ingestion and egression. Data importer accepts data from various source such as JSON, CSV, relational data tables. Data exporter standadises Restful interface for applications, visualization aims and so on.
+After being sent continuously from moving vehicles to converging data centers (note), the transportation information data will be pulled into a data mining block. The data mining block will process, analyze them and then send statistic results to a visual display system through a connect module. The general system design is illustrated as follow:
 
 \begin{figure}[!htb]
 \centering
-\epsfig{file=figure5.eps, height=200px, width=200px}
+\epsfig{file=thesis-1.eps, height=140px, width=250px}
 \caption{The architecture of the system}
 \end{figure}
 
+As a massive amount of transportation data being directed to these centers per second, the data mining block has to have following requirements.
+-	The collected data are put in their order of arrival in time, and all of them have to be processed at least one.
+-	The processing time is acceptable. With a quantity of data, the processing time  must not exceed than the collecting one.
+-	Final statistic results have to be saved for using later.
+
+In order to meet with the above requirements and deal with the challenges of big volume, velocity, it is necessary to construct the data mining block as a scalable system with scalable components as follows.
+
+-	Message queue: As the transportation information data come continuously from a variety of sources,  this component are supposed to combine the multi-source data, and put them in their order of arrival in time. In addition, it has to store and replicate the large input data dispersedly on a large cluster for high-throughput, fault-tolerance.
+
+-	Data processing engine: After storing the input data persistently, we also need a engine that has the ability to process them fast and continuous. A distributed, parallel and continuous processing engine totally meet this need.
+
+-	Result queue: Results from data processing engine are sent to this component before being moved to the connect module. This component has to have the ability to write and read a massive amount of data in short time. The purpose of these is to reduce the waiting time of the data processing engine when pushing the final statistic results to the connect module.
+
+-	Result storage: The result storage is used to store the big-volume and high-velocity statistic results from the data processing engine. Hence, we need a distributed data storage. It also has the ability to write data fast in order to avoid increasing the processing time of the data processing engine. 
+
+One another reason of choosing the message queue as a component of the data mining block is an increase in the fault-tolerance for the block. In the case the transportation data are sent directly to the data processing engine, if its the master node crashes, it will stop working. So all data come in that time will disappear.
+
+
+
 \section{Implementation} 
-	
-\subsection{Hadoop. } The full name of Hadoop is Hadoop Distributed File System (HDFS) [6] is a kind of distributed file system designed to run on commodity hardware. Its construction has a lot of things in common with existing distributed file systems. The fault-tolerant of HDFS is highly assessed and one of the most important thing is that it can be deployed on low-cost hardware. Furthermore, HDFS provide a high throughput access capability to application data which is relevant for applications that have to process large data sets. Besides, streaming access to file system data is made available in HDFS by relaxing a few POSIX requirements.
 
-\setlength{\parindent}{1cm} With our real situation, HDFS is very appropriate with our low-cost hardware.
+With the system architecture shown in section 2, we have decided to build a system based on components which are described as below, and we will explain the reasons for choosing the components and how they interact with each other.
 
-\subsection{Zookeeper. }ZooKeeper [4] is a kind of high-performance centralized coordination services for some form or distributed applications. It provides some traditional services - such as: naming, configuration information management, distributed synchronization, and group services - in a quite low-level. For example, in the configuration management, the actual processing of the configuration changes must be developed as a part of the application. However, ZooKeeper will ensure all clients are notified reliably and the order of configuration messages is maintained. All these kinds of services are distributed and highly reliable.
+\begin{figure}[!htb]
+\centering
+\epsfig{file=thesis-2.eps, height=125px, width=250px}
+\caption{The architecture of the system}
+\end{figure}
 
-\setlength{\parindent}{1cm} Zookeeper [5] performs a crucial role in coordination between Hadoop nodes. For example, it makes it easier to:
-
-\setlength{\parindent}{1cm} \textbf{Manage configuration across nodes.}  If you have dozens or hundreds of nodes, it is very tough to keep configuration in sync across nodes and quickly make changes. ZooKeeper helps you quickly push configuration changes.\\
-
-\setlength{\parindent}{1cm} \textbf{Implement reliable messaging.} With ZooKeeper, you can easily implement a producer/consumer queue that guarantees delivery, even if some consumers or even one of the ZooKeeper servers fails.
-
-\setlength{\parindent}{1cm} \textbf{Implement redundant services.} With ZooKeeper, a group of identical nodes (e.g. database servers) can elect a leader/master and let ZooKeeper refer all clients to that master server. If the master fails, ZooKeeper will assign a new leader and notify all clients.
-
-\setlength{\parindent}{1cm} \textbf{Synchronize process execution.} With ZooKeeper, multiple nodes can coordinate the start and end of a process or calculation. This ensures that any follow-up processing is done only after all nodes have finished their calculations.
-
-\setlength{\parindent}{1cm} The functionality provided by ZooKeeper is often developed as part of Hadoop applications. However, these are tricky matters to get right, and it is easy to get errors in the implementation. ZooKeeper provides a solid foundation that helps build higher-level services.
-
-\subsection{Accumulo. } Apache Accumulo [7] is an open source database with being a high-performance storage and retrieval system developing distributed and sorted key/value pairs store based on the Google’s Big Table [9] design. It is a system working on top of Apache Hadoop and Apache Zookeeper and having many similarities with an existing database HBase [8 ]and other no SQL databases such as: Cassandra, MongoDB, Riak and so on in maintaining consistency even as it scales to thousands and more of nodes and petabytes of data, both reading and writing in near real-time.
-
-\setlength{\parindent}{1cm} So what makes Accumulo [1] different from all the rest? Written in Java coding language, Accumulo, hase cell-level access labels (also called cell-level security) that make the Big Data community most excited. Cell-level security allow administrator to assign user access permissions down to the cell-level, which means that administrators can extend the access and functionality of a given database to the maximum figure for users while still remaining in compliance with applicable privacy and security regulations.
-
-\subsection{Geomesa. } GeoMesa [10] is an open-source, distributed and spatio-temporal database build on top of the Apache Accumulo column family store. Leveraging a high-performance parallelized indexing strategy, GeoMesa aims at providing as much of the spatial querying and data manipulation - such as storing and transforming spatio-temporal data  at scale in Accumulo.
-
-\setlength{\parindent}{1cm} A key-value pair store has only a single index is built with the constraint that all records are ordered lexicographically. It is a problem when we want to map from three dimensions (lat, lon, time) to one (lexicographical ordering of keys in a table). So encoding geo-time information in keys is an essential aim of a geospatial indexing scheme. The indexing strategy of Geomesa  is that build index keys by interleaving portions of a point's geohash string that is a 7 character string encoded by Niemeyer's encoding from a 35-bit geohash representing the geometry with part of the datetime string of the format 'yyyyMMdd' and adding a random bin number (between 00 and 99) at the begin of the row to avoid a disproportionate query load and bogging down response times.
-
-\setlength{\parindent}{1cm} Query Planning of Geomesa is described as follows. First, the query polygon is decomposed into GeoHash ranges to scan. Second, the temporal bounds are used to further refine the row range.Finally, we can exactly dertermine every row that must be inspected by using the bin number.\\
-	\begin{figure}[h]
-		\centering
-		\includegraphics[height=180px,width=200px]{figure4}
-		\caption{The architecture of the system}
-		\label{fig:architecture}
-	\end{figure}
-
-
-\subsection{Spark. } Apache Spark is an open-source cluster computing framework [2] [12] processing large-scale data quickly and effectively.
-
-\setlength{\parindent}{1cm} One of the principal reasons for us to use Spark is speed [3]. In stead of running programs and reading data from disk as Hadoop’s two-stage MapReduce paradigm, Spark’s in-memory primitives will enhance performance up to 100 times faster for certain applications. By allowing user programs to load data into a cluster's memory and query it repeatedly, Spark is very relevant with our algorithm. Furthermore, Spark offers more than 80 high-level operators with a very simple way to program in Java, Scala or Python, making it easier for us to build up our parallel app. And, finally, Spark has capability to run on Hadoop stably, thereby, being well suited to our system.
+\textbf{Message queue: Apache Kafka.} Apache Kafka is the distributed publish-subscribe messaging. Kafka stores the data in categories called topic. A topic will be divided into one or more partitions which be distributed over nodes of a cluster (each partition is an ordered, immutable sequence of messages). It allows store the amount of the data larger than the capability of any single machine.
+Reading to and writing data in topic are very fast, thanks to paralleling operations and several useful techniques installed to maximize the performance (http://www.slideshare.net/baniuyao/kafka-24299168). According to Kafka's official website, a single Kafka broker can handle hundreds of megabytes of reads and writes per second from thousands of clients.
+Kafka also is designed to allow transparently and easily expanded without downtime. In addition, partitions are persisted on disk and replicated within the cluster to prevent data loss. So Kafka offers strong scalable, durability and  fault-tolerance.
 
 
 
