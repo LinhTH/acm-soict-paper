@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2015.6.26)  3 JUL 2015 16:26
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2015.6.26)  6 JUL 2015 00:27
 entering extended mode
 **sigproc-sp.tex
 (C:\Users\Rimberry\Desktop\acm-soict-paper\sigproc-sp.tex
@@ -535,22 +535,35 @@ Overfull \hbox (21.12123pt too wide) in paragraph at lines 160--163
 
 [2 <C:/Users/Rimberry/Desktop/acm-soict-paper/thesis-1-eps-converted-to.pdf> <C
 :/Users/Rimberry/Desktop/acm-soict-paper/thesis-2-eps-converted-to.pdf>]
-Overfull \hbox (40.22054pt too wide) in paragraph at lines 169--169
+Overfull \hbox (23.95572pt too wide) in paragraph at lines 167--168
+\T1/aer/m/n/9 ma-chines (https://engineering.linkedin.com/kafka/benchmarking-
+ []
+
+
+Overfull \hbox (2.46361pt too wide) in paragraph at lines 167--168
+\T1/aer/m/n/9 apache-kafka-2-million-writes-second-three-cheap-machines).
+ []
+
+
+Overfull \hbox (40.22054pt too wide) in paragraph at lines 174--174
 []\secfnt DEMONSTRATION: SCAL-ABLE MAP MATCH-
  []
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
 
 <figure1.png, id=22, 501.875pt x 160.6pt>
 File: figure1.png Graphic file (type png)
  <use figure1.png>
-Package pdftex.def Info: figure1.png used on input line 190.
+Package pdftex.def Info: figure1.png used on input line 195.
 (pdftex.def)             Requested size: 210.79372pt x 100.37718pt.
 
 
 LaTeX Warning: Reference `fig:sfig2' on page \thepage  undefined on input line 
-209.
+214.
 
 [3 <C:/Users/Rimberry/Desktop/acm-soict-paper/figure1.png>]
-LaTeX Font Info:    Try loading font information for T1+aett on input line 225.
+LaTeX Font Info:    Try loading font information for T1+aett on input line 230.
 
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\ae\t1aett.fd"
@@ -559,7 +572,7 @@ File: t1aett.fd 1997/11/16 Font definitions for T1/aett.
 <figure6.png, id=28, 341.77687pt x 188.20313pt>
 File: figure6.png Graphic file (type png)
  <use figure6.png>
-Package pdftex.def Info: figure6.png used on input line 240.
+Package pdftex.def Info: figure6.png used on input line 245.
 (pdftex.def)             Requested size: 200.00385pt x 150.0113pt.
  [4 <C:/Users/Rimberry/Desktop/acm-soict-paper/figure6.png>]
 (C:\Users\Rimberry\Desktop\acm-soict-paper\sigproc-sp.bbl
@@ -573,13 +586,15 @@ Overfull \hbox (22.39977pt too wide) in paragraph at lines 1--1
  Kumquat
  []
 
-)
-Overfull \hbox (11.79744pt too wide) in paragraph at lines 305--309
+) [5]
+Overfull \hbox (11.79744pt too wide) in paragraph at lines 310--314
 \T1/aer/m/n/9 just add the names and in-for-ma-tion in the \T1/aett/m/n/9 \addi
 tionalauthors
  []
 
-[5] (C:\Users\Rimberry\Desktop\acm-soict-paper\sigproc-sp.aux)
+[6
+
+] (C:\Users\Rimberry\Desktop\acm-soict-paper\sigproc-sp.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -587,7 +602,7 @@ LaTeX Warning: There were undefined references.
 Here is how much of TeX's memory you used:
  9808 strings out of 493921
  166223 string characters out of 3144867
- 224062 words of memory out of 3000000
+ 224060 words of memory out of 3000000
  12917 multiletter control sequences out of 15000+200000
  52246 words of font info for 71 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
@@ -603,9 +618,9 @@ TeX 2.9/fonts/type1/public/amsfonts/cm/cmtt9.pfb><C:/Program Files (x86)/MiKTeX
 ts/type1/urw/helvetic/uhvr8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1
 /urw/times/utmb8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/
 utmri8a.pfb>
-Output written on sigproc-sp.pdf (5 pages, 228349 bytes).
+Output written on sigproc-sp.pdf (6 pages, 231540 bytes).
 PDF statistics:
- 70 PDF objects out of 1000 (max. 8388607)
+ 73 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  21 words of extra memory for PDF output out of 10000 (max. 10000000)
 
