@@ -10,7 +10,7 @@
 
 %\title{A Sample {\ttlit ACM} SIG Proceedings Paper in LaTeX
 %Format\titlenote{(Does NOT produce the permission block, copyright information nor page numbering). For %use with ACM\_PROC\_ARTICLE-SP.CLS. Supported by ACM.}}
-\title{GPSInsights: An efficient framework to manage and process masssive GPS vehicle data}
+\title{GPSInsights: An efficient framework for storing and mining massive real-time vehicle location data}
 
 \subtitle{[Extended Abstract]
 %\titlenote{A full version of this paper is available as
@@ -43,7 +43,7 @@
 % without further effort on your part as the last section in
 % the body of your article BEFORE References or any Appendices.
 
-\numberofauthors{8} %  in this sample file, there are a *total*
+\numberofauthors{3} %  in this sample file, there are a *total*
 % of EIGHT authors. SIX appear on the 'first-page' (for formatting
 % reasons) and the remaining two appear in the \additionalauthors section.
 %
@@ -95,7 +95,7 @@ email: {\texttt{jsmith@affiliation.org}}) and Julius P.~Kumquat
 
 \maketitle
 \begin{abstract}
-Intelligent Transport System~(ITS) has seen growing interest in collecting various types of location-based data of transport vehicles in circulation in order to build up high quality real-time traffic monitoring system. Managing those massive data faces BigData challenges. In this paper we propose GPSInsights, a framework that can manage and process massive GPS vehicle data effectively. GPSInsights is built on scalable distributed, open-source software with Geomesa performing the key part.  We demonstrate our framework with a scalable map matching implementation and perform experiments with big dataset. 
+Intelligent Transport System~(ITS) has seen growing interest in collecting location-based data of transport vehicles in order to build up a real-time traffic management system. Managing those data faces big data challenges. It has big volume and big velocity characteristics as the data is collected continuously every short period of time from hundred thousand of vehicles. Current ITSs rely on relational database and sequential processing engine cannot scale. In this paper we propose GPSInsights, a framework that can manage and process massive GPS vehicle data effectively. GPSInsights is built on scalable compopents such as large-scale storage and distributed processing engine. We demonstrate our framework with a scalable map matching implementation and perform several experiments with real datasets. 
 
 % A category with the (minimum) three required fields
 \category{H.4}{Information Systems Applications}{Miscellaneous}
@@ -110,13 +110,15 @@ Intelligent Transport System~(ITS) has seen growing interest in collecting vario
 \section{Introduction}
 
 
-With the widespread adoption of GPS technology, Intelligent Transport System~(ITS) has seen growing interest in collecting various types of location-based data of transport vehicles in circulation. This data collection is done with the purpose of being able to deliver not only high quality real-time traffic monitoring but also useful traffic statistics and predictive information. Lee et al.~\cite{Lee2011} a data mining algorithm to discover traffic bottlenecks. Demiryurek et al.~\cite{Demiryurek2010} proposed an online computation of optimal traffic route based on traffic data. 
-	
-According to Decree No. 91/2009/ND-CP of Ministry of Transport of Vietnam, all Vietnamese-licensed cars in must be equipped with a standardised GPS monitoring system (black-box) which reports geo-location, speed and direction every 30 seconds to a centralised data centre. With nearly 200.000 cars in circulation in the near future, those collecting data are enormous and have characteristics of BigData. The first characteristic is big volume that refers to the increasing amount of data (petabytes) need to be stored with a relatively low cost. The second characteristic is big velocity that refers to the data generation speed, at which the underlying system must deliver. The third characteristic is big value because mining those data gives insights about the current situation of the traffic infrastructure, as well as, the predictions. 
+With the widespread adoption of GPS technology, Intelligent Transport System~(ITS) has seen growing interest in collecting location-based data of transport vehicles. This data collection is done with the purpose of being able to deliver not only real-time traffic monitoring but also useful traffic statistics and predictive information. Lee et al.~\cite{Lee2011} a data mining algorithm to discover traffic bottlenecks. Demiryurek et al.~\cite{Demiryurek2010} proposed an online computation of optimal traffic route based on traffic data. None of these approaches discuss how to implement the system at large-scale.
 
-As BigData create non-conventional challenges, current ITS management systems storing data in relational database system (e.g. via PostGIS) will not be able to adapt to the data ingestion speed, nor being able to be mined efficiently. In this work, we describe GPSInsights: a novel scalable system for manipulating and processing GPS traffic data. First, GPSInsights is able to handle big volume of data at the level of petabytes efficiently in distributed environments. Second, GPSInsights deals with big velocity where millions of GPS messages coming from millions of cars in Vietnam are ingesting into the system every 30 seconds. Third, despite big volume and big velocity challenges, GPSInsights can deliver in-time analytic reports for good uses. We demonstrates GPSInsights with a scalable map matching implementation. 
 
-This paper is organised in 7 parts. In Section 2, we discuss an overall architecture of our system framework. In Section~3, we go into the details of the technologies and components of GPSInsights. In Section~4, we establish a simple demonstration map matching algorithm. Section~5 presents experimental results for the algorithm presented in Section~4. Section~6 discusses related works on existed map matching algorithms and on storing spatio-time data. We conclude and discuss future work in Section~7.
+According to Decree No. 91/2009/ND-CP of Ministry of Transport of Vietnam, all Vietnamese-licensed cars in must be equipped with a standardised GPS monitoring system (black-box) which reports geo-location, speed and direction every 30 seconds to a centralised data center. With nearly 200.000 cars in circulation in the near future, the data is enormous and has big data characteristics. First, data is generated continuously in big volume (e.g. petabytes (PB)) from hundred thousand of vehicles. Second, in-coming data rate is near real-time, at which the underlying system must deliver. Third, data has big value for the potential insights about the current situation of the traffic infrastructure as well as for the predictions. 
+
+
+As big data create non-conventional challenges, current ITS management systems storing data in relational database system (e.g. via PostGIS~[ref]) will not be able to adapt to the data ingestion rate, nor being able to be processed efficiently. In this work, we describe GPSInsights: a novel scalable system for storing and mining massive real-time vehicle location data. GPSInsights is able to handle increasingly huge volume of data (~PB) while supporting real-time analytics. We demonstrates GPSInsights with a scalable map matching implementation. 
+
+This paper is organised in 7 parts. In Section~2, we discuss an overall architecture of our system framework. In Section~3, we go into the details of the technologies and components of GPSInsights. In Section~4, we establish a simple demonstration map matching algorithm. Section~5 presents experimental results for the algorithm presented in Section~4. Section~6 discusses related works on existed map matching algorithms and on storing spatio-time data. We conclude and discuss future work in Section~7.
 	
 \section{The general system design} 
 	
