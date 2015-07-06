@@ -113,45 +113,53 @@ Intelligent Transport System~(ITS) has seen growing interest in collecting locat
 With the widespread adoption of GPS technology, Intelligent Transport System~(ITS) has seen growing interest in collecting location-based data of transport vehicles. This data collection is done with the purpose of being able to deliver not only real-time traffic monitoring but also useful traffic statistics and predictive information. Lee et al.~\cite{Lee2011} a data mining algorithm to discover traffic bottlenecks. Demiryurek et al.~\cite{Demiryurek2010} proposed an online computation of optimal traffic route based on traffic data. None of these approaches discuss how to implement the system at large-scale.
 
 
-According to Decree No. 91/2009/ND-CP of Ministry of Transport of Vietnam, all Vietnamese-licensed cars in must be equipped with a standardised GPS monitoring system (black-box) which reports geo-location, speed and direction every 30 seconds to a centralised data center. With nearly 200.000 cars in circulation in the near future, the data is enormous and has big data characteristics. First, data is generated continuously in big volume (e.g. petabytes (PB)) from hundred thousand of vehicles. Second, in-coming data rate is near real-time, at which the underlying system must deliver. Third, data has big value for the potential insights about the current situation of the traffic infrastructure as well as for the predictions. 
+According to Decree No. 91/2009/ND-CP of Ministry of Transport of Vietnam, all Vietnamese-licensed cars in must be equipped with a standardised global positioning system (GPS) (black-box) which reports geo-location, speed and direction every 30 seconds to a centralised data center. With nearly 200.000 cars in circulation in the near future, the data is enormous and has big data characteristics. First, data is generated continuously in big volume (e.g. petabytes (PB)) from hundred thousand of vehicles. Second, in-coming data rate is near real-time, at which the underlying system must deliver. Third, data has big value for the potential insights about the current situation of the traffic infrastructure as well as for the predictions. 
 
 
-As big data create non-conventional challenges, current ITS management systems storing data in relational database system (e.g. via PostGIS~[ref]) will not be able to adapt to the data ingestion rate, nor being able to be processed efficiently. In this work, we describe GPSInsights: a novel scalable system for storing and mining massive real-time vehicle location data. GPSInsights is able to handle increasingly huge volume of data (~PB) while supporting real-time analytics. We demonstrates GPSInsights with a scalable map matching implementation. 
+As big data create non-conventional challenges, current ITS management systems storing data in relational database systems (e.g. via PostGIS~[ref]) will not be able to adapt to the data ingestion rate, nor being able to be processed efficiently. In this work, we describe GPSInsights: a novel scalable system for storing and mining massive real-time vehicle location data. GPSInsights is able to handle increasingly huge volume of data (~PB) while supporting real-time analytics. We demonstrates GPSInsights with a scalable map matching implementation. 
 
 This paper is organised in 7 parts. In Section~2, we discuss an overall architecture of our system framework. In Section~3, we go into the details of the technologies and components of GPSInsights. In Section~4, we establish a simple demonstration map matching algorithm. Section~5 presents experimental results for the algorithm presented in Section~4. Section~6 discusses related works on existed map matching algorithms and on storing spatio-time data. We conclude and discuss future work in Section~7.
 	
-\section{The general system design} 
+\section{System design} 
 	
-After being sent continuously from moving vehicles to converging data centers (note), the transportation information data will be pulled into a data mining block. The data mining block will process, analyze them and then send statistic results to a visual display system through a connect module. The general system design is illustrated as follow:
+%After being sent continuously from moving vehicles to converging data centers (note), the transportation information data will be pulled into a data mining block. The data mining block will process, analyze them and then send statistic results to a visual display system through a connect module. The general system design is illustrated as follow:
 
-\begin{figure}[!htb]
-\centering
-\epsfig{file=thesis-1.eps, height=140px, width=250px}
-\caption{The architecture of the system}
-\end{figure}
+%\begin{figure}[!htb]
+%\centering
+%\epsfig{file=thesis-1.eps, height=140px, width=250px}
+%\caption{The architecture of the system}
+%\end{figure}
 
-As a massive amount of transportation data being directed to these centers per second, the data mining block has to have following requirements.
--	The collected data are put in their order of arrival in time, and all of them have to be processed at least one.
--	The processing time is acceptable. With a quantity of data, the processing time  must not exceed than the collecting one.
--	Final statistic results have to be saved for using later.
+%As a massive amount of transportation data being directed to these centers per second, the data mining block has to have following requirements.
 
-In order to meet with the above requirements and deal with the challenges of big volume, velocity, it is necessary to construct the data mining block as a scalable system with scalable components as follows.
+%We design GPSInsights with the following goals: 
+%\begin{itemize}
+%\item	The collected data are put in their order of arrival in time, and all of them have to be processed at least one.
+%\item	The processing time is acceptable. With a quantity of data, the processing time  must not exceed than the collecting one.
+%\item  Final statistic results have to be saved for using later.
+%\end{itemize}
 
--	Message queue: As the transportation information data come continuously from a variety of sources,  this component are supposed to combine the multi-source data, and put them in their order of arrival in time. In addition, it has to store and replicate the large input data dispersedly on a large cluster for high-throughput, fault-tolerance.
+%In order to 
+%meet with the above requirements and deal with the challenges of big volume, velocity, it is necessary to construct the data mining %block as a scalable system with scalable components as follows.
 
--	Data processing engine: After storing the input data persistently, we also need a engine that has the ability to process them fast and continuous. A distributed, parallel and continuous processing engine totally meet this need.
+We design GPSInsights with the following components as depicted in Figure~[ref]:
 
--	Result queue: Results from data processing engine are sent to this component before being moved to the connect module. This component has to have the ability to write and read a massive amount of data in short time. The purpose of these is to reduce the waiting time of the data processing engine when pushing the final statistic results to the connect module.
+\begin{itemize}
+\item 	Distributed message queue: As the location data come continuously from a huge number of source vehicles, this component is designed to combine the multi-source data, and put them in their chronological order. It has to store and replicate the large input data dispersedly on a large cluster for high-throughput, and fault-tolerance. The distributed message queue implements producer-consumer skeleton in which GPS devices installed on transportation vehicles are the producers and the storage engine or the processing engine of GPSInsights become the consumers.
 
--	Result storage: The result storage is used to store the big-volume and high-velocity statistic results from the data processing engine. Hence, we need a distributed data storage. It also has the ability to write data fast in order to avoid increasing the processing time of the data processing engine. 
+\item  Streaming data processing engine: To allow realtime analytics, GPSInsights powers a streaming data processing engine. This component has to be able to analyse data "on the fly", which then outputs analytic reports such as average speed, number of vehicles, and traffic bottleneck prediction. It has to be scaled out on thousand of servers to adapt to the workload.
 
-One another reason of choosing the message queue as a component of the data mining block is an increase in the fault-tolerance for the block. In the case the transportation data are sent directly to the data processing engine, if its the master node crashes, it will stop working. So all data come in that time will disappear.
+\item  Distributed result queue: Results from the data processing engine are sent to this component. This acts as the interface to consumer services at application level such as web, mobile apps. 
 
+\item  Distribted spatio-temporal database: As location data consist of geolocation information and timestamp in which the data is recorded, GPSInsights stores data in a distributed spatio-temporal database. This components aims to provide the spatial querying and data manipulation as PostGIS but at large-scale. 
 
+\end{itemize}
+
+One another reason of choosing the message queue as a component of the data mining block is an increase in the fault-tolerance for the block. In the case the transportation data are sent directly to the data processing engine, if its the master node crashes, it will stop working. So all data come in that time will disappear. [not clear]
 
 \section{Implementation} 
 
-With the system architecture shown in section 2, we have decided to build a system based on components which are described as below, and we will explain the reasons for choosing the components and how they interact with each other.
+With the system architecture shown in Chapter~2, we build our GPSInsights on open-source components with custom plugins to satisfy our design goals. By leveraging existing components, we can develop GPSInsights quickly and focus on the scalable aspect of the entire system. A part of our contribution is then about designing the system overall,  carefully choosing the right compoments, and running the experiments with real datasets. 
 
 \begin{figure}[!htb]
 \centering
@@ -159,19 +167,24 @@ With the system architecture shown in section 2, we have decided to build a syst
 \caption{The architecture of the system}
 \end{figure}
 
-\textbf{Message queue: Apache Kafka.} Apache Kafka is the distributed publish-subscribe messaging. Kafka stores the data in categories called topic. A topic will be divided into one or more partitions which be distributed over nodes of a cluster (each partition is an ordered, immutable sequence of messages). It allows store the amount of the data larger than the capability of any single machine.
-Reading to and writing data in topic are very fast, thanks to paralleling operations and several useful techniques installed to maximize the performance (http://www.slideshare.net/baniuyao/kafka-24299168). According to Kafka's official website, a single Kafka broker can handle hundreds of megabytes of reads and writes per second from thousands of clients.
+\textbf{Message queue: Apache Kafka~[ref].} Apache Kafka is the distributed publish-subscribe messaging. Kafka stores the data in categories called topic. A topic will be divided into one or more partitions which be distributed over nodes of a cluster (each partition is an ordered, immutable sequence of messages). It allows store the amount of the data larger than the capability of any single machine.
+Reading to and writing data in topic are very fast, thanks to paralleling operations and several useful techniques installed to maximize the performance. According to Kafka's official website, a single Kafka broker can handle hundreds of megabytes of reads and writes per second from thousands of clients.
 Kafka also is designed to allow transparently and easily expanded without downtime. In addition, partitions are persisted on disk and replicated within the cluster to prevent data loss. So Kafka offers strong scalable, durability and  fault-tolerance.
 
-\textbf{Data processing engine: Spark Streaming.} Spark Streaming is a module of Apache Spark for acting on data stream as soon as it arrives. It provides an abstraction called Dstreams (discretized streams). A Dstream is represented as a continuous sequence of data arriving over time. In a more detail, a set of data arriving at each time step will be packed in a batch called an RDD, so each Dstream is a continuous sequence of RDDs. An RDD is simply an immutable distributed collection of objects. We can not change any property of an object in RDD. Using Map-Reduce model, Each RDD is split into multiple partitions, which may be processed on different nodes of a cluster. Every operations on partitions of RDD also are executed in memory, so running programs on Spark Streaming is very fast. According to Spark's official website, by comparison with the time of executing a logistic regression in Hadoop, running time in Spark is 100 times faster.
+\textbf{Data processing engine: Spark Streaming~[ref] and Storm~[ref].} Spark Streaming is a module of Apache Spark for acting on data stream as soon as it arrives. It provides an abstraction called Dstreams (discretized streams). A Dstream is represented as a continuous sequence of data arriving over time. In a more detail, a set of data arriving at each time step will be packed in a batch called an RDD, so each Dstream is a continuous sequence of RDDs. An RDD is simply an immutable distributed collection of objects. We can not change any property of an object in RDD. Using Map-Reduce model, Each RDD is split into multiple partitions, which may be processed on different nodes of a cluster. Every operations on partitions of RDD also are executed in memory, so running programs on Spark Streaming is very fast. According to Spark's official website, by comparison with the time of executing a logistic regression in Hadoop, running time in Spark is 100 times faster.
 Spark's RDDs also offer a strong fault-tolerance , because the input data are replicated to another nodes of the cluster, and an RDD remembers the lineage of deterministic operations that were used on that data to create it. If any partition of an RDD is lost due to a node failure, as long as a copy of the input data is still available, then that partition can be re-computed from it using the lineage of operations.
 
 \textbf{Result queue: Apache Kafka.} Providing a very high-throughput, Apache Kafka is relatively suitable for this position. The data processing engine will use Kafka's producer to push the statistic result data to a Kafka's topic in parallel. According to the benchmark experiments of the Kafka's developing team,  Kafka managed to write more 2 million records (approximately 193.0 MB)  per second on three cheap machines (https://engineering.linkedin.com/kafka/benchmarking-apache-kafka-2-million-writes-second-three-cheap-machines). Hence, with a suitable hardware configuration, the data processing engine can just spend a negligible time for writing the result data to the Kafka's topic. The data processing engine then continues the next input data, while the connect module uses Kafka's consumer to pull that data and send to every visual display systems of clients. This helps the data processing engine minimize the waiting time of sending the result data to external component.
 
-\textbf{Result storage: MongoDb.}  Because of the rapid increase in velocity and volume of the result data, traditional relational databases are no longer adequately suitable for such type of data. Especially as they do not scale well to very large sizes (their scaling is vertical; more data means a bigger server) and large data solutions become very expensive using relational databases. NoSql (not only sql) databases like mongoDB become an outstanding candidate for big data storing. Firstly, NoSql databases have been designed to provide good horizontal scalability for read/write database operations distributed, as well as  have the ability to replicate and to distribute data, over many servers. These multiple servers can be cheap commodity hardware or could instances, it is a lot more cost effective than vertical scaling of relational databases. Secondly, being divorced from normal table relationships and constraints, as well as ACID (atomicity, consistency, isolation, and durability) of data for increasing the performance, their read/write operations are very faster than the traditional databases. 
+\textbf{Result storage: Geomesa~[ref].} 
+
+Trong paper dung geomesa, khong dung mongodb. Linh copy lai phan mongodb. 
+
+ Because of the rapid increase in velocity and volume of the result data, traditional relational databases are no longer adequately suitable for such type of data. Especially as they do not scale well to very large sizes (their scaling is vertical; more data means a bigger server) and large data solutions become very expensive using relational databases. NoSql (not only sql) databases like mongoDB become an outstanding candidate for big data storing. Firstly, NoSql databases have been designed to provide good horizontal scalability for read/write database operations distributed, as well as  have the ability to replicate and to distribute data, over many servers. These multiple servers can be cheap commodity hardware or could instances, it is a lot more cost effective than vertical scaling of relational databases. Secondly, being divorced from normal table relationships and constraints, as well as ACID (atomicity, consistency, isolation, and durability) of data for increasing the performance, their read/write operations are very faster than the traditional databases. 
 The result storage is used to store the big-volume and high-velocity statistic results from the data processing engine. Hence, we need a distributed data storage. It also has the ability to write data fast in order to avoid increasing the processing time of the data processing engine. So that mongoDb – the most popular NoSQl database is selected for this position.
 
-
+[Discussion to show that we not only use these components but do something smart about it]
+       Cai tien de dam bao theo tac dau ra chinh xac mot lan cho co so du lieu khong ho tro transaction 
 
 \section{Demonstration: Scalable map matching}
 \subsection{Dataset}
