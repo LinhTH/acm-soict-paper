@@ -1,4 +1,8 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
+
+\bibitem{accumuloonline}
+Accumulo.
+\newblock https://accumulo.apache.org/.
 
 \bibitem{Demiryurek2010}
 U.~Demiryurek, F.~Banaei-kashani, and C.~Shahabi.
@@ -6,6 +10,31 @@ U.~Demiryurek, F.~Banaei-kashani, and C.~Shahabi.
   Networks}}.
 \newblock Advances in Spatial and Temporal Databases Lecture Notes in Computer
   Science, 2010.
+
+\bibitem{Sivaraman2014hadoop}
+{E. Sivaraman} and {R. Manickachezian}.
+\newblock High performance and fault tolerant distributed file system for big
+  data storage and processing using hadoop.
+\newblock In {\em Proceedings of the 2014 International Conference on
+  Intelligent Computing Applications}, ICICA '14, pages 32--36, Washington, DC,
+  USA, 2014. IEEE Computer Society.
+
+\bibitem{Chang2008BigTable}
+{F. Chang}, {J. Dean}, {S. Ghemawat}, {W.C. Hsieh}, {D.A. Wallach}, {M.
+  Burrows}, {T. Chandra}, {A. Fikes}, and {R.E. Gruber}.
+\newblock Bigtable: a distributed storage system for structured data.
+\newblock {\em ACM Trans. Comput. Syst.}, 26(2):pp. 4:1--4:26, 2008.
+
+\bibitem{zookeeperbook}
+{F. Junqueira} and {B. Reed}.
+\newblock {\em Zookeeper: distributed process coordination}.
+\newblock O'Reilly Media, Inc, 2013.
+
+\bibitem{fox2013spatio}
+Fox, Anthony, Eichelberger, Chris, Hughes, James, Lyon, and Skylar.
+\newblock Spatio-temporal indexing in non-relational distributed databases.
+\newblock In {\em 2013 IEEE International Conference on Big Data}, pages
+  291--299. IEEE, 2013.
 
 \bibitem{Lee2011}
 W.-H. Lee, S.-S. Tseng, J.-L. Shieh, and H.-H. Chen.
@@ -30,6 +59,17 @@ Noh and Kim.
 PostGis.
 \newblock http://postgis.net/.
 
+\bibitem{shvachko2010hadoop}
+Shvachko, Konstantin, Kuang, Hairong, Radia, Sanjay, Chansler, and Robert.
+\newblock The hadoop distributed file system.
+\newblock In {\em Proceedings of the 2010 IEEE 26th Symposium on Mass Storage
+  Systems and Technologies (MSST)}, MSST '10, pages 1--10, Washington, DC, USA,
+  2010. IEEE Computer Society.
+
+\bibitem{accumuloierator}
+Sqrrl.
+\newblock http://sqrrl.com/iterators-accumulo/, 2013.
+
 \bibitem{backendposgis}
 Wikipedia.
 \newblock User section: http://en.wikipedia.org/wiki/postgis.
@@ -40,5 +80,9 @@ Wikipedia.
   time intervals.
 \newblock {\em Journal of the Eastern Asia Society for Transportation Studies},
   6:pp. 2561--2573, 2005.
+
+\bibitem{zookeeper}
+Zookeeper.
+\newblock http://zookeeper.apache.org/.
 
 \end{thebibliography}
