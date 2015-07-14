@@ -283,20 +283,33 @@ Our data include about 12,565,521 GPS records collected by vehicles equipped wit
 %
 \noindent
 
-\section{Experimental Evaluation}
-	Our system set up on a cluster of HPCC super computer which has one master node and three compute nodes . The configuration of each node include an Intel Xeon E5-2670 Processor (20M Cache, 2.6 GHz, 8 Core), 32 GB DDR3 RAM and FDR 56Gbps Infiniband.
-	
-	With this configuration, we have conducted several experiments on our data set shown in section 4.1 aimed at appreciating execution time and performance of the architecture. After querying data from Geomesa according year, month, day of month and hour of day and removing records that its speed attribute is 0, we obtained 1,200,000 records. We compared the running time of the system on the whole records and the half records with various numbers of nodes. The result is illustrated by Figure 6.
+\section{Experiments}
+	GPSInsights system is set up on a cluster of HPCC super computer, consisting of 4 nodes, one master node and three slave nodes. Each cluster node is equipped with a  8-cores Intel Xeon 2.6GHz CPU, 32GB memory 
+	With this configuration, we have evaluated the performance of GPSInsights, using the dataset shown in section 4.1 to simulate the stream data. Firstly, We compared the running time of the system on the different number of records with various numbers of slave nodes. Secondly, we benchmark the system using Spark Streaming against the system using Apache Storm. For all experiments, the results are reported by averaging three runs. 
 	
 	% 	 Suppermicro SC815TQ-600WB\\ Intel Xeon E5-2670 Processor (20M Cache, 2.6 GHz, 8 Core)\\	 32 GB DDR3 RAM\\	 2*250 GB HDD\\	 FDR 56Gbps Infiniband\\
 	
 	\begin{figure}
 		\centering
-		\includegraphics[height=150pt,width=200pt]{figure6}
-		\caption{The execution time of the system}
+		\includegraphics[height=100pt,width=150pt]{thesis-5}
+		\caption{figure 5}
 	\end{figure}
 
-\setlength{\parindent}{0.7cm} It is worth noting that as the figure for nodes was increased, the execution time of the system reduced steadily due to the parallel procedure of spark. While effective indexing strategy of Geomesa enable the architecture to quickly query data from Geomesa, spark help the algorithm to accelerate computation by processing in-parallel. As shown in Figure 6, similarity to 600,000 records, with 4 nodes established, the system take a few more than 500s for 1,200,000 records and less than halving of the running time of the system since we only run on 1 node - a considerable decrease. Besides, we installed a common system running without parallel and kind of indexing strategy like Geomesa such as: using Hash Map with normal database in order to have a comparison with our system. With 1,200,000 records, after 20,000s running, there was no signs of stopping of the system.
+Figure 15 present the performance of employing GPSInsights for handling three different quantities of input records with the number of slave nodes from 1 to 3. In this experiment, the processing time of the system is measured from the time Spark Streaming pull the data from Kafka into a batch, until the analytic data of the batch are sent successful to the storage components. It is clear that the number of slave nodes was increased, the execution time of the system reduced steadily, this is thanks to the parallel procedure of Spark. Besides, we also installed a common system with Geomesa for map-matching, based on the ability of querying K-nearest neighbor search of this database, in order to have a comparison with our system. With 1.200.000 records, after 10.000 seconds running, there was no signs of stopping of the system. The performance gap between two system is mainly due to taking the advantage of Spark Streaming in our system,  we can execute the nearest neighbor search directly in memory by using the map-matching algorithm shown in section 4.2.
+
+	\begin{figure}
+		\centering
+		\includegraphics[height=100pt,width=150pt]{thesis-6}
+		\caption{figure 6}
+	\end{figure}
+	
+		\begin{figure}
+		\centering
+		\includegraphics[height=100pt,width=150pt]{thesis-7}
+		\caption{figure 5}7
+	\end{figure}
+	
+Figure 6 and Figure 7 show the lag and the performance of two systems using two different frameworks as the streaming data processing engine for performing the map-matching algorithm in 3.200.000 and 8.500.000 records of the input data. The system using Storm beats one using Spark Streaming in term of the lag. Because Storm processes incoming events one at a time , so that its processing latency could be sub-second. Otherwise, after collecting the input data into a batch, Spark Streaming then divide it up into partitions and sent them to slave nodes. So the processing latency of Spark Streaming depends on the batch interval (if the batch interval is 5 seconds, it means that Spark has to wait 5 seconds before starting processing the first batch)  and the number of records packed in the batch (the time for sending partitions to slave nodes is directly proportional to the quantity of records). However, with the in-memory batch handling strategy, the time for processing the data of Spark Streaming is so much faster.	
 	
 \section{Related work}
 
