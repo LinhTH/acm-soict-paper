@@ -145,7 +145,7 @@ This paper is organised in 7 parts. In Section~2, we discuss an overall architec
 We design GPSInsights with the following components as depicted  in Figure~[ref]:
 
 \begin{itemize}
-\item 	Distributed message queue: As the location data come continuously from a huge number of source vehicles, this component is designed to combine the multi-source data, and put them in their chronological order. It has to store and replicate the large input data dispersedly on a large cluster for high-throughput, and fault-tolerance. The distributed message queue implements producer-consumer skeleton in which GPS devices installed on transportation vehicles are the producers and the storage engine or the processing engine of GPSInsights become the consumers.
+\item 	Distributed input message queue: As the location data arrive from a huge number of source vehicles continuously, this component is designed to combine the multi-source data, and put them in their chronological order. It has to store and replicate the large input data dispersedly on a large cluster for high-throughput, and fault-tolerance. The distributed message queue implements producer-consumer skeleton in which GPS devices installed on transportation vehicles are the producers and the storage engine or the processing engine of GPSInsights become the consumers.
 
 \item  Streaming data processing engine: To allow realtime analytics, GPSInsights powers a streaming data processing engine. This component has to be able to analyse data "on the fly", which then outputs analytic reports such as average speed, number of vehicles, and traffic bottleneck prediction. It has to be scaled out on thousand of servers to adapt to the workload.
 
@@ -160,7 +160,7 @@ We design GPSInsights with the following components as depicted  in Figure~[ref]
 
 \section{Implementation} 
 
-With the system architecture shown in Chapter~2, we build our GPSInsights on open-source components with custom plugins to satisfy our design goals . By leveraging existing components, we can develop GPSInsights quickly and focus on the scalable aspect of the entire system. A part of our contribution is then about designing the system overall,  carefully choosing the right components, and running the experiments with real datasets.  
+With the system architecture shown in Chapter~2, we build our GPSInsights on open-source components with custom plugins to satisfy our design goals. By leveraging existing components, we can develop GPSInsights quickly and focus on the scalability aspect of the entire system. Thus, a part of our contribution is to design the system overall, to carefully extend the right components, and to run the experiments with real datasets.  
 
 \begin{figure}[!htb]
 \centering
@@ -168,37 +168,52 @@ With the system architecture shown in Chapter~2, we build our GPSInsights on ope
 \caption{The architecture of the system}
 \end{figure}
 
-\subsubsection{Distributed message queue: Apache Kafka~[ref].} Apache Kafka is the distributed publish-subscribe messaging. Kafka stores the data in categories called topic. A topic will be divided into one or more partitions which be distributed over nodes of a cluster (each partition is an ordered, immutable sequence of messages). It allows store the amount of the data larger than the capability of any single machine. Internally, each record of the data called a "message", uniquely specified by an id number called "offset" which is its ordinal number in a partition. 
-Reading to and writing data in topic are very fast, thanks to paralleling operations and several useful techniques installed to maximize the performance. According to Kafka's official website, a single Kafka broker can handle hundreds of megabytes of reads and writes per second from thousands of clients.
-Kafka is designed to allow transparently and easily expanded without downtime. Kafka also can replay any message or set of messages given the necessary selection  criteria. In addition, partitions are persisted on disk and replicated within the cluster to prevent data loss. So Kafka offers strong scalable, durability and  fault-tolerance.
+\subsubsection{Apache Kafka~[ref].} 
 
-\subsubsection{Streaming data processing engine: Spark Streaming~[ref] and Storm~[ref].}
-Spark Streaming and Apache Storm now are the most popular open-source frameworks for distributed stream processing. However, there are important differences in their architectures as following.
+Apache Kafka is a distributed publish-subscribe messaging service with the purpose of being fast, scalable and durable. Kafka maintains feeds of messages in categories called topics. Each topic is a partitioned log, distributed over multiple cluster server nodes as in Figure~[ref]. Inside a particular partition, the messages are immutable and ordered, identified by an "offset". This design choice allows not only storing the amount of the data larger than the capability of any single node but also parallelizing read and write operations. Technically, the producer that publish messages can distribute messages over multiple partitions of a topic in a round-roubin fashion, or it can distribute according to some semantic partition functions.
 
-Spark Streaming is a module of Apache Spark for acting on data stream as soon as it arrives. It provides an abstraction called Dstreams (discretized streams). A Dstream is represented as a continuous sequence of data arriving over time. More detail, a set of data arriving at each time step, received by a component called "receiver", will be packed in a batch called an RDD, so each Dstream is a continuous sequence of RDDs. An RDD is simply an immutable distributed collection of objects. We cannot change any property of an object in RDD. Using Map-Reduce model, Each RDD is split into multiple partitions, which may be processed by "executors" on different nodes of a Spark Streaming cluster. Each operation on partition of RDD is also executed in memory, so running programs on Spark Streaming is very fast. According to Spark's official website, by comparison with the time of executing a logistic regression in Hadoop, running time in Spark is 100 times faster.
-Spark's RDDs also offer a strong fault-tolerance , because the input data are replicated to other nodes of the cluster (In Spark 1.1 and earlier, received data was replicated in-memory only, so it could also be lost if Spark Streaming crashed. Since Spark 1.2, received data are also persisted to a reliable file system like HDFS so that they are not lost anymore), and an RDD remembers the lineage of deterministic operations that were used on that data to create it. If any partition of an RDD is lost due to a node failure, as long as a copy of the input data is still available, then that partition can be re-computed from it using the lineage of operations. So that Spark Streaming provides better support for processing each batch exactly once.
+Kafka achieve fault-tolerance by replicating partitions across a configurable number of nodes. Each partition has one "leader" and several "follower" nodes. The "leader" node serves all read and write requests for the partition while the followers are mirroring. Once the leader failed, one of the follower will be automatically promoted to be the new leader (using the well-known distributed leader election algorithm). In production, every Kafka node acts as leader for some partitions and follower for others to achieve balancing. 
 
-Instead of batching up events that arrive within a short time and then processing them like Spark Streaming, Storm processes incoming events one at a time (so storm’s processing latency could be sub-second, while Spark Streaming reaches a latency of several seconds). The work in Storm is delegated to different types of components that are responsible for a specific processing task. The input data stream are received by a specialized component called a "spout". Then the spout immediately passes the data to another component called a "bolt". In a bolt, the data will be transformed in some way, and the bolt either sends it to some sort of storage or passes it to some other bolt. In short, a Storm cluster can be considered as a network of bolt components in which each one applies some kind of transformation on the data receiving from the spout, the arrangement of spouts and bolts and their connections in the cluster is called a topology. In storm, each individual record has to be tracked when moving through the system. However, Storm only guarantees that each record will be processed at least once.
+In GPSInsights, Kafka is used for the distributed input message queue and the result queue. With suitable configuration, Kafka helps GPSInsights agregating in-coming location data and route analytics results to the appropriate layers (E.g. storage and graphic user interface).
 
-In GPSInsights, we mainly focus on Spark Streaming. The purpose of installing Storm as the streaming data processing engine is to compare the performance of the system when using the two frameworks to solve the same problem. The results of the comparison are expressed in the Experimental Evaluation section.
+\subsubsection{Spark Streaming~[ref] and Storm~[ref].}
 
+Spark Streaming and Apache Storm are the most popular open-source frameworks for distributed stream processing. There are important differences in their architectures as following.
 
-\subsubsection{Distributed result queue: Apache Kafka.} Providing a very high-throughput, Apache Kafka is relatively suitable for this position. The data processing engine will use Kafka's producer to push the statistic result data to a Kafka's topic in parallel. According to the benchmark experiments of the Kafka's developing team,  Kafka managed to write more 2 million records (approximately 193.0 MB)  per second on three cheap machines (https://engineering.linkedin.com/kafka/benchmarking-apache-kafka-2-million-writes-second-three-cheap-machines). Hence, with a suitable hardware configuration, the data processing engine can just spend a negligible time for writing the result data to the Kafka's topic. The data processing engine then continues the next input data, while the connect module uses Kafka's consumer to pull that data and send to every visual display systems of clients. This helps the data processing engine minimize the waiting time of sending the result data to external component.
+Spark Streaming lays on top of Apache Spark~[ref] for acting on data stream.
+ At the core of Spark Streaming is the concept of discretized abstraction (D-streams), that considers in-coming records as a series of deterministic batchs on small time intervals. Each batch is treated as a reslient distributed dataset (RDD) of Spark, and being processed using RDD operations. 
 
+ Spark's RDDs offer fault-tolerance and parallel computation at large-scale though three important design principles. First, RDD is partitioned in chunks, distributed across compute nodes (as in Hadoop Mapreduce paradigm). Second, every computations within RDD are recored. Third, temporary data is kept in memory to speed up computation. If any partition of an RDD is lost due to a node failure, as long as the source the input data which is usually at immutable Hadoop file system HDFS~[ref], then that partition can be re-computed from it using the lineage of operations.
 
+Instead of batching up events that arrive within a short time and then process them as in Spark Streaming, Storm~[ref] processes incoming events one at a time (so storm’s processing latency could be sub-second, while Spark Streaming reaches a latency of several seconds). The work in Storm is delegated to different types of components that are responsible for a specific processing task. The input data stream are received by a specialized component called a "spout". Then the spout immediately passes the data to another component called a "bolt". In a bolt, the data will be transformed in some way, and the bolt either sends it to some sort of storage or passes it to some other bolt. In short, a Storm cluster can be considered as a network of bolt components in which each one applies some kind of transformation on the data receiving from the spout, the arrangement of spouts and bolts and their connections in the cluster is called a topology. In storm, each individual record has to be tracked when moving through the system. However, Storm only guarantees that each record will be processed at least once.
 
-\subsubsection{Distributed analytic result database: MongoDb~[ref].}
-Because of the rapid increase in velocity and volume of the result data, traditional relational databases are no longer adequately suitable for such type of data. Especially as they do not scale well to very large sizes (their scaling is vertical; more data means a bigger server) and large data solutions become very expensive using relational databases. NoSQL (not only SQL) databases like mongoDB become an outstanding candidate for big data storing. Firstly, NoSQL databases have been designed to provide good horizontal scalability for read/write database operations distributed, as well as  have the ability to replicate and to distribute data, over many servers. These multiple servers can be cheap commodity hardware or could instances, it is a lot more cost effective than vertical scaling of relational databases. Secondly, being divorced from normal table relationships and constraints, as well as ACID (atomicity, consistency, isolation, and durability) of data for increasing the performance, their read/write operations are very faster than the traditional databases. 
-The result storage is used to store the big-volume and high-velocity statistic results from the data processing engine. Hence, we need a distributed data storage. It also has the ability to write data fast in order to avoid increasing the processing time of the data processing engine. So that mongoDb – the most popular NoSQL database is selected for this position.
-
-\subsubsection{Distributed spatio-temporal database: Geomesa~[ref].}
- GeoMesa~\cite{fox2013spatio} is an open-source, distributed, spatio-temporal database  built on top of a column-family oriented distributed database called Accumulo~\cite{accumuloonline}. GeoMesa uses a very flexible strategy to linearize geo-time data and distribute the data across the nodes in a cluster to leverage parallelism in computationally intensive queries. It enables efficient storing, querying, and transforming capabilities for large spatio-temporal data. Furthermore, GeoMesa supports open OGC APIs, which facilitates transition from other databases to this database. This database provides specialized functions for manipulating the spatial-temporal data like which is similar to PostGIS's functions, adding advantages of NoSQL database. It is very suitable for storing and querying the raw input data for offline phase in the future. So why not use Geomesa as the distributed analytic result database? There are several reasons for this. Firstly, the output data from the streaming data processing engine do not include the spatial field like latitude and longitude, so that we cannot take advantage of the spatio-temporal database. Secondly, Geomesa does not support update operation which we will need for improving the system in later.  Finally, Geomesa has not supported for receiving the data from Apache Spark yet. Hence, we have to use a Geomesa basic function to d
-o this, it is enormously slow.
+GPSInsights is implemented to work with both Spark Streaming and Storm as the stream processing engine.
 
 
-One other reason of choosing the distributed message queue as a component of GPSInsights is to minimize the number of data which loss while recovering from failures. In the case without the message queue component, the transportation data are sent directly to the data processing engine. If a master node of a Spark Streaming cluster dies or "Spout" component of a Storm cluster crashes, they cannot receive any data which arrive during this time. By contrast, if the number of failure node is smaller than the number of nodes keeping the input data (for example, if received data are replicated across two nodes, the queue can tolerate single node failures), the queue always receive the arrival data in spite of the failures of the data processing engine. When recovering, the data processing engine continues pulling the unprocessed data from the queue and then handling them.
+\subsubsection{MongoDb~[ref].}
 
-However, after successful connecting between different components of GPSInsights, we realized that there were some inherent problems in the system. Firstly, the system could not guarantee that the output data from Spark Streaming were completely sent to MongoDb. This happened when Spark Streaming went wrong, while pushing the result data to the result database. MongoDb in this case just received the incomplete set of the data, but Spark Streaming supposed it completed the task with the current batch and then continued handling the following batch. Hence, that there would be some records which will be lost in the failure case.
+
+Because of the rapid increase in velocity and volume of the result data, 
+
+Traditional relational databases are no longer the "one-size-fits-all" for every type of data. They do not scale well to large datasets because their scaling model is vertial: more data means bigger server. One way to scale relational databases across multiple server is to do "database sharding". However, this mechanism is limited scalability due to the inherent complexity of the relational interface and the ACID (atomicity, consistency, isolation, and durability) guarantees. 
+
+MongoDB~[ref] is a document store with the posibility to scale horizontally. It is designed for managing semi-structured data organized as a collection of documents. In MongoDB and other document stores, the structure of the documents is very flexible. There is no pre-defined scheme as the columns, and colume datatypes as in relational databases. MongoDB distributes documents by the document IDs across servers and implements replication for fault-tolerance. 
+
+GPSInsights uses MongoDB to store the statistic results from the data processing engine. GPSInsights leverages the ability of MongoDB to write data fast and in a flexible scheme. 
+
+\subsubsection{Geomesa~[ref].}
+ 
+ Geomesa~\cite{fox2013spatio} is an open-source, distributed, spatio-temporal database  built on top of a column-family oriented distributed database called Accumulo~\cite{accumuloonline}. Geomesa uses a very flexible strategy to linearize geo-time data and distribute the data across the nodes in a cluster to leverage parallelism in computationally intensive queries. It enables efficient storing, querying, and transforming capabilities for large spatio-temporal data. Geomesa is like PostGIS~[ref] but at very large-scale and for big data workloads. 
+
+GPSInsights relies on Geomesa for storing raw in-coming location data which will be input for doing batch processing if necessery. Note that GPSInsights focuses on real-time analytics but it also feature long running analytic jobs. Those will be discussed in the future papers. 
+
+\subsubsection{Guarantee realibility}
+
+The reason of choosing the distributed message queue as a component of GPSInsights is to minimize the number of data loss while recovering from failures. In the case of lacking the message queue component, the transportation data had to be sent directly to the data processing engine. If a master node of a Spark Streaming cluster dies or a "Spout" component of a Storm cluster crashes, they cannot receive any data which arrive during this time. By contrast, the message queue can keep unprocessed data and allows the processing engine pulling them when recovering.
+
+However, there are still more cases that even with the support of message queues, GPSInsights have to deal with unrealiability. 
+
+First, how to guarantee that the output data from Spark Streaming were completely sent to MongoDb? This happens when Spark Streaming went wrong and not pushed all the result data to the result database. MongoDb in this case received the incomplete set of the data, but Spark Streaming supposed it completed the task with the current batch and then continued handling the following batch.
 
 \begin{figure}[!htb]
 \centering
@@ -206,8 +221,7 @@ However, after successful connecting between different components of GPSInsights
 \caption{The first problem}
 \end{figure} 
 
-Secondly, some records might appear repetitively in a batch due to failures. Because after the received data are replicated persistently on HDFS, the Spark Streaming Receiver informed Kafka about this, so the problem can occur when a part of received data are saved on the reliable filesystem, but Spark Streaming failed before updating for Kafka. Therefore, Spark Streaming supposed it received the data, but Kafka supposed that the data was not sent successfully. So Kafka would resend the data after the streaming data processing engine recovered from the failure.
-
+Second, some messages might appear repetitively in a batch due to failures that the Spark Streaming Receiver failed to inform Kafka about its current received messages. Therefore, Spark Streaming supposed it received the data, but Kafka supposed that the messages was not sent successfully and would resend repetitively. 
  
 \begin{figure}[!htb]
 \centering
@@ -215,11 +229,13 @@ Secondly, some records might appear repetitively in a batch due to failures. Bec
 \caption{The second problem}
 \end{figure} 
 
-The cause of the above problems is that each component of GPSInsights cannot know exactly whether the data are handled fully by the other component or not. To overcome these, only one component needs to maintain a consistent view of what has been processed successful by the system. Therefore, we decided to build a transaction of writing the result data to MongoDB. It means that either all output data from Spark Streaming are logged to MongoDB or the arriving data are reprocessed by the system. 
+The cause of the two above problems is that each component of GPSInsights cannot know exactly whether the data are handled fully by the other components or not. To overcome these, there should be a mechanism to maintain a consistent view of what has been processed successful by the system. Therefore, we have to introduce a transaction guarantee to GPSInsights. This component ensures that either all output data from Spark Streaming are logged to MongoDB or the arriving data are reprocessed.
 
-To build this, firstly, we rewrote Spark Streaming's Receiver by using Spark Streaming's "receiverStream" API and Kafka's Simple Consumer API [* ref link] to take advantage of the Kafka's ability of replaying the data from arbitrary offsets.  Instead of only handling the latest data when using the old Receiver, with the new one, we can arbitrarily specify any start position of the offset for each partition at the beginning of every batch interval. Besides, we can get the extra information of each record including its offset, id of the partition which it belongs to.  Secondly, we created a MongoDb database with three different collections namely "Transactions", "Records", "OffsetRanges". "Transaction" includes documents have three fields: id, timestamp and status. There are two value of status field, "BEGIN" means the beginning of a transaction and "FINISH" expresses the end of the transaction. "Records" contains documents which are the information of the analytic results from Spark Streaming and an id of the transaction. "OffsetRanges" includes documents which hold the information of an offset range of the records packaged into the current batch, and the id of the transaction.
+to take advantage of the Kafka's ability of replaying the data from arbitrary offsets.
 
-The detail implementation will be described as follows. Before sending to Spark Streaming's Receiver, each record in Kafka will be attached with its offset and partition's id which it belongs to. Using Accumulator API [* ref link], we can find the offset range of each Kafka's partition in the current batch. When finishing handling this batch, before logging the result data to MongoDb, we create a new document with "Begin" status in "Transactions" collection and get its id. We then create a new document in "OffsetRanges" collection with the offset range and the id. Next, we send the result data to "Records" collection, attaching the id. Finally, after the last record is written successful in MongoDb, we change the status field of the transaction to "Finish", and the current batch is handled successful. During running, if the system fails and then recovers, it will query MongoDb for the last document in "Transactions" collection.  If the value of the status field is "Finish", it means the process of handling the last batch was succeeded. By contrast, we will use the transaction id to get the relevant document in "OffsetRanges" collection, and use the first offset in each ranges (the number of range is equal to the number of partition of the Kafka' topic that we are consuming) to recomputed the data. 
+To achieve this guarantee, first, we rewrote Spark Streaming's Receiver by using the Spark Streaming's "receiverStream" API and the Kafka's Simple Consumer API [* ref link]. Instead of handling only the latest data, the new Spark Streaming Receiver can specify the start position of the offset for each partition at the beginning of every batch interval. It can also get the extra information of each record including its offset, id of the partition which it belongs to. Second, we created a MongoDb database with three different collections, namely "Transactions", "Records", and "OffsetRanges". The "Transaction" consists of documents having three fields: id, timestamp and status. The status field can accept two value: "BEGIN" means the beginning of a transaction and "FINISH" expresses the end of the transaction. "Records" contains documents which are the information of the analytic results from Spark Streaming and an id of the transaction. "OffsetRanges" includes documents which hold the information of an offset range of the records packaged into the current batch, and the id of the transaction.
+
+The detail implementation is described as follows. Before sending to Spark Streaming's Receiver, each record in Kafka will be attached with its offset and partition's id which it belongs to. Using Accumulator API [* ref link], we can find the offset range of each Kafka's partition in the current batch. When finishing handling this batch, before logging the result data to MongoDb, we create a new document with "Begin" status in "Transactions" collection and get its id. We then create a new document in "OffsetRanges" collection with the offset range and the id. Next, we send the result data to "Records" collection, attaching the id. Finally, after the last record is written successful in MongoDb, we change the status field of the transaction to "Finish", and the current batch is handled successful. During running, if the system fails and then recovers, it will query MongoDb for the last document in "Transactions" collection.  If the value of the status field is "Finish", it means the process of handling the last batch was succeeded. By contrast, we will use the transaction id to get the relevant document in "OffsetRanges" collection, and use the first offset in each ranges (the number of range is equal to the number of partition of the Kafka' topic that we are consuming) to recomputed the data. 
 
 \section{Demonstration: Scalable map matching}
 \subsection{Dataset}
@@ -335,49 +351,7 @@ In the future work, we intent to pursue the system in three directions. Firstly,
 %\balancecolumns
 \appendix
 %Appendix A
-\section{Headings in Appendices}
-The rules about hierarchical headings discussed above for
-the body of the article are different in the appendices.
-In the \textbf{appendix} environment, the command
-\textbf{section} is used to
-indicate the start of each Appendix, with alphabetic order
-designation (i.e. the first is A, the second B, etc.) and
-a title (if you include one).  So, if you need
-hierarchical structure
-\textit{within} an Appendix, start with \textbf{subsection} as the
-highest level. Here is an outline of the body of this
-document in Appendix-appropriate form:
-\subsection{Introduction}
-\subsection{The Body of the Paper}
-\subsubsection{Type Changes and  Special Characters}
-\subsubsection{Math Equations}
-\paragraph{Inline (In-text) Equations}
-\paragraph{Display Equations}
-\subsubsection{Citations}
-\subsubsection{Tables}
-\subsubsection{Figures}
-\subsubsection{Theorem-like Constructs}
-\subsubsection*{A Caveat for the \TeX\ Expert}
-\subsection{Conclusions}
-\subsection{Acknowledgments}
-\subsection{Additional Authors}
-This section is inserted by \LaTeX; you do not insert it.
-You just add the names and information in the
-\texttt{{\char'134}additionalauthors} command at the start
-of the document.
-\subsection{References}
-Generated by bibtex from your ~.bib file.  Run latex,
-then bibtex, then latex twice (to resolve references)
-to create the ~.bbl file.  Insert that ~.bbl file into
-the .tex source file and comment out
-the command \texttt{{\char'134}thebibliography}.
-% This next section command marks the start of
-% Appendix B, and does not continue the present hierarchy
-\section{More Help for the Hardy}
-The acm\_proc\_article-sp document class file itself is chock-full of succinct
-and helpful comments.  If you consider yourself a moderately
-experienced to expert user of \LaTeX, you may find reading
-it useful but please remember not to change it.
+
 \balancecolumns
 % That's all folks!
 \end{document}
