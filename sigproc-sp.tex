@@ -164,11 +164,11 @@ With the system architecture shown in Chapter~2, we build our GPSInsights on ope
 
 \begin{figure}[!htb]
 \centering
-\epsfig{file=thesis-2.eps, height=125px, width=250px}
+\epsfig{file=architectureOfSystem.eps, height=125px, width=250px}
 \caption{The architecture of the system}
 \end{figure}
 
-\subsubsection{Apache Kafka~[ref].} 
+\subsubsection{Apache Kafka~\cite{kafkapaper,kafkaweb}.} 
 
 Apache Kafka is a distributed publish-subscribe messaging service with the purpose of being fast, scalable and durable. Kafka maintains feeds of messages in categories called topics. Each topic is a partitioned log, distributed over multiple cluster server nodes as in Figure~[ref]. Inside a particular partition, the messages are immutable and ordered, identified by an "offset". This design choice allows not only storing the amount of the data larger than the capability of any single node but also parallelizing read and write operations. Technically, the producer that publish messages can distribute messages over multiple partitions of a topic in a round-roubin fashion, or it can distribute according to some semantic partition functions.
 
@@ -176,40 +176,40 @@ Kafka achieve fault-tolerance by replicating partitions across a configurable nu
 
 In GPSInsights, Kafka is used for the distributed input message queue and the result queue. With suitable configuration, Kafka helps GPSInsights agregating in-coming location data and route analytics results to the appropriate layers (E.g. storage and graphic user interface).
 
-\subsubsection{Spark Streaming~[ref] and Storm~[ref].}
+\subsubsection{Spark Streaming~\cite{learningsparkbook,sparkstreamingweb} and Storm~\cite{stormappliedbook,apachestormweb}.}
 
-Spark Streaming and Apache Storm are the most popular open-source frameworks for distributed stream processing. There are important differences in their architectures as following.
+Spark Streaming and Apache Storm are the most popular open-source frameworks for distributed stream processing. In distributed mode, both of them use a master/slave architecture with one central coordinator and many distributed workers. However, there are still the important differences in their architectures as following.
 
-Spark Streaming lays on top of Apache Spark~[ref] for acting on data stream.
- At the core of Spark Streaming is the concept of discretized abstraction (D-streams), that considers in-coming records as a series of deterministic batchs on small time intervals. Each batch is treated as a reslient distributed dataset (RDD) of Spark, and being processed using RDD operations. 
+Spark Streaming lays on top of Apache Spark~\cite{Zaharia:2010:SCC:1863103.1863113} for acting on data stream.
+ At the core of Spark Streaming is the concept of discretized abstraction (D-streams)~\cite{Zaharia:2013:DSF:2517349.2522737,Zaharia:2012:DSE:2342763.2342773}, that considers in-coming records as a series of deterministic batchs on small time intervals. Each batch is treated as a reslient distributed dataset (RDD) of Spark, and being processed using RDD operations. 
 
- Spark's RDDs offer fault-tolerance and parallel computation at large-scale though three important design principles. First, RDD is partitioned in chunks, distributed across compute nodes (as in Hadoop Mapreduce paradigm). Second, every computations within RDD are recored. Third, temporary data is kept in memory to speed up computation. If any partition of an RDD is lost due to a node failure, as long as the source the input data which is usually at immutable Hadoop file system HDFS~[ref], then that partition can be re-computed from it using the lineage of operations.
+ Spark's RDDs offer fault-tolerance and parallel computation at large-scale though three important design principles. First, RDD is partitioned in chunks, distributed across compute nodes (as in Hadoop Mapreduce paradigm). Second, every computations within RDD are recored. Third, temporary data is kept in memory to speed up computation. If any partition of an RDD is lost due to a node failure, as long as the source the input data which is usually at immutable Hadoop file system HDFS~\cite{shvachko2010hadoop}, then that partition can be re-computed from it using the lineage of operations.
 
-Instead of batching up events that arrive within a short time and then process them as in Spark Streaming, Storm~[ref] processes incoming events one at a time (so storm’s processing latency could be sub-second, while Spark Streaming reaches a latency of several seconds). The work in Storm is delegated to different types of components that are responsible for a specific processing task. The input data stream are received by a specialized component called a "spout". Then the spout immediately passes the data to another component called a "bolt". In a bolt, the data will be transformed in some way, and the bolt either sends it to some sort of storage or passes it to some other bolt. In short, a Storm cluster can be considered as a network of bolt components in which each one applies some kind of transformation on the data receiving from the spout, the arrangement of spouts and bolts and their connections in the cluster is called a topology. In storm, each individual record has to be tracked when moving through the system. However, Storm only guarantees that each record will be processed at least once.
+Instead of batching up events that arrive within a short time and then process them as in Spark Streaming, Storm processes incoming events one at a time (so storm's processing latency could be sub-second, while Spark Streaming reaches a latency of several seconds). The work in Storm is delegated to different types of components that are responsible for a specific processing task. The input data stream are received by a specialized component called a "spout". Then the spout immediately passes the data to another component called a "bolt". In a bolt, the data will be transformed in some way, and the bolt either sends it to some sort of storage or passes it to some other bolt. In short, a Storm cluster can be considered as a network of bolt components in which each one applies some kind of transformation on the data receiving from the spout, the arrangement of spouts and bolts and their connections in the cluster is called a topology. In storm, each individual record has to be tracked when moving through the system. However, Storm only guarantees that each record will be processed at least once.
 
 GPSInsights is implemented to work with both Spark Streaming and Storm as the stream processing engine.
 
 
-\subsubsection{MongoDb~[ref].}
+\subsubsection{MongoDb~\cite{mongodbweb}.}
 
 
 Because of the rapid increase in velocity and volume of the result data, 
 
 Traditional relational databases are no longer the "one-size-fits-all" for every type of data. They do not scale well to large datasets because their scaling model is vertial: more data means bigger server. One way to scale relational databases across multiple server is to do "database sharding". However, this mechanism is limited scalability due to the inherent complexity of the relational interface and the ACID (atomicity, consistency, isolation, and durability) guarantees. 
 
-MongoDB~[ref] is a document store with the posibility to scale horizontally. It is designed for managing semi-structured data organized as a collection of documents. In MongoDB and other document stores, the structure of the documents is very flexible. There is no pre-defined scheme as the columns, and colume datatypes as in relational databases. MongoDB distributes documents by the document IDs across servers and implements replication for fault-tolerance. 
+MongoDB is a document store with the posibility to scale horizontally. It is designed for managing semi-structured data organized as a collection of documents. In MongoDB and other document stores, the structure of the documents is very flexible. There is no pre-defined scheme as the columns, and colume datatypes as in relational databases. MongoDB distributes documents by the document IDs across servers and implements replication for fault-tolerance. When comparing the performance between the two different databases, this comparison is conducted in~\cite{10.11648/j.ajsea.20150402.12}, MongoDb saw the much better performance than MySQL - the traditional relational database.
 
 GPSInsights uses MongoDB to store the statistic results from the data processing engine. GPSInsights leverages the ability of MongoDB to write data fast and in a flexible scheme. 
 
-\subsubsection{Geomesa~[ref].}
+\subsubsection{Geomesa~\cite{fox2013spatio}.}
  
- Geomesa~\cite{fox2013spatio} is an open-source, distributed, spatio-temporal database  built on top of a column-family oriented distributed database called Accumulo~\cite{accumuloonline}. Geomesa uses a very flexible strategy to linearize geo-time data and distribute the data across the nodes in a cluster to leverage parallelism in computationally intensive queries. It enables efficient storing, querying, and transforming capabilities for large spatio-temporal data. Geomesa is like PostGIS~[ref] but at very large-scale and for big data workloads. 
+Geomesa is an open-source, distributed, spatio-temporal data-base built on top of a column-family oriented distributed database called Accumulo~\cite{accumuloonline}. Geomesa uses a very flexible strategy to linearize geo-time data and distribute the data across the nodes in a cluster to leverage parallelism in computationally intensive queries. It enables efficient storing, querying, and transforming capabilities for large spatio-temporal data. Geomesa is like PostGIS~[ref] but at very large-scale and for big data workloads. 
 
 GPSInsights relies on Geomesa for storing raw in-coming location data which will be input for doing batch processing if necessery. Note that GPSInsights focuses on real-time analytics but it also feature long running analytic jobs. Those will be discussed in the future papers. 
 
 \subsubsection{Guarantee realibility}
 
-The reason of choosing the distributed message queue as a component of GPSInsights is to minimize the number of data loss while recovering from failures. In the case of lacking the message queue component, the transportation data had to be sent directly to the data processing engine. If a master node of a Spark Streaming cluster dies or a "Spout" component of a Storm cluster crashes, they cannot receive any data which arrive during this time. By contrast, the message queue can keep unprocessed data and allows the processing engine pulling them when recovering.
+The primary reason of choosing the distributed message queue as a component of GPSInsights is to minimize the number of data loss when our system fails. In the case of lacking the message queue component, the data processing engine would directly receive the data from the GPS devices, if a master node of the processing engine dies (the master node of Spark called "driver program", one of Storm called "Spout"), GPSInsights cannot receive and handle any data which arrive during this time, so that there are some transportation data will disappear. By contrast, with the message queue, it receives the transportation data and stores them in queue, even when the processing engine is stopped as the result of the master node's failure. When recovering, the processing engine will pull the next unprocessed data from the queue to continue handling. Hence, GPSInsight can ensure zero transportation data loss as long as the message queue do not crash (the message queue fails if and only if the number of node failures is over the threshold which is set by user)
 
 However, there are still more cases that even with the support of message queues, GPSInsights have to deal with unrealiability. 
 
@@ -217,7 +217,7 @@ First, how to guarantee that the output data from Spark Streaming were completel
 
 \begin{figure}[!htb]
 \centering
-\epsfig{file=thesis-3.eps, height=100px, width=220px}
+\epsfig{file=sendingcrash.eps, height=100px, width=220px}
 \caption{The first problem}
 \end{figure} 
 
@@ -225,7 +225,7 @@ Second, some messages might appear repetitively in a batch due to failures that 
  
 \begin{figure}[!htb]
 \centering
-\epsfig{file=thesis-4.eps, height=100px, width=220px}
+\epsfig{file=receivingcrash.eps, height=100px, width=220px}
 \caption{The second problem}
 \end{figure} 
 

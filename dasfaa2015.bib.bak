@@ -10,19 +10,6 @@
   Timestamp                = {2015.01.10}
 }
 
-@Article{10.11648/j.ajsea.20150402.12,
-  Title                    = {{Comparisons Between MongoDB and MS-SQL Databases on the TWC Website}},
-  Author                   = {{Chieh M. Wu} and {Yin F. Huang} and {John Lee}},
-  Journal                  = {American Journal of Software Engineering and Applications.},
-  Year                     = {2015},
-  Number                   = {3},
-  Pages                    = {35-41},
-  Volume                   = {4},
-
-  Owner                    = {Rimberry},
-  Timestamp                = {2015.07.21}
-}
-
 @Book{Demiryurek2010,
   Title                    = {{A Case for Time-Dependent Shortest Path Computation in Spatial Networks}},
   Author                   = {Demiryurek, Ugur and Banaei-kashani, Farnoush and Shahabi, Cyrus},

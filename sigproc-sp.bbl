@@ -4,6 +4,13 @@
 Accumulo.
 \newblock https://accumulo.apache.org/.
 
+\bibitem{10.11648/j.ajsea.20150402.12}
+{Chieh M. Wu}, {Yin F. Huang}, and {John Lee}.
+\newblock {Comparisons Between MongoDB and MS-SQL Databases on the TWC
+  Website}.
+\newblock {\em American Journal of Software Engineering and Applications.},
+  4(3):35--41, 2015.
+
 \bibitem{Demiryurek2010}
 U.~Demiryurek, F.~Banaei-kashani, and C.~Shahabi.
 \newblock {\em {A Case for Time-Dependent Shortest Path Computation in Spatial
@@ -11,30 +18,25 @@ U.~Demiryurek, F.~Banaei-kashani, and C.~Shahabi.
 \newblock Advances in Spatial and Temporal Databases Lecture Notes in Computer
   Science, 2010.
 
-\bibitem{Sivaraman2014hadoop}
-{E. Sivaraman} and {R. Manickachezian}.
-\newblock High performance and fault tolerant distributed file system for big
-  data storage and processing using hadoop.
-\newblock In {\em Proceedings of the 2014 International Conference on
-  Intelligent Computing Applications}, ICICA '14, pages 32--36, Washington, DC,
-  USA, 2014. IEEE Computer Society.
-
-\bibitem{Chang2008BigTable}
-{F. Chang}, {J. Dean}, {S. Ghemawat}, {W.C. Hsieh}, {D.A. Wallach}, {M.
-  Burrows}, {T. Chandra}, {A. Fikes}, and {R.E. Gruber}.
-\newblock Bigtable: a distributed storage system for structured data.
-\newblock {\em ACM Trans. Comput. Syst.}, 26(2):pp. 4:1--4:26, 2008.
-
-\bibitem{zookeeperbook}
-{F. Junqueira} and {B. Reed}.
-\newblock {\em Zookeeper: distributed process coordination}.
-\newblock O'Reilly Media, Inc, 2013.
-
 \bibitem{fox2013spatio}
 Fox, Anthony, Eichelberger, Chris, Hughes, James, Lyon, and Skylar.
 \newblock Spatio-temporal indexing in non-relational distributed databases.
 \newblock In {\em 2013 IEEE International Conference on Big Data}, pages
   291--299. IEEE, 2013.
+
+\bibitem{learningsparkbook}
+{H. Karau}, {A. Konwinski}, {P. Wendell}, and {M. Zaharia}.
+\newblock {\em Learning Spark}.
+\newblock O'Reilly Media, 2015.
+
+\bibitem{kafkapaper}
+{Jay Kreps}, {Neha Narkhede}, and {Jun Rao}.
+\newblock {Kafka: a distributed messaging system for log processing}.
+\newblock {\em NetDB}, 2011.
+
+\bibitem{kafkaweb}
+A.~Kafka.
+\newblock http://kafka.apache.org/.
 
 \bibitem{Lee2011}
 W.-H. Lee, S.-S. Tseng, J.-L. Shieh, and H.-H. Chen.
@@ -50,14 +52,38 @@ W.-H. Lee, S.-S. Tseng, J.-L. Shieh, and H.-H. Chen.
 \newblock {\em International Journal of Database Management Systems}, 5(1),
   2013.
 
-\bibitem{noh1998map}
-Noh and Kim.
-\newblock A comprehensive analysis of map matching algorithms for its.
-\newblock {\em Hongik Journal of Science and Technology}, 9:pp. 303--313, 1998.
+\bibitem{Zaharia:2010:SCC:1863103.1863113}
+{Matei Zaharia}, {Mosharaf Chowdhury}, {Michael J. Franklin}, {Scott Shenker},
+  and {Ion Stoica}.
+\newblock Spark: Cluster computing with working sets.
+\newblock In {\em Proceedings of the 2Nd USENIX Conference on Hot Topics in
+  Cloud Computing}, HotCloud'10, pages 10--10, Berkeley, CA, USA, 2010. USENIX
+  Association.
 
-\bibitem{posgis}
-PostGis.
-\newblock http://postgis.net/.
+\bibitem{Zaharia:2012:DSE:2342763.2342773}
+{Matei Zaharia}, {Tathagata Das}, {Haoyuan Li}, {Scott Shenker}, and {Ion
+  Stoica}.
+\newblock Discretized streams: An efficient and fault-tolerant model for stream
+  processing on large clusters.
+\newblock In {\em Proceedings of the 4th USENIX Conference on Hot Topics in
+  Cloud Ccomputing}, HotCloud'12, pages 10--10, Berkeley, CA, USA, 2012. USENIX
+  Association.
+
+\bibitem{Zaharia:2013:DSF:2517349.2522737}
+{Matei Zaharia}, {Tathagata Das}, {Haoyuan Li}, {Timothy Hunter}, {Scott
+  Shenker}, and {Ion Stoica}.
+\newblock Discretized streams: Fault-tolerant streaming computation at scale.
+\newblock In {\em Proceedings of the Twenty-Fourth ACM Symposium on Operating
+  Systems Principles}, SOSP '13, pages 423--438. ACM, 2013.
+
+\bibitem{mongodbweb}
+MongoDB.
+\newblock https://www.mongodb.com.
+
+\bibitem{stormappliedbook}
+{Seen T. Allen}, {Matthew Jankowski}, and {Peter Pathirana}.
+\newblock {\em {Storm Applied: Strategies for real-time event processing}}.
+\newblock 1st edition, 2015.
 
 \bibitem{shvachko2010hadoop}
 Shvachko, Konstantin, Kuang, Hairong, Radia, Sanjay, Chansler, and Robert.
@@ -66,23 +92,12 @@ Shvachko, Konstantin, Kuang, Hairong, Radia, Sanjay, Chansler, and Robert.
   Systems and Technologies (MSST)}, MSST '10, pages 1--10, Washington, DC, USA,
   2010. IEEE Computer Society.
 
-\bibitem{accumuloierator}
-Sqrrl.
-\newblock http://sqrrl.com/iterators-accumulo/, 2013.
+\bibitem{apachestormweb}
+A.~Storm.
+\newblock https://storm.apache.org/, 2015.
 
-\bibitem{backendposgis}
-Wikipedia.
-\newblock User section: http://en.wikipedia.org/wiki/postgis.
-
-\bibitem{yang2005map}
-{Y. Jae-seok}, {K. Seung-pil}, and {C. Kyung-soo}.
-\newblock The map matching algorithm of gps data with relatively long polling
-  time intervals.
-\newblock {\em Journal of the Eastern Asia Society for Transportation Studies},
-  6:pp. 2561--2573, 2005.
-
-\bibitem{zookeeper}
-Zookeeper.
-\newblock http://zookeeper.apache.org/.
+\bibitem{sparkstreamingweb}
+S.~Streaming.
+\newblock http://spark.apache.org/streaming/, 2015.
 
 \end{thebibliography}
