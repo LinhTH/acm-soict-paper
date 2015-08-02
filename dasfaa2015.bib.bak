@@ -10,6 +10,19 @@
   Timestamp                = {2015.01.10}
 }
 
+@Article{10.11648/j.ajsea.20150402.12,
+  Title                    = {{Comparisons Between MongoDB and MS-SQL Databases on the TWC Website}},
+  Author                   = {{Chieh M. Wu} and {Yin F. Huang} and {John Lee}},
+  Journal                  = {American Journal of Software Engineering and Applications.},
+  Year                     = {2015},
+  Number                   = {3},
+  Pages                    = {35-41},
+  Volume                   = {4},
+
+  Owner                    = {Rimberry},
+  Timestamp                = {2015.07.21}
+}
+
 @Book{Demiryurek2010,
   Title                    = {{A Case for Time-Dependent Shortest Path Computation in Spatial Networks}},
   Author                   = {Demiryurek, Ugur and Banaei-kashani, Farnoush and Shahabi, Cyrus},
@@ -93,6 +106,15 @@
   Timestamp                = {2015.07.21}
 }
 
+@Misc{haversineweb,
+  Title                    = {https://en.wikipedia.org/wiki/Haversine\_formula},
+
+  Author                   = {HaversineFormula},
+
+  Owner                    = {Rimberry},
+  Timestamp                = {2015.08.02}
+}
+
 @Article{kafkapaper,
   Title                    = {{Kafka: a distributed messaging system for log processing}},
   Author                   = {{Jay Kreps} and {Neha Narkhede} and {Jun Rao}},
@@ -110,6 +132,15 @@
 
   Owner                    = {Rimberry},
   Timestamp                = {2015.07.21}
+}
+
+@Misc{kafkasimpleapi,
+  Title                    = {https://cwiki.apache.org/confluence/display/KAFKA/0.8.0+SimpleConsumer+Example},
+
+  Author                   = {Apache Kafka-SimpleConsumer},
+
+  Owner                    = {Rimberry},
+  Timestamp                = {2015.08.01}
 }
 
 @Book{resfulbook,
@@ -183,7 +214,7 @@
 
 @InProceedings{Zaharia:2012:DSE:2342763.2342773,
   Title                    = {Discretized Streams: An Efficient and Fault-tolerant Model for Stream Processing on Large Clusters},
-  Author                   = {{Matei Zaharia} and {Tathagata Das} and  {Haoyuan Li} and {Scott Shenker} and {Ion Stoica}},
+  Author                   = {{Matei Zaharia} and {Tathagata Das} and {Haoyuan Li} and {Scott Shenker} and {Ion Stoica}},
   Booktitle                = {Proceedings of the 4th USENIX Conference on Hot Topics in Cloud Ccomputing},
   Year                     = {2012},
 
@@ -296,6 +327,15 @@
 
   Date-modified            = {2015-01-10 18:48:23 +0000},
   Timestamp                = {2015.05.30}
+}
+
+@Misc{accumulatorapi,
+  Title                    = {https://spark.apache.org/docs/latest/programming-guide.html\#accumulators-a-nameaccumlinka},
+
+  Author                   = {Spark Streaming-Accumulator},
+
+  Owner                    = {Rimberry},
+  Timestamp                = {2015.08.01}
 }
 
 @Misc{backendposgis,

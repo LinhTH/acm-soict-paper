@@ -29,6 +29,10 @@ Fox, Anthony, Eichelberger, Chris, Hughes, James, Lyon, and Skylar.
 \newblock {\em Learning Spark}.
 \newblock O'Reilly Media, 2015.
 
+\bibitem{haversineweb}
+Haversine\_Formula.
+\newblock https://en.wikipedia.org/wiki/haversine\_formula.
+
 \bibitem{kafkapaper}
 {Jay Kreps}, {Neha Narkhede}, and {Jun Rao}.
 \newblock {Kafka: a distributed messaging system for log processing}.
@@ -99,5 +103,10 @@ A.~Storm.
 \bibitem{sparkstreamingweb}
 S.~Streaming.
 \newblock http://spark.apache.org/streaming/, 2015.
+
+\bibitem{accumulatorapi}
+S.~Streaming-Accumulator.
+\newblock
+  https://spark.apache.org/docs/latest/programming-guide.html\#accumulators-a-nameaccumlinka.
 
 \end{thebibliography}

@@ -170,9 +170,9 @@ With the system architecture shown in Chapter~2, we build our GPSInsights on ope
 
 \subsubsection{Apache Kafka~\cite{kafkapaper,kafkaweb}.} 
 
-Apache Kafka is a distributed publish-subscribe messaging service with the purpose of being fast, scalable and durable. Kafka maintains feeds of messages in categories called topics. Each topic is a partitioned log, distributed over multiple cluster server nodes as in Figure~[ref]. Inside a particular partition, the messages are immutable and ordered, identified by an "offset". This design choice allows not only storing the amount of the data larger than the capability of any single node but also parallelizing read and write operations. Technically, the producer that publish messages can distribute messages over multiple partitions of a topic in a round-roubin fashion, or it can distribute according to some semantic partition functions.
+Apache Kafka is a distributed publish-subscribe messaging service with the purpose of being fast, scalable and durable. Kafka maintains feeds of messages in categories called topics. Each topic is a partitioned log, distributed over multiple cluster server nodes as in Figure~[ref]. Inside a particular partition, the messages are immutable and ordered, identified by an ``offset''. This design choice allows not only storing the amount of the data larger than the capability of any single node but also parallelizing read and write operations. Technically, the producer that publish messages can distribute messages over multiple partitions of a topic in a round-roubin fashion, or it can distribute according to some semantic partition functions.
 
-Kafka achieve fault-tolerance by replicating partitions across a configurable number of nodes. Each partition has one "leader" and several "follower" nodes. The "leader" node serves all read and write requests for the partition while the followers are mirroring. Once the leader failed, one of the follower will be automatically promoted to be the new leader (using the well-known distributed leader election algorithm). In production, every Kafka node acts as leader for some partitions and follower for others to achieve balancing. 
+Kafka achieve fault-tolerance by replicating partitions across a configurable number of nodes. Each partition has one ``leader'' and several ``follower'' nodes. The ``leader'' node serves all read and write requests for the partition while the followers are mirroring. Once the leader failed, one of the follower will be automatically promoted to be the new leader (using the well-known distributed leader election algorithm). In production, every Kafka node acts as leader for some partitions and follower for others to achieve balancing. 
 
 In GPSInsights, Kafka is used for the distributed input message queue and the result queue. With suitable configuration, Kafka helps GPSInsights agregating in-coming location data and route analytics results to the appropriate layers (E.g. storage and graphic user interface).
 
@@ -185,7 +185,7 @@ Spark Streaming lays on top of Apache Spark~\cite{Zaharia:2010:SCC:1863103.18631
 
  Spark's RDDs offer fault-tolerance and parallel computation at large-scale though three important design principles. First, RDD is partitioned in chunks, distributed across compute nodes (as in Hadoop Mapreduce paradigm). Second, every computations within RDD are recored. Third, temporary data is kept in memory to speed up computation. If any partition of an RDD is lost due to a node failure, as long as the source the input data which is usually at immutable Hadoop file system HDFS~\cite{shvachko2010hadoop}, then that partition can be re-computed from it using the lineage of operations.
 
-Instead of batching up events that arrive within a short time and then process them as in Spark Streaming, Storm processes incoming events one at a time (so storm's processing latency could be sub-second, while Spark Streaming reaches a latency of several seconds). The work in Storm is delegated to different types of components that are responsible for a specific processing task. The input data stream are received by a specialized component called a "spout". Then the spout immediately passes the data to another component called a "bolt". In a bolt, the data will be transformed in some way, and the bolt either sends it to some sort of storage or passes it to some other bolt. In short, a Storm cluster can be considered as a network of bolt components in which each one applies some kind of transformation on the data receiving from the spout, the arrangement of spouts and bolts and their connections in the cluster is called a topology. In storm, each individual record has to be tracked when moving through the system. However, Storm only guarantees that each record will be processed at least once.
+Instead of batching up events that arrive within a short time and then process them as in Spark Streaming, Storm processes incoming events one at a time (so storm's processing latency could be sub-second, while Spark Streaming reaches a latency of several seconds). The work in Storm is delegated to different types of components that are responsible for a specific processing task. The input data stream are received by a specialized component called a ``spout''. Then the spout immediately passes the data to another component called a ``bolt''. In a bolt, the data will be transformed in some way, and the bolt either sends it to some sort of storage or passes it to some other bolt. In short, a Storm cluster can be considered as a network of bolt components in which each one applies some kind of transformation on the data receiving from the spout, the arrangement of spouts and bolts and their connections in the cluster is called a topology. In storm, each individual record has to be tracked when moving through the system. However, Storm only guarantees that each record will be processed at least once.
 
 GPSInsights is implemented to work with both Spark Streaming and Storm as the stream processing engine.
 
@@ -195,7 +195,7 @@ GPSInsights is implemented to work with both Spark Streaming and Storm as the st
 
 Because of the rapid increase in velocity and volume of the result data, 
 
-Traditional relational databases are no longer the "one-size-fits-all" for every type of data. They do not scale well to large datasets because their scaling model is vertial: more data means bigger server. One way to scale relational databases across multiple server is to do "database sharding". However, this mechanism is limited scalability due to the inherent complexity of the relational interface and the ACID (atomicity, consistency, isolation, and durability) guarantees. 
+Traditional relational databases are no longer the ``one-size-fits-all'' for every type of data. They do not scale well to large datasets because their scaling model is vertial: more data means bigger server. One way to scale relational databases across multiple server is to do ``database sharding''. However, this mechanism is limited scalability due to the inherent complexity of the relational interface and the ACID (atomicity, consistency, isolation, and durability) guarantees. 
 
 MongoDB is a document store with the posibility to scale horizontally. It is designed for managing semi-structured data organized as a collection of documents. In MongoDB and other document stores, the structure of the documents is very flexible. There is no pre-defined scheme as the columns, and colume datatypes as in relational databases. MongoDB distributes documents by the document IDs across servers and implements replication for fault-tolerance. When comparing the performance between the two different databases, this comparison is conducted in~\cite{10.11648/j.ajsea.20150402.12}, MongoDb saw the much better performance than MySQL - the traditional relational database.
 
@@ -209,7 +209,7 @@ GPSInsights relies on Geomesa for storing raw in-coming location data which will
 
 \subsubsection{Guarantee realibility}
 
-The primary reason of choosing the distributed message queue as a component of GPSInsights is to minimize the number of data loss when our system fails. In the case of lacking the message queue component, the data processing engine would directly receive the data from the GPS devices, if a master node of the processing engine dies (the master node of Spark called "driver program", one of Storm called "Spout"), GPSInsights cannot receive and handle any data which arrive during this time, so that there are some transportation data will disappear. By contrast, with the message queue, it receives the transportation data and stores them in queue, even when the processing engine is stopped as the result of the master node's failure. When recovering, the processing engine will pull the next unprocessed data from the queue to continue handling. Hence, GPSInsight can ensure zero transportation data loss as long as the message queue do not crash (the message queue fails if and only if the number of node failures is over the threshold which is set by user)
+The primary reason of choosing the distributed message queue as a component of GPSInsights is to minimize the number of data loss when our system fails. In the case of lacking the message queue component, the data processing engine would directly receive the data from the GPS devices, if a master node of the processing engine dies (the master node of Spark called ``driver program'', one of Storm called ``Spout''), GPSInsights cannot receive and handle any data which arrive during this time, so that there are some transportation data will disappear. By contrast, with the message queue, it receives the transportation data and stores them in queue, even when the processing engine is stopped as the result of the master node's failure. When recovering, the processing engine will pull the next unprocessed data from the queue to continue handling. Hence, GPSInsight can ensure zero transportation data loss as long as the message queue do not crash (the message queue fails if and only if the number of node failures is over the threshold which is set by user)
 
 However, there are still more cases that even with the support of message queues, GPSInsights have to deal with unrealiability. 
 
@@ -233,11 +233,11 @@ The cause of the two above problems is that each component of GPSInsights cannot
 
 to take advantage of the Kafka's ability of replaying the data from arbitrary offsets.
 
-To achieve this guarantee, first, we rewrote Spark Streaming's Receiver by using the Spark Streaming's "receiverStream" API and the Kafka's Simple Consumer API [* ref link]. Instead of handling only the latest data, the new Spark Streaming Receiver can specify the start position of the offset for each partition at the beginning of every batch interval. It can also get the extra information of each record including its offset, id of the partition which it belongs to. Second, we created a MongoDb database with three different collections, namely "Transactions", "Records", and "OffsetRanges". The "Transaction" consists of documents having three fields: id, timestamp and status. The status field can accept two value: "BEGIN" means the beginning of a transaction and "FINISH" expresses the end of the transaction. "Records" contains documents which are the information of the analytic results from Spark Streaming and an id of the transaction. "OffsetRanges" includes documents which hold the information of an offset range of the records packaged into the current batch, and the id of the transaction.
+To achieve this guarantee, first, we rewrote Spark Streaming's Receiver by using the Spark Streaming's ``receiverStream'' API and the Kafka's Simple Consumer API ~/cite{kafkasimpleapi}. Instead of handling only the latest data, the new Spark Streaming Receiver can specify the start position of the offset for each partition at the beginning of every batch interval. It can also get the extra information of each record including its offset, id of the partition which it belongs to. Second, we created a MongoDb database with three different collections, namely ``Transactions'', ``Records'', and ``OffsetRanges''. The ``Transaction'' consists of documents having three fields: id, timestamp and status. The status field can accept two value: ``BEGIN'' means the beginning of a transaction and ``FINISH'' expresses the end of the transaction. ``Records'' contains documents which are the information of the analytic results from Spark Streaming and an id of the transaction. ``OffsetRanges'' includes documents which hold the information of an offset range of the records packaged into the current batch, and the id of the transaction.
 
-The detail implementation is described as follows. Before sending to Spark Streaming's Receiver, each record in Kafka will be attached with its offset and partition's id which it belongs to. Using Accumulator API [* ref link], we can find the offset range of each Kafka's partition in the current batch. When finishing handling this batch, before logging the result data to MongoDb, we create a new document with "Begin" status in "Transactions" collection and get its id. We then create a new document in "OffsetRanges" collection with the offset range and the id. Next, we send the result data to "Records" collection, attaching the id. Finally, after the last record is written successful in MongoDb, we change the status field of the transaction to "Finish", and the current batch is handled successful. During running, if the system fails and then recovers, it will query MongoDb for the last document in "Transactions" collection.  If the value of the status field is "Finish", it means the process of handling the last batch was succeeded. By contrast, we will use the transaction id to get the relevant document in "OffsetRanges" collection, and use the first offset in each ranges (the number of range is equal to the number of partition of the Kafka' topic that we are consuming) to recomputed the data. 
+The detail implementation is described as follows. Before sending to Spark Streaming's Receiver, each record in Kafka will be attached with its offset and partition's id which it belongs to. Using Accumulator API ~\cite{accumulatorapi}, we can find the offset range of each Kafka's partition in the current batch. When finishing handling this batch, before logging the result data to MongoDb, we create a new document with ``Begin'' status in ``Transactions'' collection and get its id. We then create a new document in ``OffsetRanges'' collection with the offset range and the id. Next, we send the result data to ``Records'' collection, attaching the id. Finally, after the last record is written successful in MongoDb, we change the status field of the transaction to ``Finish'', and the current batch is handled successful. During running, if the system fails and then recovers, it will query MongoDb for the last document in ``Transactions'' collection.  If the value of the status field is ``Finish'', it means the process of handling the last batch was succeeded. By contrast, we will use the transaction id to get the relevant document in ``OffsetRanges'' collection, and use the first offset in each ranges (the number of range is equal to the number of partition of the Kafka' topic that we are consuming) to recomputed the data. 
 
-\section{Demonstration: Scalable map matching}
+\section{Demonstration: Scalable map m-atching}
 \subsection{Dataset}
 Our data include about 12,565,521 GPS records collected by vehicles equipped with a GPS receiver from 22/03/2014 to 22/04/2014 in Ho Chi Minh city. Every record consists of speed, GPS coordinate and state of the vehicle and the period of time between two records is 15 minutes. The following table shows the format of the data.
 
@@ -251,14 +251,14 @@ Our data include about 12,565,521 GPS records collected by vehicles equipped wit
 
 \subsection{Algorithm: Road Reverse Geocode Algorithm Using K-D Tree.}	
 	
-\subsubsection{Process OSM raw data.}
+\subsubsection{Process OSM raw data.} \label{ssec:links}
 	The Open Street Map's raw data consist of a mass of tag almost covering the whole world. Every node tag has some tags inside to determine its attributes (e.g. type, way's name, coordinate, ..). Way tag contains one or more node tags that used to define the shape of it.
 	
 		\setlength{\parindent}{0.7cm} Before going to the details, vertices, links and segments should be defined clearly. Link is a section of road between intersections. In most digital maps, a real road is digitized and is described with a set of many straight lines. Vertices are points which separate these straight lines, and each straight line is a segment. The road AD in Fig.~\ref{fig:composition} is formed by 3 intersections (black points), 2 vertices (white points), 2 links (AD, DE) and 3 segments(AB, BC, CD).
 		
-\begin{figure}[h]
+\begin{figure}[!htb]
 \centering
-\includegraphics[height=100px,width=210px]{figure1}
+\epsfig{file=compositionOfRoad.eps, height=100px, width=220px}
 \caption{The composition of the road network}
 \label{fig:composition}
 \end{figure}
@@ -271,33 +271,93 @@ Our data include about 12,565,521 GPS records collected by vehicles equipped wit
 	
 	\setlength{\parindent}{0.7cm} Despite the fact that the standard deviation of GPS data could be quite low in the best case, around 3 meters, it can increase several fold due to tree cover, tunnel and other problems. The limited sampling polling time intervals is the second source affecting the accuracy. There are many methods to solve quite effectively this, including vertex-based and segment-based map matching, map matching using the geometric relationship, map matching using the network topology, the data history and so forth. This paper does not focus on this problem, we only use the vertex-based map matching for the simplicity of the process.  
 	
-%	\begin{figure}
-%		\subfloat[vertex-based map matching]{\includegraphics[width = 0.5\linewidth]{figure3}} 
-%		\subfloat[Add some equidistant vertices in segments]{\includegraphics[width = 0.5\linewidth]{figure2}\label{fig:sfig2}}
-%	\caption{Link matching}
-%	\end{figure}
+\begin{figure}[!htb]
+\centering
+\epsfig{file=addPointsTofRoad.eps, height=100px, width=220px}
+\caption{Add some equidistant vertices in segments}
+\label{fig:addPointsToRoad}
+\end{figure}
 	
-	\setlength{\parindent}{0.7cm} We go through the list of ways in OSM and add some equidistant vertices in segments ( illustrated in Fig.~\ref{fig:sfig2}) and build a KD-Tree based on those vertices. Note that a node in the Kd-Tree consists of a coordinate and information of a link which associates it. Therefore, by taking a GPS point into the Kd-Tree and using the vertex-based map matching, we can determine its nearest vertex as well as a link it is matched to.
+	 \setlength{\parindent}{0.7cm} We go through the list of ways in OSM, adding some equidistant vertices in segments ( illustrated in Fig.~\ref{fig:addPointsToRoad}), this will be dealt as follow: 
+
+	Let's suppose we add a point B into a segment AC in order that the distance between this point and A is $d_{AB}$ ($d_{AB}$ < $d_{AC}$). The coordinate of the point B is determined as following formula:
+\[ latitude_{B} = latitude_{A} + (latitude_{C} - latitude_{A}) \ast \frac{d_{AB}}{d_{AC}}\]
+\[ longitude_{B} = longitude_{A} + (longitude_{C} - longitude_{A}) \ast \frac{d_{AB}}{d_{AC}}\]
+where $d_{AC}$ is the metric distance between the point A and the point C, calculated on $Haversine$ formula~\cite{haversineweb}.
+
+While adding new points, we also remove all intersections and finally build a KD-Tree based on those vertices. Note that a node in the Kd-Tree consists of a coordinate and information of a link which associates it. Therefore, by taking a GPS point into the Kd-Tree and using the vertex-based map matching, we can determine its nearest vertex as well as a link it is matched to.
 	
-	\subsubsection{Describe our algorithm.}
+\subsubsection{Describe our algorithm.}
 		
-	\setlength{\parindent}{0.7cm} In this section, we focus on explaining our proposed algorithm in traffic volume statistic. With this algorithm, we query vehicle object q in a specific time period and a GPS bound from Geomesa aimed at achieving following attributes of q: q's latitude, q's longitude and q's speed. All the information we will store in a data structure list – input. After getting input data from Geomesa, now, we review how Spark is used in our algorithm. Firstly, we build up a kdTree with OSM data preprocessed and then broadcast it to the nodes in our system (Line 14). By doing this, we can keep a read-only variable cached on each machine instead of shipping a copy of it with tasks, thereby, providing every node a copy of the kdTree which make up a lot of memory and construction time. Secondly, it is necessary for our algorithm to utilize a collection in-parallel in order to construct a distributed dataset from input data list which can be operated on in paralle. Because the parallel collection can be used many times, we will cache it on memory accelerating our program (Line 15).
+In this section, we focus on explaining our proposed algorithm in traffic volume statistic. After getting input data from the distributed publish-subscribe messaging service (Apache Kafka), now, we review how the distributed stream processing (Spark Streaming and Apache Storm) is used in our algorithm. Firstly, we build up a kd-tree with OSM data preprocessed and then broadcast it to the nodes in our system. By doing this, in the case that our system uses Spark Streaming, we can keep a read-only variable cached on each machine instead of shipping a copy of it with tasks, this will help improving the system's performance. However, providing every node a copy of the kd-tree will increase a memory and construction time.
 	
 \setlength{\parindent}{0.7cm} As we have a parallelized collection formed, our algorithm will be divided into two phase: a data mapping phase and a data collecting phase. 
 
-\subsubsection{Data Mapping Phase:} All the elements of the parallelized collection (object q) will be passed on the maptopair method of spark which can operate on in-parallel. As every object q go into the method, the nearestPoint method of copies of kdTree cached on each machine can be utilized aimed at finding what point of a road segment (p) is nearest point of object q and how long distance between q and p (Line 19). Because of the fact that coordination GPS sent from satellites will have some deviations in comparison with the real coordinate, so that we have to choose a threshold distance in order to determine whether object q belong to the road segment including p or not (Line 20 - 27). If the distance is smaller than the threshold distance, it will be much easier for us to conclude that the object q belongs to the road segment and vice versa. As a result, our algorithm can remove the object q that its distance with the road segment is too far from, therefore, we can enhance the accuracy of our algorithm to some extent. Finally, in the Line 29, after every object q is matched to a road segment by road segment's ID, we will group the matched pairs by road segment's ID, hence, we can obtain $<$key, value$>$ pairs with key being a roadID and value being a iterable of vehicleID and speed.
+\subsubsection{Data Mapping Phase:} 
+This phase is responsible for matching coordinate of every transportation record q into a concrete segment. In this algorithm, we are only interested in following attributes of q: the latitude, the longitude and the speed. These records will be passed the nearestPoint method of copies of kd-tree cached on each machine can be utilized aimed at finding what point of a road segment p is nearest point of q and how long distance between q and p, this will be executed in parallel. Because of the fact that coordination GPS sent from satellites will have some deviations in comparison with the real coordinate, so that we have to choose a threshold distance in order to determine whether q belong to the road segment including p or not. If the distance is smaller than the threshold distance, it will be much easier for us to conclude that q belongs to the road segment and vice versa. As a result, our algorithm can remove q that its distance with the road segment is too far from, therefore, we can enhance the accuracy of our algorithm to some extent. Finally, after every q is matched to a road segment by road segment's ID, we will move on the next step.
 
-\setlength{\parindent}{0.7cm} In the next step in the phase, we will continue to process the $<$key, value$>$ pairs in-parallel by using the maptopair method of spark. The number of vehicle moving on a road segment also the average speed of the road segment will be calculated in the step (Line 33 - 34).
+\subsubsection{Data Collecting Phase:} In data mapping phase, the transportation data on each time step are transferred to the distributed stream processing will be matched into segments in-parallel on the nodes of our system, so that collecting the data plays an integral role in our algorithm to achieve the final statistic results.  After the figures are processed in the above phase, in this phase, we will group periodically the matched pairs by road segment's ID. Hence, we can obtain $<$key, value$>$ pairs with the key being the road segment's ID, the value that contains the number of vehicles moving in that road segment and the sum of their speeds $v_{s}$. Then, we calculate the average speed of every links ( a section of a road between two intersections, we described in section \ref{ssec:links}) as the part of the final result at the time step, using the following ``space mean speed'' formula.
+\[ v_{s} = \frac{N}{\sum_{i=1}^{N}\frac{1}{v_{i}}}\]
+where $v_{i}$ is the spot speed of $i^{th}$ vehicle, and n is the number of vehicles.
 
-\subsubsection{Data Collecting Phase:} In data mapping phase, statistic numbers of the road segments will be processed in-parallel on the nodes of our system, so that collecting the data perform a decisive role in our algorithm. After the figures are processed, we will use the collect method of spark to convert the parallel collection into a simple list in order to summarize the information and, therefore, we will achieve statistic numbers of traffic volume and average speed on each road segments (Line 38 - 40).
-
-
-{\it The Pseudocode of Algorithm}	
-\begin{verbatim}
-
-\end{verbatim}
+%\medskip
+%\noindent
+%{\it The Pseudocode of Algorithm}
 %
-\noindent
+%\begin{verbatim}
+%		
+%		// kdTree: a KD-Tree build up from nodes of OSM data
+%		// input: a list containing data queried from accumulo
+%		// output: a list of tuple2<key, value> with key being a roadID 
+%		// and value being a number of vehicle and average speed
+%		// scc: a Java Spark Context variable
+%		// lines: distributed datasets
+%		// broadcastVal: keep a read-only variable of the kdTree
+%		// currentPoint: GPS vehicle 
+%		// nearestNode: nearest node of current point
+%		// distance: distance between currentPoint and nearestNode
+%		// listRoad: a <key,value> generated after maping lines with key
+%		// being a roadID, value being a iterable of vehicleID and speed
+%		// result: a <key, value> generated after maping listRoad with key 
+%		// being a roadID, value being vehicle volume and average speed
+%		Build up the kdTree
+%		Broadcast<KDTree<GeoName>> broadcastVal = scc.broadcast(kdTree);
+%		JavaRDD<String> lines = scc.parallelize(input).cache();
+%		JavaPairRDD<String, Iterable<String>> listRoad = lines
+%		.mapToPair(New PairFunction<String, String, String>() {
+%		Public Tuple2<String, String> call(String p1) 
+%		Throws Exception {
+%		  nearestNode = broadcastVal.value().
+%		  findNearest(currentPoint);	
+%		  If distance > threshold then
+% 			  roadID = Null;
+%		  Else 
+%		      roadID = nearestNode.toString();
+%		      vehicleID = currentPoint.ID;
+%		      speed = currentPoint.speed;
+%		      attributes = vehicleID + speed;
+%		  end If;
+%		      Return New Tuple2<String, String>(roadID, attributes);
+%		 }).groupByKey().cache();
+%		JavaPairRDD<String, String> result = listRoad
+%		.mapToPair(New PairFunction<Tuple2<String, Iterable<String>>, 
+%		   String, String>() {
+%		   Public Tuple2<String, String> call(Tuple2<String,
+%		      Iterable<String>> tuple1) Throws Exception {
+%		    numberOfVehicle = Count the number of element
+%		    in iterable value of listRoad;
+%		    averageSpeed = Calculate average speed from
+%		     iterable value of listRoad;
+%		            statistic = numberOfVehicle + averageSpeed;
+%		        Return New Tuple2<String, String>(roadID, statistic);
+%		    });
+%		Collect result
+%		    output = result.collect();
+%		end Collect;
+%
+%\end{verbatim}
+%%
+%\noindent
 
 \section{Experiments}
 	GPSInsights system is set up on a cluster of HPCC super computer, consisting of 4 nodes, one master node and three slave nodes. Each cluster node is equipped with a  8-cores Intel Xeon 2.6GHz CPU, 32GB memory 
@@ -307,25 +367,28 @@ Our data include about 12,565,521 GPS records collected by vehicles equipped wit
 	
 	\begin{figure}
 		\centering
-		\includegraphics[height=100pt,width=150pt]{thesis-5}
-		\caption{figure 5}
+		\epsfig{file=thesis-5.eps, height=100px, width=220px}
+		\caption{GPSInsights performance}
+		\label{fig:performance}
 	\end{figure}
 
-Figure 15 present the performance of employing GPSInsights for handling three different quantities of input records with the number of slave nodes from 1 to 3. In this experiment, the processing time of the system is measured from the time Spark Streaming pull the data from Kafka into a batch, until the analytic data of the batch are sent successful to the storage components. It is clear that the number of slave nodes was increased, the execution time of the system reduced steadily, this is thanks to the parallel procedure of Spark. Besides, we also installed a common system with Geomesa for map-matching, based on the ability of querying K-nearest neighbor search of this database, in order to have a comparison with our system. With 1.200.000 records, after 10.000 seconds running, there was no signs of stopping of the system. The performance gap between two system is mainly due to taking the advantage of Spark Streaming in our system,  we can execute the nearest neighbor search directly in memory by using the map-matching algorithm shown in section 4.2.
+Figure~\ref{fig:performance} presents the performance of employing GPSInsights for handling three different quantities of input records with the number of slave nodes from 1 to 3. In this experiment, the processing time of the system is measured from the time Spark Streaming pull the data from Kafka into a batch, until the analytic data of the batch are sent successful to the storage components. It is clear that the number of slave nodes was increased, the execution time of the system reduced steadily, this is thanks to the parallel procedure of Spark. Besides, we also installed a common system with Geomesa for map-matching, based on the ability of querying K-nearest neighbor search of this database, in order to have a comparison with our system. With 1.200.000 records, after 10.000 seconds running, there was no signs of stopping of the system. The performance gap between two system is mainly due to taking the advantage of Spark Streaming in our system,  we can execute the nearest neighbor search directly in memory by using the map-matching algorithm shown in section 4.2.
 
 	\begin{figure}
 		\centering
-		\includegraphics[height=100pt,width=150pt]{thesis-6}
-		\caption{figure 6}
+		\epsfig{file=thesis-6.eps, height=100px, width=220px}
+		\caption{Time delay}
+		\label{fig:timedelay}
 	\end{figure}
 	
-		\begin{figure}
+	\begin{figure}
 		\centering
-		\includegraphics[height=100pt,width=150pt]{thesis-7}
-		\caption{figure 5}7
+		\epsfig{file=thesis-7.eps, height=100px, width=220px}
+		\caption{Processing time}
+		\label{fig:processingtime}
 	\end{figure}
 	
-Figure 6 and Figure 7 show the lag and the performance of two systems using two different frameworks as the streaming data processing engine for performing the map-matching algorithm in 3.200.000 and 8.500.000 records of the input data. The system using Storm beats one using Spark Streaming in term of the lag. Because Storm processes incoming events one at a time , so that its processing latency could be sub-second. Otherwise, after collecting the input data into a batch, Spark Streaming then divide it up into partitions and sent them to slave nodes. So the processing latency of Spark Streaming depends on the batch interval (if the batch interval is 5 seconds, it means that Spark has to wait 5 seconds before starting processing the first batch)  and the number of records packed in the batch (the time for sending partitions to slave nodes is directly proportional to the quantity of records). However, with the in-memory batch handling strategy, the time for processing the data of Spark Streaming is so much faster.	
+Figure~\ref{fig:timedelay} and Figure~\ref{fig:processingtime} show the time delay and the processing time of two systems using two different frameworks as the streaming data processing engine for performing the map-matching algorithm in 3.200.000 and 8.500.000 records of the input data. The system using Storm beats one using Spark Streaming in term of the lag. Because Storm processes incoming events one at a time , so that its processing latency could be sub-second. Otherwise, after collecting the input data into a batch, Spark Streaming then divide it up into partitions and sent them to slave nodes. So the processing latency of Spark Streaming depends on the batch interval (if the batch interval is 5 seconds, it means that Spark has to wait 5 seconds before starting processing the first batch)  and the number of records packed in the batch (the time for sending partitions to slave nodes is directly proportional to the quantity of records). However, with the in-memory batch handling strategy, the time for processing the data of Spark Streaming is so much faster.	
 	
 %\section{Related work}
 
