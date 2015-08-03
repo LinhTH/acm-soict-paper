@@ -33,6 +33,10 @@ Fox, Anthony, Eichelberger, Chris, Hughes, James, Lyon, and Skylar.
 Haversine\_Formula.
 \newblock https://en.wikipedia.org/wiki/haversine\_formula.
 
+\bibitem{javaspringmvc}
+JavaSpringMVC.
+\newblock http://projects.spring.io/spring-framework/.
+
 \bibitem{kafkapaper}
 {Jay Kreps}, {Neha Narkhede}, and {Jun Rao}.
 \newblock {Kafka: a distributed messaging system for log processing}.
@@ -41,6 +45,11 @@ Haversine\_Formula.
 \bibitem{kafkaweb}
 A.~Kafka.
 \newblock http://kafka.apache.org/.
+
+\bibitem{kafkasimpleapi}
+A.~Kafka-SimpleConsumer.
+\newblock
+  https://cwiki.apache.org/confluence/display/kafka/0.8.0+simpleconsumer+example.
 
 \bibitem{Lee2011}
 W.-H. Lee, S.-S. Tseng, J.-L. Shieh, and H.-H. Chen.
@@ -84,6 +93,10 @@ W.-H. Lee, S.-S. Tseng, J.-L. Shieh, and H.-H. Chen.
 MongoDB.
 \newblock https://www.mongodb.com.
 
+\bibitem{posgis}
+PostGis.
+\newblock http://postgis.net/.
+
 \bibitem{stormappliedbook}
 {Seen T. Allen}, {Matthew Jankowski}, and {Peter Pathirana}.
 \newblock {\em {Storm Applied: Strategies for real-time event processing}}.
@@ -108,5 +121,9 @@ S.~Streaming.
 S.~Streaming-Accumulator.
 \newblock
   https://spark.apache.org/docs/latest/programming-guide.html\#accumulators-a-nameaccumlinka.
+
+\bibitem{websocket}
+WebSocket.
+\newblock https://www.websocket.org/.
 
 \end{thebibliography}
