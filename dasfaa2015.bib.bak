@@ -109,10 +109,19 @@
 @Misc{haversineweb,
   Title                    = {https://en.wikipedia.org/wiki/Haversine\_formula},
 
-  Author                   = {HaversineFormula},
+  Author                   = {Haversine\_Formula},
 
   Owner                    = {Rimberry},
   Timestamp                = {2015.08.02}
+}
+
+@Misc{javaspringmvc,
+  Title                    = {http://projects.spring.io/spring-framework/},
+
+  Author                   = {JavaSpringMVC},
+
+  Owner                    = {Rimberry},
+  Timestamp                = {2015.08.04}
 }
 
 @Article{kafkapaper,
