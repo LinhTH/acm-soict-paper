@@ -46,11 +46,6 @@ JavaSpringMVC.
 A.~Kafka.
 \newblock http://kafka.apache.org/.
 
-\bibitem{kafkasimpleapi}
-A.~Kafka-SimpleConsumer.
-\newblock
-  https://cwiki.apache.org/confluence/display/kafka/0.8.0+simpleconsumer+example.
-
 \bibitem{Lee2011}
 W.-H. Lee, S.-S. Tseng, J.-L. Shieh, and H.-H. Chen.
 \newblock {Discovering Traffic Bottlenecks in an Urban Network by
@@ -92,10 +87,6 @@ W.-H. Lee, S.-S. Tseng, J.-L. Shieh, and H.-H. Chen.
 \bibitem{mongodbweb}
 MongoDB.
 \newblock https://www.mongodb.com.
-
-\bibitem{posgis}
-PostGis.
-\newblock http://postgis.net/.
 
 \bibitem{stormappliedbook}
 {Seen T. Allen}, {Matthew Jankowski}, and {Peter Pathirana}.

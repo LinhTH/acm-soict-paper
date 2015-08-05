@@ -168,17 +168,17 @@ With the system architecture shown in Chapter~2, we build our GPSInsights using 
 \caption{The architecture of the system}
 \end{figure}
 
-\subsubsection{Apache Kafka~\cite{kafkapaper,kafkaweb}.} 
+\subsubsection{Apache Kafka.} 
 
-Apache Kafka is a distributed publish-subscribe messaging service with the purpose of being fast, scalable and durable. Kafka maintains feeds of messages in categories called topics. Each topic is a partitioned log, distributed over multiple cluster server nodes as in Figure~[ref]. Inside a particular partition, the messages are immutable and ordered, identified by an ``offset''. This design choice allows not only storing the amount of the data larger than the capability of any single node but also parallelizing read and write operations. Technically, the producer that publish messages can distribute messages over multiple partitions of a topic in a round-roubin fashion, or it can distribute according to some semantic partition functions.
+Apache Kafka~\cite{kafkapaper,kafkaweb} is a distributed publish-subscribe messaging service with the purpose of being fast, scalable and durable. Kafka maintains feeds of messages in categories called topics. Each topic is a partitioned log, distributed over multiple cluster server nodes as in Figure~[ref]. Inside a particular partition, the messages are immutable and ordered, identified by an ``offset''. This design choice allows not only storing the amount of the data larger than the capability of any single node but also parallelizing read and write operations. Technically, the producer that publish messages can distribute messages over multiple partitions of a topic in a round-roubin fashion, or it can distribute according to some semantic partition functions.
 
 Kafka achieve fault-tolerance by replicating partitions across a configurable number of nodes. Each partition has one ``leader'' and several ``follower'' nodes. The ``leader'' node serves all read and write requests for the partition while the followers are mirroring. Once the leader failed, one of the follower will be automatically promoted to be the new leader (using the well-known distributed leader election algorithm). In production, every Kafka node acts as leader for some partitions and follower for others to achieve balancing. 
 
 In GPSInsights, Kafka is used for the distributed input message queue and the result queue. With suitable configuration, Kafka helps GPSInsights agregating in-coming location data and route analytics results to the appropriate layers (E.g. to the storage and to the end-user applications).
 
-\subsubsection{Spark Streaming~\cite{learningsparkbook,sparkstreamingweb} and Storm~\cite{stormappliedbook,apachestormweb}.}
+\subsubsection{Spark Streaming and Storm.}
 
-Spark Streaming and Apache Storm are the most popular open-source frameworks for distributed stream processing. In distributed mode, both of them use a master/slave architecture with one central coordinator and many distributed workers. However, there are still the important differences in their architectures as following.
+Spark Streaming~\cite{learningsparkbook,sparkstreamingweb} and Apache Storm~\cite{stormappliedbook,apachestormweb} are the most popular open-source frameworks for distributed stream processing. In distributed mode, both of them use a master/slave architecture with one central coordinator and many distributed workers. However, there are still the important differences in their architectures as following.
 
 Spark Streaming lays on top of Apache Spark~\cite{Zaharia:2010:SCC:1863103.1863113} for acting on data stream.
  At the core of Spark Streaming is the concept of discretized abstraction (D-streams)~\cite{Zaharia:2013:DSF:2517349.2522737,Zaharia:2012:DSE:2342763.2342773}, that considers in-coming records as a series of deterministic batchs on small time intervals. Each batch is treated as a reslient distributed dataset (RDD) of Spark, and being processed using RDD operations. 
@@ -189,18 +189,18 @@ Instead of batching up events that arrive within a short time and then process t
 
 GPSInsights is implemented to work with both Spark Streaming and Storm as the stream processing engine.
 
-\subsubsection{MongoDb~\cite{mongodbweb}.}
+\subsubsection{MongoDb.}
 
 
 Because of the rapid increase in velocity and volume of the result data, Traditional relational databases are no longer the ``one-size-fits-all'' for every type of data. They do not scale well to large datasets because their scaling model is vertial: more data means bigger server. One way to scale relational databases across multiple server is to do ``database sharding''. However, this mechanism is limited scalability due to the inherent complexity of the relational interface and the ACID (atomicity, consistency, isolation, and durability) guarantees. 
 
-MongoDB is a document store with the posibility to scale horizontally. It is designed for managing semi-structured data organized as a collection of documents. In MongoDB, the structure of the documents is very flexible. There is no pre-defined scheme as the columns, and colume datatypes as in relational databases. MongoDB distributes documents by the document IDs across servers and implements replication for fault-tolerance. When comparing the performance between the two different databases~\cite{10.11648/j.ajsea.20150402.12}, MongoDb saw the much better performance than MySQL - the traditional relational database.
+MongoDB~\cite{mongodbweb} is a document store with the posibility to scale horizontally. It is designed for managing semi-structured data organized as a collection of documents. In MongoDB, the structure of the documents is very flexible. There is no pre-defined scheme as the columns, and colume datatypes as in relational databases. MongoDB distributes documents by the document IDs across servers and implements replication for fault-tolerance. When comparing the performance between the two different databases~\cite{10.11648/j.ajsea.20150402.12}, MongoDb saw the much better performance than MySQL - the traditional relational database.
 
 GPSInsights uses MongoDB to store the statistic results from the data processing engine. GPSInsights leverages the ability of MongoDB to write data fast and in a flexible scheme. 
 
-\subsubsection{Geomesa~\cite{fox2013spatio}.}
+\subsubsection{Geomesa.}
  
-Geomesa is an open-source, distributed, spatio-temporal data-base built on top of a column-family oriented distributed database called Accumulo~\cite{accumuloonline}. Geomesa uses a very flexible strategy to linearize geo-time data. It distributes the data across the nodes in a cluster to leverage parallelism, thus enables efficient storing, querying, and transforming large spatio-temporal data. Geomesa is like PostGIS~[ref] but at very large-scale and for big data workloads. 
+Geomesa~\cite{fox2013spatio} is an open-source, distributed, spatio-temporal data-base built on top of a column-family oriented distributed database called Accumulo~\cite{accumuloonline}. Geomesa uses a very flexible strategy to linearize geo-time data. It distributes the data across the nodes in a cluster to leverage parallelism, thus enables efficient storing, querying, and transforming large spatio-temporal data. Geomesa is like PostGIS~[ref] but at very large-scale and for big data workloads. 
 
 GPSInsights relies on Geomesa for storing raw in-coming location data which will be the input for doing batch processing if necessery. Note that GPSInsights focuses on real-time analytics but it also features long running analytic jobs. Those will be discussed in the future papers. 
 
@@ -232,7 +232,7 @@ To achieve this guarantee, first, we implemented a new Spark Streaming's Receive
 
 The detail implementation is described as follows. Before sending to Spark Streaming's Receiver, each record in Kafka will be attached with its offset and partition's id which it belongs to. Using Accumulator API ~\cite{accumulatorapi}, we can find the offset range of each Kafka's partition in the current batch. When finishing handling this batch and before logging the result data to MongoDb, we create a new document with ``Begin'' status in ``Transactions'' collection and get its id. We then create a new document in ``OffsetRanges'' collection with the offset range and the id. Next, we send the result data to ``Records'' collection, attaching the id. Finally, after the last record is written successful in MongoDb, we change the status field of the transaction to ``Finish'', and the current batch is handled successful. During running, if the system fails and then recovers, it will query MongoDb for the last document in ``Transactions'' collection.  If the value of the status field is ``Finish'', it means the process of handling the last batch was succeeded. By contrast, we will use the transaction id to get the relevant document in ``OffsetRanges'' collection, and use the first offset in each ranges (the number of range is equal to the number of partition of the Kafka' topic that we are consuming) to recomputed the data. 
 
-\section{Scalable map matching implemented inside GPSInsights}
+\section{Scalable map matching implem-ented inside GPSInsights}
 
 In this section, we demonstrate how GPSInsights handles the map matching job in a scalable way. Map matching job aims at associating location data to the road network on a digital map. This is the firstly required step for many location data mining algorithms. 
 
@@ -245,11 +245,7 @@ In this section, we demonstrate how GPSInsights handles the map matching job in 
 \end{table}
 
 \subsection{Algorithm: Road Reverse Geocode Algorithm Using K-D Tree.}	
-	
-\subsubsection{Process OSM raw data.} \label{ssec:links}
-	The Open Street Map's raw data consist of a mass of tag almost covering the whole world. Every node tag has some tags inside to determine its attributes (e.g. type, way's name, coordinate, ..). Way tag contains one or more node tags that used to define the shape of it.
-	
-		\setlength{\parindent}{0.7cm} Before going to the details, vertices, links and segments should be defined clearly. Link is a section of road between intersections. In most digital maps, a real road is digitized and is described with a set of many straight lines. Vertices are points which separate these straight lines, and each straight line is a segment. The road AD in Fig.~\ref{fig:composition} is formed by 3 intersections (black points), 2 vertices (white points), 2 links (AD, DE) and 3 segments(AB, BC, CD).
+Before going to the details, vertices, links and segments should be defined clearly. Link is a section of road between intersections illustrated by black points in Fig.~\ref{fig:composition}. In most digital maps, a real road is digitized and is described with a set of many straight lines. Vertices are white points in Fig.~\ref{fig:composition} which separate these straight lines, and each straight line is a segment. For example, the road AD in Fig.~\ref{fig:composition} is formed by 3 intersections, 2 vertices, 2 links (AD, DE) and 3 segments(AB, BC, CD).
 		
 \begin{figure}[h]
 \centering
@@ -257,14 +253,30 @@ In this section, we demonstrate how GPSInsights handles the map matching job in 
 \caption{The composition of the road network}
 \label{fig:composition}
 \end{figure}
-	
-		\setlength{\parindent}{0.7cm} Our purpose is to determine all links and their information (name of roads which contain these links). Firstly, we traverse the tag list of OSM, read all Way tags, ignore irrelevant ways (roads that are unfit for transports such as cars, taxis and buses) and then store all associated node ids (we use BTree for this task). If a node occurs once, it is a vertex. Otherwise, it is an intersection. Secondly, we store all Node tags for later uses.
-	
-\subsubsection{Link matching.}
-	
-	Because the transport data are collected from GPS tracking device, the input consists of a sequence which contains a time stamp and a geographic coordinate. Our task is to assign a GPS point to a relevant link. Kd-tree is chosen to tackle this problem~\cite{moh2013approximate}. It is an efficient searching method to quickly find nearest points and this algorithm only takes O(log n) average time per search in a reasonable model.
-	
-	\setlength{\parindent}{0.7cm} Despite the fact that the standard deviation of GPS data could be quite low in the best case, around 3 meters, it can increase several fold due to tree cover, tunnel and other problems. The limited sampling polling time intervals is the second source affecting the accuracy. There are many methods to solve quite effectively this, including vertex-based and segment-based map matching, map matching using the geometric relationship, map matching using the network topology, the data history and so forth. This paper does not focus on this problem, we only use the vertex-based map matching for the simplicity of the process.  
+
+The clear definition of the composition of the road network helps us to understand map matching algorithms which in our problem are supposed to assign every GPS point to the relevant links of a digital map.
+
+There are many map matching algorithms which have been developed to tackle this, including vertex-based or segment-based map matching, map matching using the geometric relationship or the network topology the data history and so forth. But the most of them are studied for the GPS data with short and relatively long polling time intervals (less than 5 minutes), so not appropriate for our data (about 15 minutes). Also, this paper does not focus on the map-matching problems, we only use the vertex-based map matching for simplicity and high-performance to illustrate the scalable map-matching of our system.
+
+This method could be simply described as follows. With a GPS point, we will find a corresponding vertex in the digital map such that the distance between them is shortest, the point then is matched to the link containing this vertex. However, looking for one most relevant point amongst a variety of point take many time in the normal way, this will affects our system performance. So we use kd-tree as the tool to tackle this problem~\cite{moh2013approximate}. It is an efficient searching method to quickly find nearest points and this algorithm only takes O(log n) average time per search in a reasonable model. 
+
+The vertex, intersection and link data using to build kd-tree are exported from the Open Street Map data, an open-source digital map is contributed by many users across the world. 
+
+But the map matching using the distance of point-to-point has problem of abnormal result due to several reasons.
+
+\begin{figure}[h]
+\centering
+\epsfig{file=abnormalresult.eps, height=100px, width=220px}
+\caption{Matching the GPS point to the wrong link}
+\label{fig:abnormalresult}
+\end{figure}
+
+\textbf{The composition of the digital map.} As shown in Figure~\ref{fig:abnormalresult}, the GPS point belongs to Link 1 was matched to Link 2, since the distance between the GPS point with P4 is small than the points of Link 1. To overcome this problem and to increase the accuracy of the map matching, we add some equidistant vertices in segments illustrated in Figure~\ref{fig:addPointsToRoad}, this will be dealt as follow: 
+
+Let's suppose we add a point B into a segment AC in order that the distance between this point and A is $d_{AB}$ ($d_{AB}$ < $d_{AC}$). The coordinate of the point B is determined as following formula:
+\[ latitude_{B} = latitude_{A} + (latitude_{C} - latitude_{A}) \ast \frac{d_{AB}}{d_{AC}}\]
+\[ longitude_{B} = longitude_{A} + (longitude_{C} - longitude_{A}) \ast \frac{d_{AB}}{d_{AC}}\]
+where $d_{AC}$ is the metric distance between the point A and the point C, calculated on $Haversine$ formula~\cite{haversineweb}.
 	
 \begin{figure}[h]
 \centering
@@ -272,87 +284,19 @@ In this section, we demonstrate how GPSInsights handles the map matching job in 
 \caption{Add some equidistant vertices in segments}
 \label{fig:addPointsToRoad}
 \end{figure}
-	
-	 \setlength{\parindent}{0.7cm} We go through the list of ways in OSM, adding some equidistant vertices in segments ( illustrated in Fig.~\ref{fig:addPointsToRoad}), this will be dealt as follow: 
 
-	Let's suppose we add a point B into a segment AC in order that the distance between this point and A is $d_{AB}$ ($d_{AB}$ < $d_{AC}$). The coordinate of the point B is determined as following formula:
-\[ latitude_{B} = latitude_{A} + (latitude_{C} - latitude_{A}) \ast \frac{d_{AB}}{d_{AC}}\]
-\[ longitude_{B} = longitude_{A} + (longitude_{C} - longitude_{A}) \ast \frac{d_{AB}}{d_{AC}}\]
-where $d_{AC}$ is the metric distance between the point A and the point C, calculated on $Haversine$ formula~\cite{haversineweb}.
+\textbf{The problem in the vicinity of an intersection.} This problem can be resolved by adding some points with particular radius around the intersection and not using the intersection data to build kd-tree. This is shown in the figure~\ref{fig:addPointsToRoad}), you can see the A, D, E intersections being replaced by some adding vertices.
 
-While adding new points, we also remove all intersections and finally build a KD-Tree based on those vertices. Note that a node in the Kd-Tree consists of a coordinate and information of a link which associates it. Therefore, by taking a GPS point into the Kd-Tree and using the vertex-based map matching, we can determine its nearest vertex as well as a link it is matched to.
-	
-\subsubsection{Describe our algorithm.}
-		
-In this section, we focus on explaining our proposed algorithm in traffic volume statistic. After getting input data from the distributed publish-subscribe messaging service (Apache Kafka), now, we review how the distributed stream processing (Spark Streaming and Apache Storm) is used in our algorithm. Firstly, we build up a kd-tree with OSM data preprocessed and then broadcast it to the nodes in our system. By doing this, in the case that our system uses Spark Streaming, we can keep a read-only variable cached on each machine instead of shipping a copy of it with tasks, this will help improving the system's performance. However, providing every node a copy of the kd-tree will increase a memory and construction time.
-	
-\setlength{\parindent}{0.7cm} As we have a parallelized collection formed, our algorithm will be divided into two phase: a data mapping phase and a data collecting phase. 
+Apart from, to enhance the accurate of our map matching algorithm , we also choose  the particular threshold distance in order to determine whether an GPS point really belong to the road link or not. If the distance from the GPS point to the nearest vertex is smaller than the threshold, it will be much easier for us to conclude that the GPS point really belongs to the road links, on the contrary, it will be removed.
 
-\subsubsection{Data Mapping Phase:} 
-This phase is responsible for matching coordinate of every transportation record q into a concrete segment. In this algorithm, we are only interested in following attributes of q: the latitude, the longitude and the speed. These records will be passed the nearestPoint method of copies of kd-tree cached on each machine can be utilized aimed at finding what point of a road segment p is nearest point of q and how long distance between q and p, this will be executed in parallel. Because of the fact that coordination GPS sent from satellites will have some deviations in comparison with the real coordinate, so that we have to choose a threshold distance in order to determine whether q belong to the road segment including p or not. If the distance is smaller than the threshold distance, it will be much easier for us to conclude that q belongs to the road segment and vice versa. As a result, our algorithm can remove q that its distance with the road segment is too far from, therefore, we can enhance the accuracy of our algorithm to some extent. Finally, after every q is matched to a road segment by road segment's ID, we will move on the next step.
+\subsubsection{The scalability.}
 
-\subsubsection{Data Collecting Phase:} \label{datacollectingphase} In data mapping phase, the transportation data on each time step are transferred to the distributed stream processing will be matched into segments in-parallel on the nodes of our system, so that collecting the data plays an integral role in our algorithm to achieve the final statistic results.  After the figures are processed in the above phase, in this phase, we will group periodically the matched pairs by road segment's ID. Hence, we can obtain $<$key, value$>$ pairs with the key being the road segment's ID, the value that contains the number of vehicles moving in that road segment and the sum of their speeds $v_{s}$. Then, we calculate the average speed of every links ( a section of a road between two intersections, we described in section \ref{ssec:links}) as the part of the final result at the time step, using the following ``space mean speed'' formula which we will give an detailed explanation in the $appendix$ section.
-\[ v_{s} = \frac{N}{\sum_{i=1}^{N}\frac{1}{v_{i}}}\]
-where $v_{i}$ is the spot speed of $i^{th}$ vehicle, and n is the number of vehicles.
+In this section, we focus on explaining how our proposed algorithm is used in our system and why having the scalable ability. After getting input data from the distributed publish-subscribe messaging service (Apache Kafka), now, we review how the distributed stream processing (Spark Streaming and Apache Storm) is used in our algorithm. Firstly, we build up a kd-tree with the preprocessed OSM data and then transfer its copies to the nodes in our system. In the case that our system uses Spark Streaming, with calling Spark's broadcast API, we can keep a read-only variable cached on each machine instead of shipping a copy of it with tasks, this will help improving the system's performance. However, providing every node a copy of the kd-tree will increase a memory and construction time.
 
-%\medskip
-%\noindent
-%{\it The Pseudocode of Algorithm}
-%
-%\begin{verbatim}
-%		
-%		// kdTree: a KD-Tree build up from nodes of OSM data
-%		// input: a list containing data queried from accumulo
-%		// output: a list of tuple2<key, value> with key being a roadID 
-%		// and value being a number of vehicle and average speed
-%		// scc: a Java Spark Context variable
-%		// lines: distributed datasets
-%		// broadcastVal: keep a read-only variable of the kdTree
-%		// currentPoint: GPS vehicle 
-%		// nearestNode: nearest node of current point
-%		// distance: distance between currentPoint and nearestNode
-%		// listRoad: a <key,value> generated after maping lines with key
-%		// being a roadID, value being a iterable of vehicleID and speed
-%		// result: a <key, value> generated after maping listRoad with key 
-%		// being a roadID, value being vehicle volume and average speed
-%		Build up the kdTree
-%		Broadcast<KDTree<GeoName>> broadcastVal = scc.broadcast(kdTree);
-%		JavaRDD<String> lines = scc.parallelize(input).cache();
-%		JavaPairRDD<String, Iterable<String>> listRoad = lines
-%		.mapToPair(New PairFunction<String, String, String>() {
-%		Public Tuple2<String, String> call(String p1) 
-%		Throws Exception {
-%		  nearestNode = broadcastVal.value().
-%		  findNearest(currentPoint);	
-%		  If distance > threshold then
-% 			  roadID = Null;
-%		  Else 
-%		      roadID = nearestNode.toString();
-%		      vehicleID = currentPoint.ID;
-%		      speed = currentPoint.speed;
-%		      attributes = vehicleID + speed;
-%		  end If;
-%		      Return New Tuple2<String, String>(roadID, attributes);
-%		 }).groupByKey().cache();
-%		JavaPairRDD<String, String> result = listRoad
-%		.mapToPair(New PairFunction<Tuple2<String, Iterable<String>>, 
-%		   String, String>() {
-%		   Public Tuple2<String, String> call(Tuple2<String,
-%		      Iterable<String>> tuple1) Throws Exception {
-%		    numberOfVehicle = Count the number of element
-%		    in iterable value of listRoad;
-%		    averageSpeed = Calculate average speed from
-%		     iterable value of listRoad;
-%		            statistic = numberOfVehicle + averageSpeed;
-%		        Return New Tuple2<String, String>(roadID, statistic);
-%		    });
-%		Collect result
-%		    output = result.collect();
-%		end Collect;
-%
-%\end{verbatim}
-%%
-%\noindent
+With the kd-tree copies on every nodes in our system, matching the input GPS data to the links will be executed in parallel. In other words, a master node of our system will divide the input GPS data on each time step into small parts, then sending them to the nodes holding the kd-tree copy for map-matching. After map-matching phase, the results will be grouped the matched pairs by road segment's ID and returned to the master node. Obviously, when the system is extended by adding some nodes, the map matching algorithm automatically is packed and sent to the new nodes, so it is very suit for the scalable system like our system.
+
+
+
 
 \section{Experiments}
 
