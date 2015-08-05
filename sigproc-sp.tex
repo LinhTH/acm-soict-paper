@@ -168,17 +168,17 @@ With the system architecture shown in Chapter~2, we build our GPSInsights using 
 \caption{The architecture of the system}
 \end{figure}
 
-\subsubsection{Apache Kafka~\cite{kafkapaper,kafkaweb}.} 
+\subsubsection{Apache Kafka.} 
 
-Apache Kafka is a distributed publish-subscribe messaging service with the purpose of being fast, scalable and durable. Kafka maintains feeds of messages in categories called topics. Each topic is a partitioned log, distributed over multiple cluster server nodes as in Figure~[ref]. Inside a particular partition, the messages are immutable and ordered, identified by an ``offset''. This design choice allows not only storing the amount of the data larger than the capability of any single node but also parallelizing read and write operations. Technically, the producer that publish messages can distribute messages over multiple partitions of a topic in a round-roubin fashion, or it can distribute according to some semantic partition functions.
+Apache Kafka~\cite{kafkapaper,kafkaweb} is a distributed publish-subscribe messaging service with the purpose of being fast, scalable and durable. Kafka maintains feeds of messages in categories called topics. Each topic is a partitioned log, distributed over multiple cluster server nodes as in Figure~[ref]. Inside a particular partition, the messages are immutable and ordered, identified by an ``offset''. This design choice allows not only storing the amount of the data larger than the capability of any single node but also parallelizing read and write operations. Technically, the producer that publish messages can distribute messages over multiple partitions of a topic in a round-roubin fashion, or it can distribute according to some semantic partition functions.
 
 Kafka achieve fault-tolerance by replicating partitions across a configurable number of nodes. Each partition has one ``leader'' and several ``follower'' nodes. The ``leader'' node serves all read and write requests for the partition while the followers are mirroring. Once the leader failed, one of the follower will be automatically promoted to be the new leader (using the well-known distributed leader election algorithm). In production, every Kafka node acts as leader for some partitions and follower for others to achieve balancing. 
 
 In GPSInsights, Kafka is used for the distributed input message queue and the result queue. With suitable configuration, Kafka helps GPSInsights agregating in-coming location data and route analytics results to the appropriate layers (E.g. to the storage and to the end-user applications).
 
-\subsubsection{Spark Streaming~\cite{learningsparkbook,sparkstreamingweb} and Storm~\cite{stormappliedbook,apachestormweb}.}
+\subsubsection{Spark Streaming and Storm.}
 
-Spark Streaming and Apache Storm are the most popular open-source frameworks for distributed stream processing. In distributed mode, both of them use a master/slave architecture with one central coordinator and many distributed workers. However, there are still the important differences in their architectures as following.
+Spark Streaming~\cite{learningsparkbook,sparkstreamingweb} and Apache Storm~\cite{stormappliedbook,apachestormweb} are the most popular open-source frameworks for distributed stream processing. In distributed mode, both of them use a master/slave architecture with one central coordinator and many distributed workers. However, there are still the important differences in their architectures as following.
 
 Spark Streaming lays on top of Apache Spark~\cite{Zaharia:2010:SCC:1863103.1863113} for acting on data stream.
  At the core of Spark Streaming is the concept of discretized abstraction (D-streams)~\cite{Zaharia:2013:DSF:2517349.2522737,Zaharia:2012:DSE:2342763.2342773}, that considers in-coming records as a series of deterministic batchs on small time intervals. Each batch is treated as a reslient distributed dataset (RDD) of Spark, and being processed using RDD operations. 
@@ -189,18 +189,18 @@ Instead of batching up events that arrive within a short time and then process t
 
 GPSInsights is implemented to work with both Spark Streaming and Storm as the stream processing engine.
 
-\subsubsection{MongoDb~\cite{mongodbweb}.}
+\subsubsection{MongoDb.}
 
 
 Because of the rapid increase in velocity and volume of the result data, Traditional relational databases are no longer the ``one-size-fits-all'' for every type of data. They do not scale well to large datasets because their scaling model is vertial: more data means bigger server. One way to scale relational databases across multiple server is to do ``database sharding''. However, this mechanism is limited scalability due to the inherent complexity of the relational interface and the ACID (atomicity, consistency, isolation, and durability) guarantees. 
 
-MongoDB is a document store with the posibility to scale horizontally. It is designed for managing semi-structured data organized as a collection of documents. In MongoDB, the structure of the documents is very flexible. There is no pre-defined scheme as the columns, and colume datatypes as in relational databases. MongoDB distributes documents by the document IDs across servers and implements replication for fault-tolerance. When comparing the performance between the two different databases~\cite{10.11648/j.ajsea.20150402.12}, MongoDb saw the much better performance than MySQL - the traditional relational database.
+MongoDB~\cite{mongodbweb} is a document store with the posibility to scale horizontally. It is designed for managing semi-structured data organized as a collection of documents. In MongoDB, the structure of the documents is very flexible. There is no pre-defined scheme as the columns, and colume datatypes as in relational databases. MongoDB distributes documents by the document IDs across servers and implements replication for fault-tolerance. When comparing the performance between the two different databases~\cite{10.11648/j.ajsea.20150402.12}, MongoDb saw the much better performance than MySQL - the traditional relational database.
 
 GPSInsights uses MongoDB to store the statistic results from the data processing engine. GPSInsights leverages the ability of MongoDB to write data fast and in a flexible scheme. 
 
-\subsubsection{Geomesa~\cite{fox2013spatio}.}
+\subsubsection{Geomesa.}
  
-Geomesa is an open-source, distributed, spatio-temporal data-base built on top of a column-family oriented distributed database called Accumulo~\cite{accumuloonline}. Geomesa uses a very flexible strategy to linearize geo-time data. It distributes the data across the nodes in a cluster to leverage parallelism, thus enables efficient storing, querying, and transforming large spatio-temporal data. Geomesa is like PostGIS~[ref] but at very large-scale and for big data workloads. 
+Geomesa~\cite{fox2013spatio} is an open-source, distributed, spatio-temporal data-base built on top of a column-family oriented distributed database called Accumulo~\cite{accumuloonline}. Geomesa uses a very flexible strategy to linearize geo-time data. It distributes the data across the nodes in a cluster to leverage parallelism, thus enables efficient storing, querying, and transforming large spatio-temporal data. Geomesa is like PostGIS~[ref] but at very large-scale and for big data workloads. 
 
 GPSInsights relies on Geomesa for storing raw in-coming location data which will be the input for doing batch processing if necessery. Note that GPSInsights focuses on real-time analytics but it also features long running analytic jobs. Those will be discussed in the future papers. 
 
@@ -255,12 +255,13 @@ GPSInsights uses Open Street Map (OSM) engine ~[ref]. The Open Street Map's raw 
 \label{fig:composition}
 \end{figure}
 	
-As location data capture by GPS device exposes to distance errors (its standard deviation is around 3 metters at best), map matching is a difficult task. GPSInsights solves this task by enriching the OSM data with a lot of intermediate nodes (beside the nodes declared in OSM) to every road. Thus, each particular location point will be assigned to the road that the closest point belong to. To find closest point, we use KD-tree~\cite{moh2013approximate} for indexing. 
+As location data capture by GPS device exposes to distance errors (its standard deviation is around 3 metters at best), map matching is a difficult task. GPSInsights solves this task by enriching the OSM data with a lot of intermediate nodes (beside the nodes declared in OSM) to every road. Thus, each particular location point will be assigned to the road that the closest point belong to. To find closest point, we use KD-tree~\cite{moh2013approximate}. 
+
 	
 \begin{figure}[h]
 \centering
 \epsfig{file=addPointsTofRoad.eps, height=100px, width=220px}
-\caption{Add some equidistant vertices in segments}
+\caption{Add intermedate nodes in road segments}
 \label{fig:addPointsToRoad}
 \end{figure}
 	
@@ -278,70 +279,11 @@ After getting input data from the distributed publish-subscribe messaging servic
 As we have a parallelized collection formed, our algorithm will be divided into two phase: a data mapping phase and a data collecting phase. 
 
 \subsubsection{Data Mapping Phase} 
-This phase is responsible for matching coordinate of every transportation record q into a concrete segment of the road. In this algorithm, we are only interested in following attributes of q: the latitude, the longitude and the speed. These records will be evaluated bykd-tree cached on each machine to find out which road the recode q belong to. Because of the fact that coordination GPS sent from satellites will have some deviations in comparison with the real coordinate, we have to choose a threshold distance in order to determine whether q belong to the road or not. If the distance is smaller than the threshold distance, it will be much easier for us to conclude that q belongs to the road segment and vice versa. As a result, our algorithm can ignore q that its distance within the road segment is too far from. Therefore, we can enhance the accuracy of our algorithm to some extent. After every q is matched to a road segment by road segment's ID, we will move on the next step.
+This phase is responsible for matching coordinate of every transportation record q into a concrete segment of the road. In this algorithm, the algorighm consideres the following attributes of q: the latitude, the longitude and the speed. These records will be evaluated by kd-tree cached on each machine to find out which road the recode q belong to. Because of the fact that coordination GPS sent from satellites will have some deviations in comparison with the real coordinate, we have to choose a threshold distance in order to determine whether q belong to the road or not. If the distance is smaller than the threshold distance, it will be much easier for us to conclude that q belongs to the road segment and vice versa. As a result, our algorithm can ignore q that its distance within the road segment is too far from. Therefore, we can enhance the accuracy of our algorithm to some extent.
 
 \subsubsection{Data Collecting Phase} \label{datacollectingphase} In data mapping phase, the transportation data on each time step are transferred to the distributed stream processing engine will be matched into road segments in-parallel. Our algorithm then collectes the output form all the computing nodes to achieve the final statistic results.  In this phase, all the transportation data belong to the same road ID is aggregated. Hence, we can obtain $<$key, value$>$ pairs with the key being the road segment's ID, the value that contains the number of vehicles moving in that road segment and the sum of their speeds $v_{s}$. Then, we calculate the average speed of every links (a section of a road between two intersections, as we described in section \ref{ssec:links}) using the following ``space mean speed'' formula which we will give an detailed explanation in the $appendix$ section.
 \[ v_{s} = \frac{N}{\sum_{i=1}^{N}\frac{1}{v_{i}}}\]
 where $v_{i}$ is the spot speed of $i^{th}$ vehicle, and n is the number of vehicles.
-
-%\medskip
-%\noindent
-%{\it The Pseudocode of Algorithm}
-%
-%\begin{verbatim}
-%		
-%		// kdTree: a KD-Tree build up from nodes of OSM data
-%		// input: a list containing data queried from accumulo
-%		// output: a list of tuple2<key, value> with key being a roadID 
-%		// and value being a number of vehicle and average speed
-%		// scc: a Java Spark Context variable
-%		// lines: distributed datasets
-%		// broadcastVal: keep a read-only variable of the kdTree
-%		// currentPoint: GPS vehicle 
-%		// nearestNode: nearest node of current point
-%		// distance: distance between currentPoint and nearestNode
-%		// listRoad: a <key,value> generated after maping lines with key
-%		// being a roadID, value being a iterable of vehicleID and speed
-%		// result: a <key, value> generated after maping listRoad with key 
-%		// being a roadID, value being vehicle volume and average speed
-%		Build up the kdTree
-%		Broadcast<KDTree<GeoName>> broadcastVal = scc.broadcast(kdTree);
-%		JavaRDD<String> lines = scc.parallelize(input).cache();
-%		JavaPairRDD<String, Iterable<String>> listRoad = lines
-%		.mapToPair(New PairFunction<String, String, String>() {
-%		Public Tuple2<String, String> call(String p1) 
-%		Throws Exception {
-%		  nearestNode = broadcastVal.value().
-%		  findNearest(currentPoint);	
-%		  If distance > threshold then
-% 			  roadID = Null;
-%		  Else 
-%		      roadID = nearestNode.toString();
-%		      vehicleID = currentPoint.ID;
-%		      speed = currentPoint.speed;
-%		      attributes = vehicleID + speed;
-%		  end If;
-%		      Return New Tuple2<String, String>(roadID, attributes);
-%		 }).groupByKey().cache();
-%		JavaPairRDD<String, String> result = listRoad
-%		.mapToPair(New PairFunction<Tuple2<String, Iterable<String>>, 
-%		   String, String>() {
-%		   Public Tuple2<String, String> call(Tuple2<String,
-%		      Iterable<String>> tuple1) Throws Exception {
-%		    numberOfVehicle = Count the number of element
-%		    in iterable value of listRoad;
-%		    averageSpeed = Calculate average speed from
-%		     iterable value of listRoad;
-%		            statistic = numberOfVehicle + averageSpeed;
-%		        Return New Tuple2<String, String>(roadID, statistic);
-%		    });
-%		Collect result
-%		    output = result.collect();
-%		end Collect;
-%
-%\end{verbatim}
-%%
-%\noindent
 
 \section{Experiments}
 

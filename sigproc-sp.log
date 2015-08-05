@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2015.7.6)  5 AUG 2015 21:37
+=======
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2015.6.26)  5 AUG 2015 18:17
+>>>>>>> 52161b1967fc95f0c2037232cf220e308102aed0
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -441,11 +445,19 @@ Overfull \hbox (2.50026pt too wide) in paragraph at lines 154--155
  []
 
 Package epstopdf Info: Source file: <architectureOfSystem.eps>
+<<<<<<< HEAD
 (epstopdf)                    date: 2015-08-04 23:26:11
 (epstopdf)                    size: 544498 bytes
 (epstopdf)             Output file: <architectureOfSystem-eps-converted-to.pdf>
 
 (epstopdf)                    date: 2015-08-04 23:26:11
+=======
+(epstopdf)                    date: 2015-08-05 08:59:42
+(epstopdf)                    size: 544498 bytes
+(epstopdf)             Output file: <architectureOfSystem-eps-converted-to.pdf>
+
+(epstopdf)                    date: 2015-08-05 08:59:42
+>>>>>>> 52161b1967fc95f0c2037232cf220e308102aed0
 (epstopdf)                    size: 19671 bytes
 (epstopdf)             Command: <epstopdf --outfile=architectureOfSystem-eps-co
 nverted-to.pdf architectureOfSystem.eps>
@@ -464,6 +476,7 @@ Overfull \hbox (3.95857pt too wide) in paragraph at lines 190--191
  []
 
 
+<<<<<<< HEAD
 Overfull \hbox (6.10506pt too wide) in paragraph at lines 203--204
 \T1/aer/m/n/9 Geomesa is an open-source, dis-tributed, spatio-temporal data-
  []
@@ -473,6 +486,23 @@ Package epstopdf Info: Source file: <sendingcrash.eps>
 (epstopdf)                    size: 559614 bytes
 (epstopdf)             Output file: <sendingcrash-eps-converted-to.pdf>
 (epstopdf)                    date: 2015-08-02 21:42:29
+=======
+Overfull \hbox (5.06482pt too wide) in paragraph at lines 197--198
+\T1/aer/m/n/9 scale hor-i-zon-tally. It is de-signed for man-ag-ing semi-struct
+ured
+ []
+
+
+Overfull \hbox (3.39096pt too wide) in paragraph at lines 203--204
+\T1/aer/m/n/9 data-base built on top of a column-family ori-ented dis-tributed
+ []
+
+Package epstopdf Info: Source file: <sendingcrash.eps>
+(epstopdf)                    date: 2015-08-05 08:59:42
+(epstopdf)                    size: 559614 bytes
+(epstopdf)             Output file: <sendingcrash-eps-converted-to.pdf>
+(epstopdf)                    date: 2015-08-05 08:59:42
+>>>>>>> 52161b1967fc95f0c2037232cf220e308102aed0
 (epstopdf)                    size: 25623 bytes
 (epstopdf)             Command: <epstopdf --outfile=sendingcrash-eps-converted-
 to.pdf sendingcrash.eps>
@@ -486,10 +516,17 @@ Package pdftex.def Info: sendingcrash-eps-converted-to.pdf used on input line 2
 17.
 (pdftex.def)             Requested size: 220.83623pt x 100.38469pt.
 Package epstopdf Info: Source file: <receivingcrash.eps>
+<<<<<<< HEAD
 (epstopdf)                    date: 2015-08-02 21:42:29
 (epstopdf)                    size: 572590 bytes
 (epstopdf)             Output file: <receivingcrash-eps-converted-to.pdf>
 (epstopdf)                    date: 2015-08-02 21:42:29
+=======
+(epstopdf)                    date: 2015-08-05 08:59:42
+(epstopdf)                    size: 572590 bytes
+(epstopdf)             Output file: <receivingcrash-eps-converted-to.pdf>
+(epstopdf)                    date: 2015-08-05 08:59:42
+>>>>>>> 52161b1967fc95f0c2037232cf220e308102aed0
 (epstopdf)                    size: 25546 bytes
 (epstopdf)             Command: <epstopdf --outfile=receivingcrash-eps-converte
 d-to.pdf receivingcrash.eps>
@@ -503,6 +540,7 @@ File: receivingcrash-eps-converted-to.pdf Graphic file (type pdf)
 Package pdftex.def Info: receivingcrash-eps-converted-to.pdf used on input line
  225.
 (pdftex.def)             Requested size: 220.83614pt x 100.37988pt.
+<<<<<<< HEAD
  [3 <./sendingcrash-eps-converted-to.pdf> <./receivingcrash-eps-converted-to.pd
 f>]
 Overfull \hbox (39.36775pt too wide) in paragraph at lines 235--235
@@ -520,10 +558,31 @@ rted-to.pdf compositionOfRoad.eps>
 (epstopdf)             \includegraphics on input line 256.
 Package epstopdf Info: Output file is already uptodate.
 <compositionOfRoad-eps-converted-to.pdf, id=46, 145.54375pt x 79.29625pt>
+=======
+ [3 <C:/Users/Rimberry/Desktop/acm-soict-paper/sendingcrash-eps-converted-to.pd
+f> <C:/Users/Rimberry/Desktop/acm-soict-paper/receivingcrash-eps-converted-to.p
+df>]
+Overfull \hbox (2.02408pt too wide) in paragraph at lines 235--235
+[]\secfnt SCALABLE MAP MATCH-ING IMPLEM-
+ []
+
+Package epstopdf Info: Source file: <compositionOfRoad.eps>
+(epstopdf)                    date: 2015-08-05 08:59:42
+(epstopdf)                    size: 530958 bytes
+(epstopdf)             Output file: <compositionOfRoad-eps-converted-to.pdf>
+(epstopdf)                    date: 2015-08-05 08:59:42
+(epstopdf)                    size: 16915 bytes
+(epstopdf)             Command: <epstopdf --outfile=compositionOfRoad-eps-conve
+rted-to.pdf compositionOfRoad.eps>
+(epstopdf)             \includegraphics on input line 252.
+Package epstopdf Info: Output file is already uptodate.
+<compositionOfRoad-eps-converted-to.pdf, id=45, 145.54375pt x 79.29625pt>
+>>>>>>> 52161b1967fc95f0c2037232cf220e308102aed0
 File: compositionOfRoad-eps-converted-to.pdf Graphic file (type pdf)
 
 <use compositionOfRoad-eps-converted-to.pdf>
 Package pdftex.def Info: compositionOfRoad-eps-converted-to.pdf used on input l
+<<<<<<< HEAD
 ine 256.
 (pdftex.def)             Requested size: 220.84235pt x 100.38324pt.
 Package epstopdf Info: Source file: <addPointsTofRoad.eps>
@@ -538,10 +597,55 @@ ted-to.pdf addPointsTofRoad.eps>
 Package epstopdf Info: Output file is already uptodate.
 
 <addPointsTofRoad-eps-converted-to.pdf, id=47, 145.54375pt x 67.25125pt>
+=======
+ine 252.
+(pdftex.def)             Requested size: 220.84235pt x 100.38324pt.
+
+Overfull \hbox (2.4358pt too wide) in paragraph at lines 259--260
+\T1/aer/m/n/9 matching prob-lems, we only use the vertex-based map match-
+ []
+
+Package epstopdf Info: Source file: <abnormalresult.eps>
+(epstopdf)                    date: 2015-08-05 18:14:34
+(epstopdf)                    size: 508878 bytes
+(epstopdf)             Output file: <abnormalresult-eps-converted-to.pdf>
+(epstopdf)                    date: 2015-08-05 18:14:40
+(epstopdf)                    size: 12730 bytes
+(epstopdf)             Command: <epstopdf --outfile=abnormalresult-eps-converte
+d-to.pdf abnormalresult.eps>
+(epstopdf)             \includegraphics on input line 269.
+Package epstopdf Info: Output file is already uptodate.
+<abnormalresult-eps-converted-to.pdf, id=46, 160.6pt x 49.18375pt>
+File: abnormalresult-eps-converted-to.pdf Graphic file (type pdf)
+
+<use abnormalresult-eps-converted-to.pdf>
+Package pdftex.def Info: abnormalresult-eps-converted-to.pdf used on input line
+ 269.
+(pdftex.def)             Requested size: 220.83179pt x 100.38301pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[4 <C:/Users/Rimberry/Desktop/acm-soict-paper/compositionOfRoad-eps-converted-t
+o.pdf>]
+Package epstopdf Info: Source file: <addPointsTofRoad.eps>
+(epstopdf)                    date: 2015-08-05 08:59:42
+(epstopdf)                    size: 532862 bytes
+(epstopdf)             Output file: <addPointsTofRoad-eps-converted-to.pdf>
+(epstopdf)                    date: 2015-08-05 09:00:24
+(epstopdf)                    size: 14846 bytes
+(epstopdf)             Command: <epstopdf --outfile=addPointsTofRoad-eps-conver
+ted-to.pdf addPointsTofRoad.eps>
+(epstopdf)             \includegraphics on input line 283.
+Package epstopdf Info: Output file is already uptodate.
+
+<addPointsTofRoad-eps-converted-to.pdf, id=55, 145.54375pt x 67.25125pt>
+>>>>>>> 52161b1967fc95f0c2037232cf220e308102aed0
 File: addPointsTofRoad-eps-converted-to.pdf Graphic file (type pdf)
 
 <use addPointsTofRoad-eps-converted-to.pdf>
 Package pdftex.def Info: addPointsTofRoad-eps-converted-to.pdf used on input li
+<<<<<<< HEAD
 ne 271.
 (pdftex.def)             Requested size: 220.84235pt x 100.37685pt.
 
@@ -559,17 +663,31 @@ Package epstopdf Info: Source file: <thesis-5.eps>
 (epstopdf)                    size: 598014 bytes
 (epstopdf)             Output file: <thesis-5-eps-converted-to.pdf>
 (epstopdf)                    date: 2015-08-02 21:42:29
+=======
+ne 283.
+(pdftex.def)             Requested size: 220.84235pt x 100.37685pt.
+Package epstopdf Info: Source file: <thesis-5.eps>
+(epstopdf)                    date: 2015-08-05 08:59:42
+(epstopdf)                    size: 598014 bytes
+(epstopdf)             Output file: <thesis-5-eps-converted-to.pdf>
+(epstopdf)                    date: 2015-08-05 08:59:42
+>>>>>>> 52161b1967fc95f0c2037232cf220e308102aed0
 (epstopdf)                    size: 22172 bytes
 (epstopdf)             Command: <epstopdf --outfile=thesis-5-eps-converted-to.p
 df thesis-5.eps>
-(epstopdf)             \includegraphics on input line 370.
+(epstopdf)             \includegraphics on input line 314.
 Package epstopdf Info: Output file is already uptodate.
+<<<<<<< HEAD
+=======
+
+>>>>>>> 52161b1967fc95f0c2037232cf220e308102aed0
 <thesis-5-eps-converted-to.pdf, id=56, 211.79124pt x 101.37875pt>
 File: thesis-5-eps-converted-to.pdf Graphic file (type pdf)
 
 <use thesis-5-eps-converted-to.pdf>
-Package pdftex.def Info: thesis-5-eps-converted-to.pdf used on input line 370.
+Package pdftex.def Info: thesis-5-eps-converted-to.pdf used on input line 314.
 (pdftex.def)             Requested size: 220.83293pt x 100.37764pt.
+<<<<<<< HEAD
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
@@ -580,41 +698,68 @@ Package epstopdf Info: Source file: <thesis-6.eps>
 (epstopdf)                    size: 582590 bytes
 (epstopdf)             Output file: <thesis-6-eps-converted-to.pdf>
 (epstopdf)                    date: 2015-08-02 21:42:29
+=======
+ [5 <C:/Users/Rimberry/Desktop/acm-soict-paper/abnormalresult-eps-converted-to.
+pdf> <C:/Users/Rimberry/Desktop/acm-soict-paper/addPointsTofRoad-eps-converted-
+to.pdf> <C:/Users/Rimberry/Desktop/acm-soict-paper/thesis-5-eps-converted-to.pd
+f>]
+Package epstopdf Info: Source file: <thesis-6.eps>
+(epstopdf)                    date: 2015-08-05 08:59:42
+(epstopdf)                    size: 582590 bytes
+(epstopdf)             Output file: <thesis-6-eps-converted-to.pdf>
+(epstopdf)                    date: 2015-08-05 08:59:42
+>>>>>>> 52161b1967fc95f0c2037232cf220e308102aed0
 (epstopdf)                    size: 17829 bytes
 (epstopdf)             Command: <epstopdf --outfile=thesis-6-eps-converted-to.p
 df thesis-6.eps>
-(epstopdf)             \includegraphics on input line 379.
+(epstopdf)             \includegraphics on input line 323.
 Package epstopdf Info: Output file is already uptodate.
 
+<<<<<<< HEAD
 <thesis-6-eps-converted-to.pdf, id=70, 211.79124pt x 101.37875pt>
+=======
+<thesis-6-eps-converted-to.pdf, id=83, 211.79124pt x 101.37875pt>
+>>>>>>> 52161b1967fc95f0c2037232cf220e308102aed0
 File: thesis-6-eps-converted-to.pdf Graphic file (type pdf)
 
 <use thesis-6-eps-converted-to.pdf>
-Package pdftex.def Info: thesis-6-eps-converted-to.pdf used on input line 379.
+Package pdftex.def Info: thesis-6-eps-converted-to.pdf used on input line 323.
 (pdftex.def)             Requested size: 220.83293pt x 100.37764pt.
 Package epstopdf Info: Source file: <thesis-7.eps>
+<<<<<<< HEAD
 (epstopdf)                    date: 2015-08-02 21:42:29
 (epstopdf)                    size: 567142 bytes
 (epstopdf)             Output file: <thesis-7-eps-converted-to.pdf>
 (epstopdf)                    date: 2015-08-02 21:42:29
+=======
+(epstopdf)                    date: 2015-08-05 08:59:42
+(epstopdf)                    size: 567142 bytes
+(epstopdf)             Output file: <thesis-7-eps-converted-to.pdf>
+(epstopdf)                    date: 2015-08-05 08:59:42
+>>>>>>> 52161b1967fc95f0c2037232cf220e308102aed0
 (epstopdf)                    size: 18650 bytes
 (epstopdf)             Command: <epstopdf --outfile=thesis-7-eps-converted-to.p
 df thesis-7.eps>
-(epstopdf)             \includegraphics on input line 386.
+(epstopdf)             \includegraphics on input line 330.
 Package epstopdf Info: Output file is already uptodate.
 
+<<<<<<< HEAD
 <thesis-7-eps-converted-to.pdf, id=71, 211.79124pt x 101.37875pt>
+=======
+<thesis-7-eps-converted-to.pdf, id=84, 211.79124pt x 101.37875pt>
+>>>>>>> 52161b1967fc95f0c2037232cf220e308102aed0
 File: thesis-7-eps-converted-to.pdf Graphic file (type pdf)
 
 <use thesis-7-eps-converted-to.pdf>
-Package pdftex.def Info: thesis-7-eps-converted-to.pdf used on input line 386.
+Package pdftex.def Info: thesis-7-eps-converted-to.pdf used on input line 330.
 (pdftex.def)             Requested size: 220.83293pt x 100.37764pt.
 
-Overfull \hbox (12.24706pt too wide) in paragraph at lines 397--398
+Overfull \hbox (12.24706pt too wide) in paragraph at lines 341--342
 \T1/aer/m/n/9 re-li-able sys-tem for con-tin-u-ously pro-cess-ing the mas-sive 
 amounts
  []
 
+<<<<<<< HEAD
 (./sigproc-sp.bbl
 Overfull \hbox (119.66016pt too wide) in paragraph at lines 50--53
 \T1/aer/m/n/9 https://cwiki.apache.org/confluence/display/kafka/0.8.0+simplecon
@@ -628,25 +773,51 @@ Package epstopdf Info: Source file: <connectmodule.eps>
 (epstopdf)                    size: 607938 bytes
 (epstopdf)             Output file: <connectmodule-eps-converted-to.pdf>
 (epstopdf)                    date: 2015-08-04 23:26:11
+=======
+(C:\Users\Rimberry\Desktop\acm-soict-paper\sigproc-sp.bbl [6 <C:/Users/Rimberry
+/Desktop/acm-soict-paper/thesis-6-eps-converted-to.pdf> <C:/Users/Rimberry/Desk
+top/acm-soict-paper/thesis-7-eps-converted-to.pdf>])
+
+LaTeX Warning: Reference `datacollectingphase' on page \thepage  undefined on i
+nput line 362.
+
+Package epstopdf Info: Source file: <connectmodule.eps>
+(epstopdf)                    date: 2015-08-05 08:59:42
+(epstopdf)                    size: 607938 bytes
+(epstopdf)             Output file: <connectmodule-eps-converted-to.pdf>
+(epstopdf)                    date: 2015-08-05 08:59:42
+>>>>>>> 52161b1967fc95f0c2037232cf220e308102aed0
 (epstopdf)                    size: 20392 bytes
 (epstopdf)             Command: <epstopdf --outfile=connectmodule-eps-converted
 -to.pdf connectmodule.eps>
-(epstopdf)             \includegraphics on input line 434.
+(epstopdf)             \includegraphics on input line 378.
 Package epstopdf Info: Output file is already uptodate.
+<<<<<<< HEAD
 
 <connectmodule-eps-converted-to.pdf, id=102, 242.9075pt x 151.56625pt>
+=======
+<connectmodule-eps-converted-to.pdf, id=104, 242.9075pt x 151.56625pt>
+>>>>>>> 52161b1967fc95f0c2037232cf220e308102aed0
 File: connectmodule-eps-converted-to.pdf Graphic file (type pdf)
 
 <use connectmodule-eps-converted-to.pdf>
 Package pdftex.def Info: connectmodule-eps-converted-to.pdf used on input line 
-434.
+378.
 (pdftex.def)             Requested size: 220.82376pt x 110.41347pt.
 
+<<<<<<< HEAD
 <Picture1.png, id=103, 722.7pt x 324.80899pt>
+=======
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<Picture1.png, id=105, 722.7pt x 324.80899pt>
+>>>>>>> 52161b1967fc95f0c2037232cf220e308102aed0
 File: Picture1.png Graphic file (type png)
  <use Picture1.png>
-Package pdftex.def Info: Picture1.png used on input line 443.
+Package pdftex.def Info: Picture1.png used on input line 387.
 (pdftex.def)             Requested size: 220.82567pt x 110.41376pt.
+<<<<<<< HEAD
  [7 <./connectmodule-eps-converted-to.pdf> <./Picture1.png>] (./sigproc-sp.aux)
 
 
@@ -679,6 +850,40 @@ Output written on sigproc-sp.pdf (7 pages, 754196 bytes).
 PDF statistics:
  162 PDF objects out of 1000 (max. 8388607)
  111 compressed objects within 2 object streams
+=======
+ [7 <C:/Users/Rimberry/Desktop/acm-soict-paper/connectmodule-eps-converted-to.p
+df> <C:/Users/Rimberry/Desktop/acm-soict-paper/Picture1.png>]
+(C:\Users\Rimberry\Desktop\acm-soict-paper\sigproc-sp.aux)
+
+LaTeX Warning: There were undefined references.
+
+ ) 
+Here is how much of TeX's memory you used:
+ 9836 strings out of 493921
+ 167585 string characters out of 3144867
+ 224173 words of memory out of 3000000
+ 12946 multiletter control sequences out of 15000+200000
+ 49605 words of font info for 66 fonts, out of 3000000 for 9000
+ 841 hyphenation exceptions out of 8191
+ 42i,11n,40p,1376b,299s stack positions out of 5000i,500n,10000p,200000b,50000s
+{C:/Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc}<C:/Progra
+m Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx9.pfb><C:/Program F
+iles (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cmextra/cmex9.pfb><C:/Program
+ Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Program Fi
+les (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Program Files
+ (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi9.pfb><C:/Program Files (x
+86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Program Files (x86)/
+MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Program Files (x86)/MiKT
+eX 2.9/fonts/type1/public/amsfonts/cm/cmsy9.pfb><C:/Program Files (x86)/MiKTeX 
+2.9/fonts/type1/public/amsfonts/cm/cmti9.pfb><C:/Program Files (x86)/MiKTeX 2.9
+/fonts/type1/urw/helvetic/uhvb8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/t
+ype1/urw/helvetic/uhvr8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw
+/times/utmb8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmr
+i8a.pfb>
+Output written on sigproc-sp.pdf (7 pages, 778178 bytes).
+PDF statistics:
+ 165 PDF objects out of 1000 (max. 8388607)
+>>>>>>> 52161b1967fc95f0c2037232cf220e308102aed0
  0 named destinations out of 1000 (max. 500000)
- 51 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 56 words of extra memory for PDF output out of 10000 (max. 10000000)
 
