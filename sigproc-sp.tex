@@ -232,9 +232,9 @@ To achieve this guarantee, first, we implemented a new Spark Streaming's Receive
 
 The detail implementation is described as follows. Before sending to Spark Streaming's Receiver, each record in Kafka will be attached with its offset and partition's id which it belongs to. Using Accumulator API ~\cite{accumulatorapi}, we can find the offset range of each Kafka's partition in the current batch. When finishing handling this batch and before logging the result data to MongoDb, we create a new document with ``Begin'' status in ``Transactions'' collection and get its id. We then create a new document in ``OffsetRanges'' collection with the offset range and the id. Next, we send the result data to ``Records'' collection, attaching the id. Finally, after the last record is written successful in MongoDb, we change the status field of the transaction to ``Finish'', and the current batch is handled successful. During running, if the system fails and then recovers, it will query MongoDb for the last document in ``Transactions'' collection.  If the value of the status field is ``Finish'', it means the process of handling the last batch was succeeded. By contrast, we will use the transaction id to get the relevant document in ``OffsetRanges'' collection, and use the first offset in each ranges (the number of range is equal to the number of partition of the Kafka' topic that we are consuming) to recomputed the data. 
 
-\section{Scalable map matching implemented inside GPSInsights}
+\section{Scalable map matching}
 
-In this section, we demonstrate how GPSInsights handles the map matching job in a scalable way. Map matching job aims at associating location data to the road network on a digital map. This is the firstly required step for many location data mining algorithms. 
+In this section, we demonstrate how GPSInsights handles the map matching job in a scalable way. Map matching job aims at associating location data to the road network on a digital map. This is the first and the required step for many location data mining algorithms. 
 
 \begin{table}[h]
 \centering
@@ -243,13 +243,10 @@ In this section, we demonstrate how GPSInsights handles the map matching job in 
 \textbf{time\_stamp} & \textbf{car\_id} & \textbf{lon}   & \textbf{lat} & \textbf{speed} \\ \hline
 \end{tabular}
 \end{table}
+	
+\subsection{General strategy} \label{ssec:links}
 
-\subsection{Algorithm: Road Reverse Geocode Algorithm Using K-D Tree.}	
-	
-\subsubsection{Process OSM raw data.} \label{ssec:links}
-	The Open Street Map's raw data consist of a mass of tag almost covering the whole world. Every node tag has some tags inside to determine its attributes (e.g. type, way's name, coordinate, ..). Way tag contains one or more node tags that used to define the shape of it.
-	
-		\setlength{\parindent}{0.7cm} Before going to the details, vertices, links and segments should be defined clearly. Link is a section of road between intersections. In most digital maps, a real road is digitized and is described with a set of many straight lines. Vertices are points which separate these straight lines, and each straight line is a segment. The road AD in Fig.~\ref{fig:composition} is formed by 3 intersections (black points), 2 vertices (white points), 2 links (AD, DE) and 3 segments(AB, BC, CD).
+GPSInsights uses Open Street Map (OSM) engine ~[ref]. The Open Street Map's raw data consist of a mass of tag almost covering the whole world. Every node tag has some tags inside to determine its attributes (e.g. type, way name, coordinate, ..). Way tag contains one or more node tags that used to define the shape of it. It is defined that link is a section of road between intersections. In most digital maps, a real road (or way) is digitized and is described with a set of many straight lines. Vertices are points which separate these straight lines, and each straight line is a segment. For example, the road AD in Fig.~\ref{fig:composition} is formed by 3 intersections (black points), 2 vertices (white points), 2 links (AD, DE) and 3 segments(AB, BC, CD).
 		
 \begin{figure}[h]
 \centering
@@ -258,13 +255,7 @@ In this section, we demonstrate how GPSInsights handles the map matching job in 
 \label{fig:composition}
 \end{figure}
 	
-		\setlength{\parindent}{0.7cm} Our purpose is to determine all links and their information (name of roads which contain these links). Firstly, we traverse the tag list of OSM, read all Way tags, ignore irrelevant ways (roads that are unfit for transports such as cars, taxis and buses) and then store all associated node ids (we use BTree for this task). If a node occurs once, it is a vertex. Otherwise, it is an intersection. Secondly, we store all Node tags for later uses.
-	
-\subsubsection{Link matching.}
-	
-	Because the transport data are collected from GPS tracking device, the input consists of a sequence which contains a time stamp and a geographic coordinate. Our task is to assign a GPS point to a relevant link. Kd-tree is chosen to tackle this problem~\cite{moh2013approximate}. It is an efficient searching method to quickly find nearest points and this algorithm only takes O(log n) average time per search in a reasonable model.
-	
-	\setlength{\parindent}{0.7cm} Despite the fact that the standard deviation of GPS data could be quite low in the best case, around 3 meters, it can increase several fold due to tree cover, tunnel and other problems. The limited sampling polling time intervals is the second source affecting the accuracy. There are many methods to solve quite effectively this, including vertex-based and segment-based map matching, map matching using the geometric relationship, map matching using the network topology, the data history and so forth. This paper does not focus on this problem, we only use the vertex-based map matching for the simplicity of the process.  
+As location data capture by GPS device exposes to distance errors (its standard deviation is around 3 metters at best), map matching is a difficult task. GPSInsights solves this task by enriching the OSM data with a lot of intermediate nodes (beside the nodes declared in OSM) to every road. Thus, each particular location point will be assigned to the road that the closest point belong to. To find closest point, we use KD-tree~\cite{moh2013approximate} for indexing. 
 	
 \begin{figure}[h]
 \centering
@@ -273,25 +264,23 @@ In this section, we demonstrate how GPSInsights handles the map matching job in 
 \label{fig:addPointsToRoad}
 \end{figure}
 	
-	 \setlength{\parindent}{0.7cm} We go through the list of ways in OSM, adding some equidistant vertices in segments ( illustrated in Fig.~\ref{fig:addPointsToRoad}), this will be dealt as follow: 
-
-	Let's suppose we add a point B into a segment AC in order that the distance between this point and A is $d_{AB}$ ($d_{AB}$ < $d_{AC}$). The coordinate of the point B is determined as following formula:
+Technically, adding intermediate nodes (illustrated in Fig.~\ref{fig:addPointsToRoad}) is done as following. Let's suppose we add a point B into a segment AC in order that the distance between this point and A is $d_{AB}$ ($d_{AB}$ < $d_{AC}$). The coordinate of the point B is determined as following formula:
 \[ latitude_{B} = latitude_{A} + (latitude_{C} - latitude_{A}) \ast \frac{d_{AB}}{d_{AC}}\]
 \[ longitude_{B} = longitude_{A} + (longitude_{C} - longitude_{A}) \ast \frac{d_{AB}}{d_{AC}}\]
 where $d_{AC}$ is the metric distance between the point A and the point C, calculated on $Haversine$ formula~\cite{haversineweb}.
 
-While adding new points, we also remove all intersections and finally build a KD-Tree based on those vertices. Note that a node in the Kd-Tree consists of a coordinate and information of a link which associates it. Therefore, by taking a GPS point into the Kd-Tree and using the vertex-based map matching, we can determine its nearest vertex as well as a link it is matched to.
+While adding new points, we also remove all intersections and finally build a KD-Tree based on those nodes. Note that a node in the Kd-Tree consists of a coordinate and information of a link which associates it. Therefore, by taking a GPS point into the Kd-Tree and using the vertex-based map matching, we can determine nearest nodes as well as a link it is matched to.
 	
-\subsubsection{Describe our algorithm.}
+\subsection{Detail algorithm}
 		
-In this section, we focus on explaining our proposed algorithm in traffic volume statistic. After getting input data from the distributed publish-subscribe messaging service (Apache Kafka), now, we review how the distributed stream processing (Spark Streaming and Apache Storm) is used in our algorithm. Firstly, we build up a kd-tree with OSM data preprocessed and then broadcast it to the nodes in our system. By doing this, in the case that our system uses Spark Streaming, we can keep a read-only variable cached on each machine instead of shipping a copy of it with tasks, this will help improving the system's performance. However, providing every node a copy of the kd-tree will increase a memory and construction time.
+After getting input data from the distributed publish-subscribe messaging service (Apache Kafka), the kd-tree is builtand then be broadcasted to all the computing nodes (servers) of the distributed processing engine (Storm or Apache spark). By doing this, in the case that our system uses Spark Streaming, we can keep a read-only variable cached on each machine instead of shipping a copy of it with every tasks, this will help improving the system's performance.
 	
-\setlength{\parindent}{0.7cm} As we have a parallelized collection formed, our algorithm will be divided into two phase: a data mapping phase and a data collecting phase. 
+As we have a parallelized collection formed, our algorithm will be divided into two phase: a data mapping phase and a data collecting phase. 
 
-\subsubsection{Data Mapping Phase:} 
-This phase is responsible for matching coordinate of every transportation record q into a concrete segment. In this algorithm, we are only interested in following attributes of q: the latitude, the longitude and the speed. These records will be passed the nearestPoint method of copies of kd-tree cached on each machine can be utilized aimed at finding what point of a road segment p is nearest point of q and how long distance between q and p, this will be executed in parallel. Because of the fact that coordination GPS sent from satellites will have some deviations in comparison with the real coordinate, so that we have to choose a threshold distance in order to determine whether q belong to the road segment including p or not. If the distance is smaller than the threshold distance, it will be much easier for us to conclude that q belongs to the road segment and vice versa. As a result, our algorithm can remove q that its distance with the road segment is too far from, therefore, we can enhance the accuracy of our algorithm to some extent. Finally, after every q is matched to a road segment by road segment's ID, we will move on the next step.
+\subsubsection{Data Mapping Phase} 
+This phase is responsible for matching coordinate of every transportation record q into a concrete segment of the road. In this algorithm, we are only interested in following attributes of q: the latitude, the longitude and the speed. These records will be evaluated bykd-tree cached on each machine to find out which road the recode q belong to. Because of the fact that coordination GPS sent from satellites will have some deviations in comparison with the real coordinate, we have to choose a threshold distance in order to determine whether q belong to the road or not. If the distance is smaller than the threshold distance, it will be much easier for us to conclude that q belongs to the road segment and vice versa. As a result, our algorithm can ignore q that its distance within the road segment is too far from. Therefore, we can enhance the accuracy of our algorithm to some extent. After every q is matched to a road segment by road segment's ID, we will move on the next step.
 
-\subsubsection{Data Collecting Phase:} \label{datacollectingphase} In data mapping phase, the transportation data on each time step are transferred to the distributed stream processing will be matched into segments in-parallel on the nodes of our system, so that collecting the data plays an integral role in our algorithm to achieve the final statistic results.  After the figures are processed in the above phase, in this phase, we will group periodically the matched pairs by road segment's ID. Hence, we can obtain $<$key, value$>$ pairs with the key being the road segment's ID, the value that contains the number of vehicles moving in that road segment and the sum of their speeds $v_{s}$. Then, we calculate the average speed of every links ( a section of a road between two intersections, we described in section \ref{ssec:links}) as the part of the final result at the time step, using the following ``space mean speed'' formula which we will give an detailed explanation in the $appendix$ section.
+\subsubsection{Data Collecting Phase} \label{datacollectingphase} In data mapping phase, the transportation data on each time step are transferred to the distributed stream processing engine will be matched into road segments in-parallel. Our algorithm then collectes the output form all the computing nodes to achieve the final statistic results.  In this phase, all the transportation data belong to the same road ID is aggregated. Hence, we can obtain $<$key, value$>$ pairs with the key being the road segment's ID, the value that contains the number of vehicles moving in that road segment and the sum of their speeds $v_{s}$. Then, we calculate the average speed of every links (a section of a road between two intersections, as we described in section \ref{ssec:links}) using the following ``space mean speed'' formula which we will give an detailed explanation in the $appendix$ section.
 \[ v_{s} = \frac{N}{\sum_{i=1}^{N}\frac{1}{v_{i}}}\]
 where $v_{i}$ is the spot speed of $i^{th}$ vehicle, and n is the number of vehicles.
 
@@ -356,12 +345,10 @@ where $v_{i}$ is the spot speed of $i^{th}$ vehicle, and n is the number of vehi
 
 \section{Experiments}
 
-\subsection{Dataset}
 
 Our data include about 12,565,521 GPS records collected by vehicles equipped with a GPS receiver from 22/03/2014 to 22/04/2014 in Ho Chi Minh city. Every record consists of speed, GPS coordinate and state of the vehicle and the period of time between two records is 15 minutes. The following table shows the format of the data.
 
-	GPSInsights system is set up on a cluster of HPCC super computer, consisting of 4 nodes, one master node and three slave nodes. Each cluster node is equipped with a  8-cores Intel Xeon 2.6GHz CPU, 32GB memory 
-	With this configuration, we have evaluated the performance of GPSInsights, using the dataset shown in section 4.1 to simulate the stream data. Firstly, We compared the running time of the system on the different number of records with various numbers of slave nodes. Secondly, we benchmark the system using Spark Streaming against the system using Apache Storm. For all experiments, the results are reported by averaging three runs. 
+GPSInsights system is set up on a cluster of HPCC super computer, consisting of 4 nodes, one master node and three slave nodes. Each cluster node is equipped with a  8-cores Intel Xeon 2.6GHz CPU, 32GB memory. With this configuration, we have evaluated the performance of GPSInsights, using the dataset shown in section 4.1 to simulate the stream data. Firstly, We compared the running time of the system on the different number of records with various numbers of slave nodes. Secondly, we benchmark the system using Spark Streaming against the system using Apache Storm. For all experiments, the results are reported by averaging three runs. 
 	
 	% 	 Suppermicro SC815TQ-600WB\\ Intel Xeon E5-2670 Processor (20M Cache, 2.6 GHz, 8 Core)\\	 32 GB DDR3 RAM\\	 2*250 GB HDD\\	 FDR 56Gbps Infiniband\\
 	
