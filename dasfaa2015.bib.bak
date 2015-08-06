@@ -347,6 +347,15 @@
   Timestamp                = {2015.08.01}
 }
 
+@Misc{websocket,
+  Title                    = {https://www.websocket.org/},
+
+  Author                   = {WebSocket},
+
+  Owner                    = {Rimberry},
+  Timestamp                = {2015.08.04}
+}
+
 @Misc{backendposgis,
   Title                    = {User section: http://en.wikipedia.org/wiki/PostGIS},
 

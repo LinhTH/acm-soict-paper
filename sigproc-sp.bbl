@@ -88,6 +88,19 @@ W.-H. Lee, S.-S. Tseng, J.-L. Shieh, and H.-H. Chen.
 MongoDB.
 \newblock https://www.mongodb.com.
 
+\bibitem{noh1998map}
+Noh and Kim.
+\newblock A comprehensive analysis of map matching algorithms for its.
+\newblock {\em Hongik Journal of Science and Technology}, 9:pp. 303--313, 1998.
+
+\bibitem{openstreetmap}
+Open\_Street\_Map.
+\newblock www.openstreetmap.org.
+
+\bibitem{posgis}
+PostGis.
+\newblock http://postgis.net/.
+
 \bibitem{stormappliedbook}
 {Seen T. Allen}, {Matthew Jankowski}, and {Peter Pathirana}.
 \newblock {\em {Storm Applied: Strategies for real-time event processing}}.
@@ -116,5 +129,16 @@ S.~Streaming-Accumulator.
 \bibitem{websocket}
 WebSocket.
 \newblock https://www.websocket.org/.
+
+\bibitem{backendposgis}
+Wikipedia.
+\newblock User section: http://en.wikipedia.org/wiki/postgis.
+
+\bibitem{yang2005map}
+{Y. Jae-seok}, {K. Seung-pil}, and {C. Kyung-soo}.
+\newblock The map matching algorithm of gps data with relatively long polling
+  time intervals.
+\newblock {\em Journal of the Eastern Asia Society for Transportation Studies},
+  6:pp. 2561--2573, 2005.
 
 \end{thebibliography}
