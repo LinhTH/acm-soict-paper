@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2015.6.26)  6 AUG 2015 20:39
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2015.6.26)  6 AUG 2015 20:56
 entering extended mode
 **sigproc-sp.tex
 (C:\Users\Rimberry\Desktop\acm-soict-paper\sigproc-sp.tex
@@ -641,11 +641,11 @@ e
  []
 
 Package epstopdf Info: Source file: <thesis-7.eps>
-(epstopdf)                    date: 2015-08-06 19:16:49
-(epstopdf)                    size: 604082 bytes
+(epstopdf)                    date: 2015-08-06 20:55:54
+(epstopdf)                    size: 596582 bytes
 (epstopdf)             Output file: <thesis-7-eps-converted-to.pdf>
-(epstopdf)                    date: 2015-08-06 20:37:52
-(epstopdf)                    size: 21701 bytes
+(epstopdf)                    date: 2015-08-06 20:56:37
+(epstopdf)                    size: 21811 bytes
 (epstopdf)             Command: <epstopdf --outfile=thesis-7-eps-converted-to.p
 df thesis-7.eps>
 (epstopdf)             \includegraphics on input line 278.
@@ -889,7 +889,7 @@ msfonts/cm/cmtt9.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/helveti
 c/uhvb8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvr8a
 .pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmb8a.pfb><C:/Pr
 ogram Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
-Output written on sigproc-sp.pdf (8 pages, 791774 bytes).
+Output written on sigproc-sp.pdf (8 pages, 791794 bytes).
 PDF statistics:
  182 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
