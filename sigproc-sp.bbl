@@ -1,20 +1,21 @@
 \begin{thebibliography}{10}
 
 \bibitem{accumuloonline}
-Accumulo.
+Apache\_Accumulo.
 \newblock https://accumulo.apache.org/.
 
-\bibitem{10.11648/j.ajsea.20150402.12}
-{Chieh M. Wu}, {Yin F. Huang}, and {John Lee}.
-\newblock {Comparisons Between MongoDB and MS-SQL Databases on the TWC
-  Website}.
-\newblock {\em American Journal of Software Engineering and Applications.},
-  4(3):35--41, 2015.
+\bibitem{kafkaweb}
+Apache\_Kafka.
+\newblock http://kafka.apache.org/.
+
+\bibitem{apachestormweb}
+Apache\_Storm.
+\newblock https://storm.apache.org/, 2015.
 
 \bibitem{Demiryurek2010}
-U.~Demiryurek, F.~Banaei-kashani, and C.~Shahabi.
-\newblock {\em {A Case for Time-Dependent Shortest Path Computation in Spatial
-  Networks}}.
+U.~Demiryurek, F.~Banaei-Kashani, and C.~Shahabi.
+\newblock {\em A Case for Time-Dependent Shortest Path Computation in Spatial
+  Networks}.
 \newblock Advances in Spatial and Temporal Databases Lecture Notes in Computer
   Science, 2010.
 
@@ -24,65 +25,37 @@ Fox, Anthony, Eichelberger, Chris, Hughes, James, Lyon, and Skylar.
 \newblock In {\em 2013 IEEE International Conference on Big Data}, pages
   291--299. IEEE, 2013.
 
-\bibitem{learningsparkbook}
-{H. Karau}, {A. Konwinski}, {P. Wendell}, and {M. Zaharia}.
-\newblock {\em Learning Spark}.
-\newblock O'Reilly Media, 2015.
-
 \bibitem{haversineweb}
 Haversine\_Formula.
 \newblock https://en.wikipedia.org/wiki/haversine\_formula.
+
+\bibitem{yang2005map}
+Y.~Jae-seok, K.~Seung-pil, and C.~Kyung-soo.
+\newblock The map matching algorithm of gps data with relatively long polling
+  time intervals.
+\newblock {\em Journal of the Eastern Asia Society for Transportation Studies},
+  6:pp. 2561--2573, 2005.
 
 \bibitem{javaspringmvc}
 JavaSpringMVC.
 \newblock http://projects.spring.io/spring-framework/.
 
+\bibitem{learningsparkbook}
+H.~Karau, A.~Konwinski, P.~Wendell, and M.~Zaharia.
+\newblock {\em Learning Spark}.
+\newblock O'Reilly Media, 2015.
+
 \bibitem{kafkapaper}
-{Jay Kreps}, {Neha Narkhede}, and {Jun Rao}.
-\newblock {Kafka: a distributed messaging system for log processing}.
+J.~Kreps, N.~Narkhede, and J.~Rao.
+\newblock Kafka: a distributed messaging system for log processing.
 \newblock {\em NetDB}, 2011.
 
-\bibitem{kafkaweb}
-A.~Kafka.
-\newblock http://kafka.apache.org/.
-
 \bibitem{Lee2011}
-W.-H. Lee, S.-S. Tseng, J.-L. Shieh, and H.-H. Chen.
-\newblock {Discovering Traffic Bottlenecks in an Urban Network by
-  Spatiotemporal Data Mining on Location-Based Services}.
+W.~H. Lee, S.~S. Tseng, J.~L. Shieh, and H.~H. Chen.
+\newblock Discovering traffic bottlenecks in an urban network by spatiotemporal
+  data mining on location-based services.
 \newblock {\em IEEE Transactions on Intelligent Transportation Systems},
   12(4):1047--1056, 2011.
-
-\bibitem{moh2013approximate}
-{M. Otair}.
-\newblock Approximate k-nearest neighbour based spatial clustering using k-d
-  tree.
-\newblock {\em International Journal of Database Management Systems}, 5(1),
-  2013.
-
-\bibitem{Zaharia:2010:SCC:1863103.1863113}
-{Matei Zaharia}, {Mosharaf Chowdhury}, {Michael J. Franklin}, {Scott Shenker},
-  and {Ion Stoica}.
-\newblock Spark: Cluster computing with working sets.
-\newblock In {\em Proceedings of the 2Nd USENIX Conference on Hot Topics in
-  Cloud Computing}, HotCloud'10, pages 10--10, Berkeley, CA, USA, 2010. USENIX
-  Association.
-
-\bibitem{Zaharia:2012:DSE:2342763.2342773}
-{Matei Zaharia}, {Tathagata Das}, {Haoyuan Li}, {Scott Shenker}, and {Ion
-  Stoica}.
-\newblock Discretized streams: An efficient and fault-tolerant model for stream
-  processing on large clusters.
-\newblock In {\em Proceedings of the 4th USENIX Conference on Hot Topics in
-  Cloud Ccomputing}, HotCloud'12, pages 10--10, Berkeley, CA, USA, 2012. USENIX
-  Association.
-
-\bibitem{Zaharia:2013:DSF:2517349.2522737}
-{Matei Zaharia}, {Tathagata Das}, {Haoyuan Li}, {Timothy Hunter}, {Scott
-  Shenker}, and {Ion Stoica}.
-\newblock Discretized streams: Fault-tolerant streaming computation at scale.
-\newblock In {\em Proceedings of the Twenty-Fourth ACM Symposium on Operating
-  Systems Principles}, SOSP '13, pages 423--438. ACM, 2013.
 
 \bibitem{mongodbweb}
 MongoDB.
@@ -97,13 +70,20 @@ Noh and Kim.
 Open\_Street\_Map.
 \newblock www.openstreetmap.org.
 
+\bibitem{moh2013approximate}
+M.~Otair.
+\newblock Approximate k-nearest neighbour based spatial clustering using k-d
+  tree.
+\newblock {\em International Journal of Database Management Systems}, 5(1),
+  2013.
+
 \bibitem{posgis}
 PostGis.
 \newblock http://postgis.net/.
 
 \bibitem{stormappliedbook}
 {Seen T. Allen}, {Matthew Jankowski}, and {Peter Pathirana}.
-\newblock {\em {Storm Applied: Strategies for real-time event processing}}.
+\newblock {\em Storm Applied: Strategies for real-time event processing}.
 \newblock 1st edition, 2015.
 
 \bibitem{shvachko2010hadoop}
@@ -113,16 +93,12 @@ Shvachko, Konstantin, Kuang, Hairong, Radia, Sanjay, Chansler, and Robert.
   Systems and Technologies (MSST)}, MSST '10, pages 1--10, Washington, DC, USA,
   2010. IEEE Computer Society.
 
-\bibitem{apachestormweb}
-A.~Storm.
-\newblock https://storm.apache.org/, 2015.
-
 \bibitem{sparkstreamingweb}
-S.~Streaming.
+Spark\_Streaming.
 \newblock http://spark.apache.org/streaming/, 2015.
 
 \bibitem{accumulatorapi}
-S.~Streaming-Accumulator.
+Spark\_Streaming-Accumulator.
 \newblock
   https://spark.apache.org/docs/latest/programming-guide.html\#accumulators-a-nameaccumlinka.
 
@@ -134,11 +110,31 @@ WebSocket.
 Wikipedia.
 \newblock User section: http://en.wikipedia.org/wiki/postgis.
 
-\bibitem{yang2005map}
-{Y. Jae-seok}, {K. Seung-pil}, and {C. Kyung-soo}.
-\newblock The map matching algorithm of gps data with relatively long polling
-  time intervals.
-\newblock {\em Journal of the Eastern Asia Society for Transportation Studies},
-  6:pp. 2561--2573, 2005.
+\bibitem{Wu:Comparisons}
+C.~M. Wu, Y.~F. Huang, and J.~Lee.
+\newblock Comparisons between mongodb and ms-sql databases on the twc website.
+\newblock {\em American Journal of Software Engineering and Applications.},
+  4(3):35--41, 2015.
+
+\bibitem{Zaharia:2010:Spark}
+M.~Zaharia, M.~Chowdhury, M.~J. Franklin, S.~Shenker, and I.~Stoica.
+\newblock Spark: Cluster computing with working sets.
+\newblock In {\em Proceedings of the 2Nd USENIX Conference on Hot Topics in
+  Cloud Computing}, HotCloud'10, pages 10--10, Berkeley, CA, USA, 2010. USENIX
+  Association.
+
+\bibitem{Zaharia:2013:Discretized}
+M.~Zaharia, T.~Das, H.~Li, T.~Hunter, S.~Shenker, and I.~Stoica.
+\newblock Discretized streams: Fault-tolerant streaming computation at scale.
+\newblock In {\em Proceedings of the Twenty-Fourth ACM Symposium on Operating
+  Systems Principles}, SOSP '13, pages 423--438. ACM, 2013.
+
+\bibitem{Zaharia:2012:Discretized}
+M.~Zaharia, T.~Das, H.~Li, S.~Shenker, and I.~Stoica.
+\newblock Discretized streams: An efficient and fault-tolerant model for stream
+  processing on large clusters.
+\newblock In {\em Proceedings of the 4th USENIX Conference on Hot Topics in
+  Cloud Ccomputing}, HotCloud'12, pages 10--10, Berkeley, CA, USA, 2012. USENIX
+  Association.
 
 \end{thebibliography}

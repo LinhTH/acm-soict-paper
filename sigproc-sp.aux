@@ -10,35 +10,37 @@
 \citation{sparkstreamingweb}
 \citation{stormappliedbook}
 \citation{apachestormweb}
-\citation{Zaharia:2010:SCC:1863103.1863113}
-\citation{Zaharia:2013:DSF:2517349.2522737}
-\citation{Zaharia:2012:DSE:2342763.2342773}
+\citation{Zaharia:2010:Spark}
+\citation{Zaharia:2013:Discretized}
+\citation{Zaharia:2012:Discretized}
 \citation{shvachko2010hadoop}
-\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces The architecture of the system}}{\thepage }}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces The GPSInsights system architecture}}{\thepage }}
 \newlabel{architecture}{{1}{\thepage }}
 \@writefile{toc}{\contentsline {section}{\numberline {3}Implementation}{\thepage }}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.0.1}Apache Kafka.}{\thepage }}
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces The detailed architecture of the system}}{\thepage }}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.0.2}Spark Streaming and Storm.}{\thepage }}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces GPSInsights implementation}}{\thepage }}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.0.1}Apache Kafka}{\thepage }}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.0.2}Spark Streaming and Storm}{\thepage }}
 \citation{mongodbweb}
-\citation{10.11648/j.ajsea.20150402.12}
+\citation{Wu:Comparisons}
 \citation{fox2013spatio}
 \citation{accumuloonline}
 \citation{posgis}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.0.3}MongoDb.}{\thepage }}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.0.4}Geomesa.}{\thepage }}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.0.5}Guarantee realibility}{\thepage }}
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces The first problem}}{\thepage }}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.0.3}MongoDb}{\thepage }}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.0.4}Geomesa}{\thepage }}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.0.5}Guarantee reliability}{\thepage }}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Spark Streaming failed to push data}}{\thepage }}
+\newlabel{fig:first-problem}{{3}{\thepage }}
 \citation{accumulatorapi}
 \citation{openstreetmap}
 \citation{moh2013approximate}
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces The second problem}}{\thepage }}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Spark Streaming Receiver failed to inform Kafka message queue}}{\thepage }}
+\newlabel{fig:second-problem}{{4}{\thepage }}
 \@writefile{toc}{\contentsline {section}{\numberline {4}Scalable map matching}{\thepage }}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.1}General strategy}{\thepage }}
 \newlabel{ssec:links}{{4.1}{\thepage }}
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces The composition of the road network}}{\thepage }}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Road network composition}}{\thepage }}
 \newlabel{fig:composition}{{5}{\thepage }}
-\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Add intermedate nodes in road segments}}{\thepage }}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Adding intermediate nodes into road segments}}{\thepage }}
 \newlabel{fig:addPointsToRoad}{{6}{\thepage }}
 \citation{haversineweb}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Detail algorithm}{\thepage }}
@@ -46,52 +48,54 @@
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.2}Data Collecting Phase}{\thepage }}
 \newlabel{datacollectingphase}{{4.2.2}{\thepage }}
 \@writefile{toc}{\contentsline {section}{\numberline {5}Experiments}{\thepage }}
-\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces the performances}}{\thepage }}
+\newlabel{table:location-data}{{5}{\thepage }}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Measuring processing performance in term of completion time}}{\thepage }}
 \newlabel{fig:performance}{{7}{\thepage }}
 \citation{posgis}
 \citation{backendposgis}
-\citation{yang2005map}
 \citation{noh1998map}
+\citation{yang2005map}
 \bibstyle{abbrv}
 \bibdata{dasfaa2015}
 \bibcite{accumuloonline}{1}
-\bibcite{10.11648/j.ajsea.20150402.12}{2}
-\bibcite{Demiryurek2010}{3}
-\bibcite{fox2013spatio}{4}
-\bibcite{learningsparkbook}{5}
+\bibcite{kafkaweb}{2}
+\bibcite{apachestormweb}{3}
+\bibcite{Demiryurek2010}{4}
+\bibcite{fox2013spatio}{5}
 \bibcite{haversineweb}{6}
-\bibcite{javaspringmvc}{7}
-\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Time delay}}{\thepage }}
+\bibcite{yang2005map}{7}
+\bibcite{javaspringmvc}{8}
+\bibcite{learningsparkbook}{9}
+\bibcite{kafkapaper}{10}
+\bibcite{Lee2011}{11}
+\bibcite{mongodbweb}{12}
+\bibcite{noh1998map}{13}
+\bibcite{openstreetmap}{14}
+\bibcite{moh2013approximate}{15}
+\bibcite{posgis}{16}
+\bibcite{stormappliedbook}{17}
+\bibcite{shvachko2010hadoop}{18}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Measuring data processing latency}}{\thepage }}
 \newlabel{fig:timedelay}{{8}{\thepage }}
 \@writefile{toc}{\contentsline {section}{\numberline {6}Related work}{\thepage }}
 \@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion and Future Work}{\thepage }}
 \@writefile{toc}{\contentsline {section}{\numberline {8}References}{\thepage }}
-\bibcite{kafkapaper}{8}
-\bibcite{kafkaweb}{9}
-\bibcite{Lee2011}{10}
-\bibcite{moh2013approximate}{11}
-\bibcite{Zaharia:2010:SCC:1863103.1863113}{12}
-\bibcite{Zaharia:2012:DSE:2342763.2342773}{13}
-\bibcite{Zaharia:2013:DSF:2517349.2522737}{14}
-\bibcite{mongodbweb}{15}
-\bibcite{noh1998map}{16}
-\bibcite{openstreetmap}{17}
-\bibcite{posgis}{18}
-\bibcite{stormappliedbook}{19}
-\bibcite{shvachko2010hadoop}{20}
-\bibcite{apachestormweb}{21}
-\bibcite{sparkstreamingweb}{22}
-\bibcite{accumulatorapi}{23}
-\bibcite{websocket}{24}
-\bibcite{backendposgis}{25}
-\bibcite{yang2005map}{26}
+\bibcite{sparkstreamingweb}{19}
+\bibcite{accumulatorapi}{20}
+\bibcite{websocket}{21}
+\bibcite{backendposgis}{22}
+\bibcite{Wu:Comparisons}{23}
+\bibcite{Zaharia:2010:Spark}{24}
+\bibcite{Zaharia:2013:Discretized}{25}
+\bibcite{Zaharia:2012:Discretized}{26}
 \citation{javaspringmvc}
 \citation{openstreetmap}
 \citation{websocket}
 \newlabel{appendix}{{7}{\thepage }}
 \@writefile{toc}{\contentsline {section}{\numberline {A}Space mean speed}{\thepage }}
-\@writefile{toc}{\contentsline {section}{\numberline {B}the visual display system}{\thepage }}
-\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces The connect module}}{\thepage }}
+\@writefile{toc}{\contentsline {section}{\numberline {B}The visual display system}{\thepage }}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces GPSInsights connector module}}{\thepage }}
 \newlabel{fig:connectmodule}{{9}{\thepage }}
-\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces Showing the statistic results for users}}{\thepage }}
-\@writefile{toc}{\contentsline {section}{\numberline {C}the pseudocode of algorithm}{\thepage }}
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces Map with road average speed updated in real-time}}{\thepage }}
+\newlabel{fig:app}{{10}{\thepage }}
+\@writefile{toc}{\contentsline {section}{\numberline {C}Map matching pseudocode}{\thepage }}

@@ -2,30 +2,49 @@
 % Encoding: Cp1252
 
 
+@Article{yang2005map,
+  Title                    = {The map matching algorithm of gps data with relatively long polling time intervals},
+  Author                   = {Y. Jae-seok and K. Seung-pil and C. Kyung-soo},
+  Journal                  = {Journal of the Eastern Asia Society for Transportation Studies},
+  Year                     = {2005},
+  Pages                    = {pp. 2561--2573},
+  Volume                   = {6},
+
+  Date-added               = {2015-01-08 16:50:48 +0000},
+  Date-modified            = {2015-01-08 16:50:48 +0000},
+  Timestamp                = {2015.01.09}
+}
+
 @Misc{accumuloonline,
   Title                    = {https://accumulo.apache.org/},
 
-  Author                   = {Accumulo},
+  Author                   = {Apache\_Accumulo},
 
   Timestamp                = {2015.01.10}
 }
 
-@Article{10.11648/j.ajsea.20150402.12,
-  Title                    = {{Comparisons Between MongoDB and MS-SQL Databases on the TWC Website}},
-  Author                   = {{Chieh M. Wu} and {Yin F. Huang} and {John Lee}},
-  Journal                  = {American Journal of Software Engineering and Applications.},
-  Year                     = {2015},
-  Number                   = {3},
-  Pages                    = {35-41},
-  Volume                   = {4},
+@Misc{kafkaweb,
+  Title                    = {http://kafka.apache.org/},
+
+  Author                   = {Apache\_Kafka},
 
   Owner                    = {Rimberry},
   Timestamp                = {2015.07.21}
 }
 
+@Misc{apachestormweb,
+  Title                    = {https://storm.apache.org/},
+
+  Author                   = {Apache\_Storm},
+  Year                     = {2015},
+
+  Date-modified            = {2015-01-10 18:48:23 +0000},
+  Timestamp                = {2015.05.30}
+}
+
 @Book{Demiryurek2010,
-  Title                    = {{A Case for Time-Dependent Shortest Path Computation in Spatial Networks}},
-  Author                   = {Demiryurek, Ugur and Banaei-kashani, Farnoush and Shahabi, Cyrus},
+  Title                    = {A Case for Time-Dependent Shortest Path Computation in Spatial Networks},
+  Author                   = {Ugur Demiryurek and Farnoush Banaei-Kashani and Cyrus Shahabi},
   Publisher                = {Advances in Spatial and Temporal Databases Lecture Notes in Computer Science},
   Year                     = {2010},
 
@@ -36,51 +55,6 @@
   Journal                  = {Advances in Spatial and Temporal Databases Lecture Notes in Computer Science},
   Keywords                 = {route planning,spatial network,time-dependent shortest path},
   Mendeley-groups          = {GIS GNSS}
-}
-
-@InProceedings{Sivaraman2014hadoop,
-  Title                    = {High performance and fault tolerant distributed file system for big data storage and processing using hadoop},
-  Author                   = {{E. Sivaraman} and {R. Manickachezian}},
-  Booktitle                = {Proceedings of the 2014 International Conference on Intelligent Computing Applications},
-  Year                     = {2014},
-
-  Address                  = {Washington, DC, USA},
-  Pages                    = {32--36},
-  Publisher                = {IEEE Computer Society},
-  Series                   = {ICICA '14},
-
-  Acmid                    = {2624333},
-  ISBN                     = {978-1-4799-3966-4},
-  Keywords                 = {Big data, Analytics, Hadoop, Hadoop Distributed File System (HDFS), Hype cycle, MapReduce, Replication, Fault tolerance, Unstructured data},
-  Numpages                 = {5}
-}
-
-@Article{Chang2008BigTable,
-  Title                    = {Bigtable: a distributed storage system for structured data},
-  Author                   = {{F. Chang} and {J. Dean} and {S. Ghemawat} and {W.C. Hsieh} and {D.A. Wallach} and {M. Burrows} and {T. Chandra} and {A. Fikes} and {R.E. Gruber}},
-  Journal                  = {ACM Trans. Comput. Syst.},
-  Year                     = {2008},
-  Number                   = {2},
-  Pages                    = {pp. 4:1--4:26},
-  Volume                   = {26},
-
-  Acmid                    = {1365816},
-  Address                  = {New York, NY, USA},
-  Articleno                = {4},
-  ISSN                     = {0734-2071},
-  Issue_date               = {June 2008},
-  Keywords                 = {Large-Scale Distributed Storage},
-  Numpages                 = {26},
-  Publisher                = {ACM}
-}
-
-@Book{zookeeperbook,
-  Title                    = {Zookeeper: distributed process coordination},
-  Author                   = {{F. Junqueira} and {B. Reed}},
-  Publisher                = {O'Reilly Media, Inc},
-  Year                     = {2013},
-
-  Timestamp                = {2015.01.09}
 }
 
 @InProceedings{fox2013spatio,
@@ -94,16 +68,6 @@
   Date-added               = {2015-01-08 16:50:17 +0000},
   Date-modified            = {2015-01-08 16:50:17 +0000},
   Timestamp                = {2015.01.09}
-}
-
-@Book{learningsparkbook,
-  Title                    = {Learning Spark},
-  Author                   = {{H. Karau} and {A. Konwinski} and {P. Wendell} and {M. Zaharia}},
-  Publisher                = {O'Reilly Media},
-  Year                     = {2015},
-
-  Owner                    = {Rimberry},
-  Timestamp                = {2015.07.21}
 }
 
 @Misc{haversineweb,
@@ -124,9 +88,28 @@
   Timestamp                = {2015.08.04}
 }
 
+@Book{zookeeperbook,
+  Title                    = {Zookeeper: distributed process coordination},
+  Author                   = {F. Junqueira and B. Reed},
+  Publisher                = {O'Reilly Media, Inc},
+  Year                     = {2013},
+
+  Timestamp                = {2015.01.09}
+}
+
+@Book{learningsparkbook,
+  Title                    = {Learning Spark},
+  Author                   = {H. Karau and A. Konwinski and P. Wendell and M. Zaharia},
+  Publisher                = {O'Reilly Media},
+  Year                     = {2015},
+
+  Owner                    = {Rimberry},
+  Timestamp                = {2015.07.21}
+}
+
 @Article{kafkapaper,
-  Title                    = {{Kafka: a distributed messaging system for log processing}},
-  Author                   = {{Jay Kreps} and {Neha Narkhede} and {Jun Rao}},
+  Title                    = {Kafka: a distributed messaging system for log processing},
+  Author                   = {Jay Kreps and Neha Narkhede and Jun Rao},
   Journal                  = {NetDB},
   Year                     = {2011},
 
@@ -134,36 +117,9 @@
   Timestamp                = {2015.07.21}
 }
 
-@Misc{kafkaweb,
-  Title                    = {http://kafka.apache.org/},
-
-  Author                   = {Apache Kafka},
-
-  Owner                    = {Rimberry},
-  Timestamp                = {2015.07.21}
-}
-
-@Misc{kafkasimpleapi,
-  Title                    = {https://cwiki.apache.org/confluence/display/KAFKA/0.8.0+SimpleConsumer+Example},
-
-  Author                   = {Apache Kafka-SimpleConsumer},
-
-  Owner                    = {Rimberry},
-  Timestamp                = {2015.08.01}
-}
-
-@Book{resfulbook,
-  Title                    = {Restful web apis},
-  Author                   = {{L. Richardson} and {M. Amundsen} and {S. Ruby}},
-  Publisher                = {O'Reilly Media, Inc},
-  Year                     = {2013},
-
-  Timestamp                = {2015.01.10}
-}
-
 @Article{Lee2011,
-  Title                    = {{Discovering Traffic Bottlenecks in an Urban Network by Spatiotemporal Data Mining on Location-Based Services}},
-  Author                   = {Lee, Wei-Hsun and Tseng, Shian-Shyong and Shieh, Jin-Lih and Chen, Hsiao-Han},
+  Title                    = {Discovering Traffic Bottlenecks in an Urban Network by Spatiotemporal Data Mining on Location-Based Services},
+  Author                   = {Wei H. Lee and Shian S. Tseng and Jin L. Shieh and Hsiao H. Chen},
   Journal                  = {IEEE Transactions on Intelligent Transportation Systems},
   Year                     = {2011},
   Number                   = {4},
@@ -179,80 +135,6 @@
   ISSN                     = {1524-9050},
   Mendeley-groups          = {GIS GNSS},
   Url                      = {http://ieeexplore.ieee.org/lpdocs/epic03/wrapper.htm?arnumber=5766752}
-}
-
-@Book{nodejsbook,
-  Title                    = {Node.js in action},
-  Author                   = {{M. Cantelon} and {M. Harter} and {T.J. Holowaychuk} and {N. Rajlich}},
-  Publisher                = {Manning Publications Co.},
-  Year                     = {2013},
-
-  Address                  = {Greenwich, CT, USA},
-  Edition                  = {1st},
-
-  Timestamp                = {2015.01.10}
-}
-
-@Article{moh2013approximate,
-  Title                    = {Approximate k-nearest neighbour based spatial clustering using k-d tree},
-  Author                   = {{M. Otair}},
-  Journal                  = {International Journal of Database Management Systems},
-  Year                     = {2013},
-  Number                   = {1},
-  Volume                   = {5},
-
-  Timestamp                = {2015.01.10}
-}
-
-@InProceedings{Zaharia:2010:SCC:1863103.1863113,
-  Title                    = {Spark: Cluster Computing with Working Sets},
-  Author                   = {{Matei Zaharia} and {Mosharaf Chowdhury} and {Michael J. Franklin} and {Scott Shenker} and {Ion Stoica}},
-  Booktitle                = {Proceedings of the 2Nd USENIX Conference on Hot Topics in Cloud Computing},
-  Year                     = {2010},
-
-  Address                  = {Berkeley, CA, USA},
-  Pages                    = {10--10},
-  Publisher                = {USENIX Association},
-  Series                   = {HotCloud'10},
-
-  Acmid                    = {1863113},
-  Location                 = {Boston, MA},
-  Numpages                 = {1},
-  Url                      = {http://dl.acm.org/citation.cfm?id=1863103.1863113}
-}
-
-@InProceedings{Zaharia:2012:DSE:2342763.2342773,
-  Title                    = {Discretized Streams: An Efficient and Fault-tolerant Model for Stream Processing on Large Clusters},
-  Author                   = {{Matei Zaharia} and {Tathagata Das} and {Haoyuan Li} and {Scott Shenker} and {Ion Stoica}},
-  Booktitle                = {Proceedings of the 4th USENIX Conference on Hot Topics in Cloud Ccomputing},
-  Year                     = {2012},
-
-  Address                  = {Berkeley, CA, USA},
-  Pages                    = {10--10},
-  Publisher                = {USENIX Association},
-  Series                   = {HotCloud'12},
-
-  Acmid                    = {2342773},
-  Location                 = {Boston, MA},
-  Numpages                 = {1},
-  Url                      = {http://dl.acm.org/citation.cfm?id=2342763.2342773}
-}
-
-@InProceedings{Zaharia:2013:DSF:2517349.2522737,
-  Title                    = {Discretized Streams: Fault-tolerant Streaming Computation at Scale},
-  Author                   = {{Matei Zaharia} and {Tathagata Das} and {Haoyuan Li} and {Timothy Hunter} and {Scott Shenker} and {Ion Stoica}},
-  Booktitle                = {Proceedings of the Twenty-Fourth ACM Symposium on Operating Systems Principles},
-  Year                     = {2013},
-  Pages                    = {423--438},
-  Publisher                = {ACM},
-  Series                   = {SOSP '13},
-
-  Acmid                    = {2522737},
-  Doi                      = {10.1145/2517349.2522737},
-  ISBN                     = {978-1-4503-2388-8},
-  Location                 = {Farminton, Pennsylvania},
-  Numpages                 = {16},
-  Url                      = {http://doi.acm.org/10.1145/2517349.2522737}
 }
 
 @Misc{mongodbweb,
@@ -275,6 +157,26 @@
   Timestamp                = {2015.01.10}
 }
 
+@Misc{openstreetmap,
+  Title                    = {www.openstreetmap.org},
+
+  Author                   = {Open\_Street\_Map},
+
+  Owner                    = {Rimberry},
+  Timestamp                = {2015.08.06}
+}
+
+@Article{moh2013approximate,
+  Title                    = {Approximate k-nearest neighbour based spatial clustering using k-d tree},
+  Author                   = {M. Otair},
+  Journal                  = {International Journal of Database Management Systems},
+  Year                     = {2013},
+  Number                   = {1},
+  Volume                   = {5},
+
+  Timestamp                = {2015.01.10}
+}
+
 @Misc{posgis,
   Title                    = {http://postgis.net/},
 
@@ -283,17 +185,8 @@
   Timestamp                = {2015.01.09}
 }
 
-@Book{html5book,
-  Title                    = {Html5 canvas},
-  Author                   = {{S. Fulton} and {J. Fulton}},
-  Publisher                = {O'Reilly Media, Inc},
-  Year                     = {2011},
-
-  Timestamp                = {2015.01.10}
-}
-
 @Book{stormappliedbook,
-  Title                    = {{Storm Applied: Strategies for real-time event processing}},
+  Title                    = {Storm Applied: Strategies for real-time event processing},
   Author                   = {{Seen T. Allen} and {Matthew Jankowski} and {Peter Pathirana}},
   Year                     = {2015},
   Edition                  = {1st},
@@ -318,20 +211,10 @@
   Numpages                 = {10}
 }
 
-@Misc{apachestormweb,
-  Title                    = {https://storm.apache.org/},
-
-  Author                   = {Apache Storm},
-  Year                     = {2015},
-
-  Date-modified            = {2015-01-10 18:48:23 +0000},
-  Timestamp                = {2015.05.30}
-}
-
 @Misc{sparkstreamingweb,
   Title                    = {http://spark.apache.org/streaming/},
 
-  Author                   = {Spark Streaming},
+  Author                   = {Spark\_Streaming},
   Year                     = {2015},
 
   Date-modified            = {2015-01-10 18:48:23 +0000},
@@ -341,7 +224,7 @@
 @Misc{accumulatorapi,
   Title                    = {https://spark.apache.org/docs/latest/programming-guide.html\#accumulators-a-nameaccumlinka},
 
-  Author                   = {Spark Streaming-Accumulator},
+  Author                   = {Spark\_Streaming-Accumulator},
 
   Owner                    = {Rimberry},
   Timestamp                = {2015.08.01}
@@ -364,22 +247,22 @@
   Timestamp                = {2015.01.09}
 }
 
-@Article{yang2005map,
-  Title                    = {The map matching algorithm of gps data with relatively long polling time intervals},
-  Author                   = {{Y. Jae-seok} and {K. Seung-pil} and {C. Kyung-soo}},
-  Journal                  = {Journal of the Eastern Asia Society for Transportation Studies},
-  Year                     = {2005},
-  Pages                    = {pp. 2561--2573},
-  Volume                   = {6},
+@Article{Wu:Comparisons,
+  Title                    = {Comparisons Between MongoDB and MS-SQL Databases on the TWC Website},
+  Author                   = {Chieh M. Wu and Yin F. Huang and John Lee},
+  Journal                  = {American Journal of Software Engineering and Applications.},
+  Year                     = {2015},
+  Number                   = {3},
+  Pages                    = {35-41},
+  Volume                   = {4},
 
-  Date-added               = {2015-01-08 16:50:48 +0000},
-  Date-modified            = {2015-01-08 16:50:48 +0000},
-  Timestamp                = {2015.01.09}
+  Owner                    = {Rimberry},
+  Timestamp                = {2015.07.21}
 }
 
-@InProceedings{spark,
-  Title                    = {Spark: cluster computing with working sets},
-  Author                   = {Zaharia and Matei and Chowdhury and Mosharaf and Franklin and {J. Michael} and Shenker and Scott and Stoica and Ion},
+@InProceedings{Zaharia:2010:Spark,
+  Title                    = {Spark: Cluster Computing with Working Sets},
+  Author                   = {Matei Zaharia and Mosharaf Chowdhury and Michael J. Franklin and Scott Shenker and Ion Stoica},
   Booktitle                = {Proceedings of the 2Nd USENIX Conference on Hot Topics in Cloud Computing},
   Year                     = {2010},
 
@@ -389,18 +272,42 @@
   Series                   = {HotCloud'10},
 
   Acmid                    = {1863113},
-  Date-added               = {2015-01-08 16:46:49 +0000},
-  Date-modified            = {2015-01-08 16:47:04 +0000},
   Location                 = {Boston, MA},
   Numpages                 = {1},
-  Timestamp                = {2015.01.09}
+  Url                      = {http://dl.acm.org/citation.cfm?id=1863103.1863113}
 }
 
-@Misc{zookeeper,
-  Title                    = {http://zookeeper.apache.org/},
+@InProceedings{Zaharia:2013:Discretized,
+  Title                    = {Discretized Streams: Fault-tolerant Streaming Computation at Scale},
+  Author                   = {Matei Zaharia and Tathagata Das and Haoyuan Li and Timothy Hunter and Scott Shenker and Ion Stoica},
+  Booktitle                = {Proceedings of the Twenty-Fourth ACM Symposium on Operating Systems Principles},
+  Year                     = {2013},
+  Pages                    = {423--438},
+  Publisher                = {ACM},
+  Series                   = {SOSP '13},
 
-  Author                   = {Zookeeper},
+  Acmid                    = {2522737},
+  Doi                      = {10.1145/2517349.2522737},
+  ISBN                     = {978-1-4503-2388-8},
+  Location                 = {Farminton, Pennsylvania},
+  Numpages                 = {16},
+  Url                      = {http://doi.acm.org/10.1145/2517349.2522737}
+}
 
-  Timestamp                = {2015.01.09}
+@InProceedings{Zaharia:2012:Discretized,
+  Title                    = {Discretized Streams: An Efficient and Fault-tolerant Model for Stream Processing on Large Clusters},
+  Author                   = {Matei Zaharia and Tathagata Das and Haoyuan Li and Scott Shenker and Ion Stoica},
+  Booktitle                = {Proceedings of the 4th USENIX Conference on Hot Topics in Cloud Ccomputing},
+  Year                     = {2012},
+
+  Address                  = {Berkeley, CA, USA},
+  Pages                    = {10--10},
+  Publisher                = {USENIX Association},
+  Series                   = {HotCloud'12},
+
+  Acmid                    = {2342773},
+  Location                 = {Boston, MA},
+  Numpages                 = {1},
+  Url                      = {http://dl.acm.org/citation.cfm?id=2342763.2342773}
 }
 
