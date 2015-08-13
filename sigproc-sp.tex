@@ -63,12 +63,12 @@
 \alignauthor
 Hoang-Linh Truong\\
        \affaddr{Hanoi university of science and technology}\\
-       \email{linhth.k55.hust@gma-il.com}
+       \email{linhth.k55.hust@gmail.com}
 % 2nd. author
 \alignauthor
 Duy-Khanh Bui\\
        \affaddr{Hanoi university of science and technology}\\
-       \email{duykhanh1412@gma-il.com}
+       \email{duykhanh1412@gmail.com}
 % 3rd. author
 \alignauthor
 Viet-Trung Tran\\
@@ -92,9 +92,7 @@ email: {\texttt{jsmith@affiliation.org}}) and Julius P.~Kumquat
 Intelligent Transport System (ITS) has seen growing interest in collecting vehicle location data in order to build up real-time traffic monitoring and analytic systems. However handling these data creates challenges, as they are massive in volume and arriving in near real-time. In this paper, we proposed GPSInsights, a distributed system that is scalable and efficient in processing huge volume of location data stream. GPSInsights is built up on open-source, scalable and distributed components. We demonstrated our system with a scalable map matching implementation and performed experiments with real big datasets. 
 
 % A category with the (minimum) three required fields
-\category{H.4}{Information Systems Applications}{Miscellaneous}
-%A category including the fourth, optional field follows...
-\category{D.2.8}{Software Engineering}{Metrics}[complexity measures, performance measures]
+\category{D.4.7}{OPERATING SYSTEMS}{Organization and Design}[Distributed systems,Real-time systems and embedded systems]
 
 \terms{Bigdata}
 
@@ -107,25 +105,25 @@ Intelligent Transport System (ITS) has seen growing interest in collecting vehic
 With the widespread adoption of GPS technology, Intelligent Transport System~(ITS) has seen growing interest in collecting location data of transport vehicles. This data collection is done with the purpose of being able to deliver not only real-time traffic monitoring but also useful traffic statistics and predictive information. Lee et al.~\cite{Lee2011} presented a data mining algorithm to discover traffic bottlenecks. Demiryurek et al.~\cite{Demiryurek2010} proposed an online computation for optimal traffic routes based on traffic data. However, none of these approaches discuss how to implement the system at large-scale.
 
 
-According to Decree No. 91/2009/ND-CP of Ministry of Transport of Vietnam, all Vietnamese-licensed cars must be equipped with a standardised global positioning system (GPS) which reports geo-location, speed and direction every 30 seconds to a centralised data centre. With nearly 200.000 cars in circulation in the near future, the data is enormous and has big data characteristics. First, data is generated continuously in big volume (e.g. petabytes) from hundred thousand of vehicles. Second, in-coming data rate is near real-time, at which the underlying system must deliver. Third, data has big value for the potential insights about the current situation of the traffic infrastructure as well as for the predictions. 
+According to Decree No. 91/2009/ND-CP of Ministry of Transport of Vietnam, all Vietnamese-licensed cars must be equipped with a standardised global positioning system (GPS) which reports their geo-location, speed and direction every 30 seconds to a centralised data centre. With nearly 200.000 cars in circulation in the near future, the data are enormous and have big data characteristics. First, the data are generated continuously in big volume (e.g. petabytes) from the hundred thousand of vehicles. Second, the in-coming data rate is near real-time, at which the underlying system must deliver. Third, the data have the big value for potential insights about the current situation of the traffic infrastructure as well as for the predictions. 
 
 
-As big data create non-conventional challenges, current ITS management systems storing data in relational database systems (e.g. via PostGIS~\cite{posgis}) will not be able to adapt to the data ingestion rate, nor being able to be processed efficiently. In this work, we describe GPSInsights: a novel scalable system for storing and mining massive real-time vehicle location data. GPSInsights is able to handle increasingly huge volume of data while supporting real-time analytics. We demonstrate GPSInsights with a scalable map matching implementation. 
+As big data create non-conventional challenges, current ITS management systems storing data in relational database systems (e.g. via PostGIS~\cite{posgis}) will not be able to adapt to the data ingestion rate, nor being able to be processed efficiently. In this work, we describe GPSInsights: the novel scalable system for storing and mining massive the real-time vehicle location data. GPSInsights is able to handle increasingly huge volume of data while supporting real-time analytics. We demonstrate GPSInsights with a scalable map matching implementation. 
 
-This paper is organised in 7 parts. In Section~2, we discuss an overall architecture of our system framework. In Section~3, we go into the details of the technologies and the components of GPSInsights. In Section~4, we establish a simple demonstration map matching algorithm. Section~5 presents experimental results with real datasets. Section~6 discusses related works on existed map matching algorithms and on storing spatio-time data. We conclude and discuss future work in Section~7.
+This paper is organised in 7 parts. In Section~2, we discuss an overall architecture of our system framework. In Section~3, we go into the details of the technologies and the components of GPSInsights. In Section~4, we establish the simple demonstration map matching algorithm. Section~5 presents experimental results with real datasets. Section~6 discusses related works on existed map matching algorithms and on storing spatio-time data. We conclude and discuss future work in Section~7.
 	
 \section{System design} 
 
 We design GPSInsights with the following components as depicted in Figure~\ref{architecture}
 
 \begin{itemize}
-\item 	Distributed input message queue: As the location data arrive from a huge number of source vehicles continuously, this component is responsible for combining the multi-source data, and putting them in their chronological order. It has to store and replicate the large input data dispersedly on a large cluster for high throughput, and for fault tolerance. The distributed message queue implements producer-consumer skeleton in which GPS devices installed on transportation vehicles are the producers and the storage engine or the processing engine of GPSInsights become the consumers.
+\item 	Distributed input message queue: As the location data arrive from the huge number of source vehicles continuously, this component is responsible for combining the multi-source data, and putting them in their chronological order. It has to store and replicate the large input data dispersedly on a large cluster for high throughput, and for fault tolerance. The distributed message queue implements the producer-consumer skeleton in which the GPS devices installed on the transportation vehicles are the producers, the storage engine and the processing engine of GPSInsights become the consumers	.
 
-\item  Streaming data processing engine: To allow realtime analytics, GPSInsights powers a streaming data processing engine. This component has to be able to analyse data ``on the fly'', which then outputs analytic reports such as average speed, number of vehicles, and traffic bottleneck prediction. It has to be scaled out on thousand of servers to adapt to the workload.
+\item  Streaming data processing engine: To allow realtime analytics, GPSInsights powers a streaming data processing engine. This component has to be able to analyse data ``on the fly'', which then outputs an analytic report for each road's segment such as an average speed, the number of vehicles, and a traffic bottleneck prediction. It has to be scaled out on the thousand of servers to adapt to the workload.
 
-\item  Distributed result queue: Results from the data processing engine are sent to this component. This acts as the interface to continuous consumer services at application level such as web, mobile apps. 
+\item  Distributed result queue: Results from the data processing engine are sent to this component. This acts as the interface for continuous consumer services at the application level such as the web, mobile apps. 
 
-\item  Distributed spatio-temporal database: As location data consist of geolocation informations and timestamps in which the data are recorded, GPSInsights stores data in a distributed spatio-temporal database. This components aims to provide the spatial querying and data manipulation as PostGIS but at large-scale for offline phase. 
+\item  Distributed spatio-temporal database: As the location data consist of geolocation informations and timestamps in which the data are recorded, GPSInsights stores the data in a distributed spatio-temporal database. This component aims to provide the spatial querying and the data manipulation as PostGIS but at large-scale for an offline phase. 
 
 \item  Distributed analytic result database. This database is selected to store the analytic results from the data processing engine, acting as the datastore for both display services at the application level and offline processing systems. 
 
@@ -151,20 +149,20 @@ With the system architecture shown in Chapter~2, we build our GPSInsights using 
 
 \subsubsection{Apache Kafka} 
 
-Apache Kafka~\cite{kafkapaper,kafkaweb} is a distributed publish-subscribe messaging service with the purpose of being fast, scalable and durable. Kafka maintains feeds of messages in categories called topics. Each topic is a partitioned log, distributed over multiple cluster server nodes as in Figure~\ref{architecture}. Inside a particular partition, the messages are immutable and ordered, identified by an ``offset''. This design choice allows not only storing the amount of the data larger than the capability of any single node but also parallelizing read and write operations. Technically, producers that publish messages can distribute messages over multiple partitions of a topic in a round-roubin fashion, or they can distribute according to some semantic partition functions.
+Apache Kafka~\cite{kafkapaper,kafkaweb} is a distributed publish-subscribe messaging service with the purpose of being fast, scalable and durable. Kafka maintains feeds of messages in categories called topics. Each topic is a partitioned log, distributed over multiple cluster server nodes as in Figure~\ref{architecture}. Inside a particular partition, the messages are immutable and ordered, identified by an ``offset''. This design choice allows not only storing the amount of the data larger than the capability of any single node but also parallelizing read and write operations. Technically, the producers that publish messages can distribute the messages over the multiple partitions of the topic in a round-roubin fashion, or they can distribute according to some semantic partition functions.
 
-Kafka achieves fault-tolerance by replicating partitions across a configurable number of nodes. Each partition has one ``leader'' and several ``follower'' nodes. The ``leader'' node serves all read and write requests for the partition while the followers are mirroring. Once the leader failed, one of the followers will be automatically promoted to be the new leader (using the well-known distributed leader election algorithm). In production, every Kafka node acts as the leader for some partitions and the follower for others to achieve balancing. 
+Kafka achieves fault-tolerance by replicating the partitions across a configurable number of nodes. Each partition has one ``leader'' and several ``follower'' nodes. The ``leader'' node serves all read and write requests for the partition while the followers are mirroring. Once the leader failed, one of the followers will be automatically promoted to be the new leader (using the well-known distributed leader election algorithm). In production, every Kafka node acts as the leader for some partitions and the follower for others to achieve balancing. 
 
-In GPSInsights, Kafka is used for the distributed input message queue and the result queue. With suitable configuration, Kafka helps GPSInsights aggregating in-coming location data and routing analytic results to the appropriate layers (E.g. to the storages and to the end-user applications).
+In GPSInsights, Kafka is used for the distributed input message queue and the result queue. With a suitable configuration, Kafka helps GPSInsights aggregating the in-coming location data and routing analytic results to the appropriate layers (E.g. to the storages and to the end-user applications).
 
 \subsubsection{Spark Streaming and Storm}
 
 Spark Streaming~\cite{learningsparkbook,sparkstreamingweb} and Apache Storm~\cite{stormappliedbook,apachestormweb} are the most popular open-source frameworks for distributed stream processing. In the distributed mode, both of them use a master/slave architecture with one central coordinator and many distributed workers. However, there are still the important differences in their architectures as following.
 
-Spark Streaming lays on top of Apache Spark~\cite{Zaharia:2010:Spark} for acting on data stream.
+Spark Streaming lays on top of Apache Spark~\cite{Zaharia:2010:Spark} for acting on data streams.
  At the core of Spark Streaming is the concept of discretized abstraction (D-streams)~\cite{Zaharia:2013:Discretized,Zaharia:2012:Discretized}, that considers in-coming records as a series of deterministic batches on small time intervals. Each batch is treated as a resllient distributed dataset (RDD) of Spark, and being processed using RDD operations. 
 
-Spark's RDDs offer fault-tolerance and parallel computation at large-scale though three important design principles. First, RDD is partitioned in chunks, distributed across compute nodes (as in Hadoop Mapreduce paradigm). Second, every computation within RDD is recorded in logs (called lineage). Third, the temporary data are kept in memory to speed up computation. If any partition of an RDD is lost due to a node failure, as long as the source of the input data which is usually at immutable Hadoop file system HDFS~\cite{shvachko2010hadoop}, then that partition can be re-computed from it using the lineage of operations.
+Spark's RDDs offer fault-tolerance and parallel computation at large-scale though the three important design principles. First, RDD is partitioned in chunks, distributed across compute nodes (as in the Hadoop Mapreduce paradigm). Second, every computation within RDD is recorded in logs (called lineage). Third, the temporary data are kept in memory to speed up computation. If any partition of an RDD is lost due to a node failure, as long as the source of the input data which is usually at immutable Hadoop file system HDFS~\cite{shvachko2010hadoop}, then that partition can be re-computed from it using the lineage of operations.
 
 Instead of batching up events that arrive within a short time and then process them as in Spark Streaming, Storm processes incoming events one at a time. Thus, storm processing latency could be sub-second, while Spark Streaming latency is of several seconds. The work in Storm is delegated to different types of components that are responsible for a specific processing task. The input data stream is received by a specialized component called a ``spout''. Then the spout immediately passes the data to another component called a ``bolt''. In the bolt, the data will be transformed in some way, and the bolt either sends them to some sort of storage or passes them to some other bolts. In general, the Storm cluster can be considered as a network of bolt components in which each one applies some kind of transformation on the data receiving from the spout, the arrangement of spouts and bolts and their connections in the cluster is called a topology. In storm, each individual record has to be tracked when moving through the system. However, Storm only guarantees that each record will be processed at least once.
 
@@ -172,11 +170,11 @@ GPSInsights is implemented to work with both Spark Streaming and Storm as the st
 
 \subsubsection{MongoDb}
 
-Because of the rapid increase in velocity and volume of the result data, Traditional relational databases are no longer the ``one-size-fits-all'' for every type of data. They do not scale well to large datasets because their scaling model is vertical: more data means bigger server. One way to scale relational databases across multiple servers is to do ``database sharding''. However, this mechanism is limited scalability due to the inherent complexity of the relational interface and the ACID (atomicity, consistency, isolation, and durability) guarantees. 
+Because of the rapid increase in velocity and volume of the result data, traditional relational databases are no longer the ``one-size-fits-all'' for every type of data. They do not scale well to large datasets because their scaling model is vertical: more data means bigger server. One way to scale relational databases across multiple servers is to do ``database sharding''. However, this mechanism is limited scalability due to the inherent complexity of the relational interface and the ACID (atomicity, consistency, isolation, and durability) guarantees. 
 
 MongoDB~\cite{mongodbweb} is a document store with the possibility to scale horizontally. It is designed for managing semi-structured data organized as a collection of documents. In MongoDB, the structure of the documents is very flexible. There is no pre-defined scheme as the columns, and column datatypes as in relational databases. MongoDB distributes documents by the document IDs across servers and implements replication for fault-tolerance. When comparing the performance between the two different databases~\cite{Wu:Comparisons}, MongoDb saw the much better performance than MySQL - the traditional relational database.
 
-GPSInsights uses MongoDB to store the statistic results from the data processing engine. GPSInsights leverages the ability of MongoDB to write data fast and in a flexible scheme. 
+GPSInsights uses MongoDB to store the statistic results from the data processing engine. GPSInsights leverages the ability of MongoDB to write data fast and in the flexible scheme. 
 
 \subsubsection{Geomesa}
  
@@ -186,11 +184,11 @@ GPSInsights relies on Geomesa for storing raw in-coming location data which will
 
 \subsubsection{Guarantee reliability}
 
-The primary reason of choosing the distributed message queue as a component of GPSInsights is to minimize the number of data loss when the system fails. In the case of lacking the message queue component, the data processing engine would directly receive the data from the GPS devices. Once the master node of the processing engine dies (the master node of Spark called ``driver program'', one of Storm called ``Spout''), GPSInsights will not receive and handle any data which arrive, thus those transportation data will be totally lost. By contrast, with the message queue, GPSInsight can ensure zero transportation data loss (the message queue is fault-tolerance as Kafka). When recovering, the processing engine will pull the next unprocessed data from the queue to restart.
+The primary reason of choosing the distributed message queue as the component of GPSInsights is to minimize the number of data loss when the system fails. In the case of lacking the message queue component, the data processing engine would directly receive the data from the GPS devices. Once the master node of the processing engine dies (the master node of Spark called ``driver program'', one of Storm called ``Spout''), GPSInsights will not receive and handle any arriving data, thus those transportation data will be totally lost. By contrast, with the message queue, GPSInsight can ensure zero transportation data loss (the message queue is fault-tolerance as Kafka). When recovering, the processing engine will pull the next unprocessed data from the queue to restart.
 
 However, GPSInsights still has to deal with unreliability even with the support of message queues. There are two challenges. 
 
-First, how to guarantee that the output data from Spark Streaming were completely sent to MongoDb? Data lost happens when Spark Streaming goes wrong and not pushes all the result data to the result database. MongoDb in this case receives the incomplete set of the data, but Spark Streaming supposes it completed the task with the current batch and then continued handling the next batch (Figure~\ref{fig:first-problem}).
+First, how to guarantee that the output data from Spark Streaming were completely sent to MongoDb? Data lost occurs when Spark Streaming goes wrong and not pushes all the result data to the result database. MongoDb in this case receives the incomplete set of the data, but Spark Streaming supposes it completed the task with the current batch and then continued handling the next batch (Figure~\ref{fig:first-problem}).
 
 \begin{figure}[h]
 \centering
@@ -212,7 +210,7 @@ The two above problems is caused by the fact that each component of GPSInsights 
 
 To achieve this guarantee, first, we implemented a new Spark Streaming's Receiver by using the Spark Streaming's ``receiverStream'' API and the Kafka's Simple Consumer API. Instead of handling only the latest data, the new Spark Streaming Receiver can specify the start position of the offset for each partition at the beginning of every batch interval. It can also get the extra information of each record including its offset, id of the partition which it belongs to. Second, we created a MongoDb database with three different collections, namely ``Transactions'', ``Records'', and ``OffsetRanges''. The ``Transaction'' consists of documents having three fields: id, timestamp and status. The status field can accept two value: ``BEGIN'' means the beginning of a transaction and ``FINISH'' expresses the end of the transaction. ``Records'' contains documents which are the information of the analytic results from Spark Streaming and an id of the transaction. ``OffsetRanges'' includes documents which hold the information of an offset range of the records packaged into the current batch, and the id of the transaction.
 
-The detail implementation is described as follows. Before sending to Spark Streaming's Receiver, each record in Kafka will be attached with its offset and partition's id which it belongs to. Using Accumulator API ~\cite{accumulatorapi}, we can find the offset range of each Kafka's partition in the current batch. When finishing handling this batch and before logging the result data to MongoDb, we create a new document with ``Begin'' status in ``Transactions'' collection and get its id. We then create a new document in ``OffsetRanges'' collection with the offset range and the id. Next, we send the result data to ``Records'' collection, attaching the id. Finally, after the last record is written successful in MongoDb, we change the status field of the transaction to ``Finish'', and the current batch is handled successful. During running, if the system fails and then recovers, it will query MongoDb for the last document in ``Transactions'' collection.  If the value of the status field is ``Finish'', it means the process of handling the last batch was succeeded. By contrast, we will use the transaction id to get the relevant document in ``OffsetRanges'' collection, and use the first offset in each ranges (the number of range is equal to the number of partition of the Kafka' topic that we are consuming) to recomputed the data. 
+The detail implementation is described as follows. Before sending to Spark Streaming's Receiver, each record in Kafka will be attached with its offset and partition's id which it belongs to. Using Accumulator API ~\cite{accumulatorapi}, we can find the offset range of each Kafka's partition in the current batch. When finishing handling this batch and before logging the result data to MongoDb, we create a new document with ``Begin'' status in ``Transactions'' collection and get its id. We then create a new document in ``OffsetRanges'' collection with the offset range and the id. Next, we send the result data to ``Records'' collection, attaching the id. Finally, after the last record written successful in MongoDb, we change the status field of the transaction to ``Finish'', and the current batch is handled successful. During running, if the system fails and then recovers, it will query MongoDb for the last document in ``Transactions'' collection.  If the value of the status field is ``Finish'', it means the process of handling the last batch was succeeded. By contrast, we will use the transaction id to get the relevant document in ``OffsetRanges'' collection, and use the first offset in each ranges (the number of range is equal to the number of partition of the Kafka' topic that we are consuming) to recomputed the data. 
 
 \section{Scalable map matching}
 
@@ -220,7 +218,7 @@ In this section, we demonstrate how GPSInsights handles the map matching job in 
 	
 \subsection{General strategy} \label{ssec:links}
 
-GPSInsights uses Open Street Map (OSM) engine ~\cite{openstreetmap}. The Open Street Map's raw data consist of a mass of tag almost covering the whole world. Every node tag has some tags inside to determine its attributes (e.g. type, way name, coordinate, ..). Way tag contains one or more node tags that used to define the shape of it. It is defined that link is a section of road between intersections. In most digital maps, a real road (or way) is digitized and is described with a set of many straight lines. Vertices are points which separate these straight lines, and each straight line is a segment. For example, the road AD in Fig.~\ref{fig:composition} is formed by 3 intersections (black points), 2 vertices (white points), 2 links (AD, DE) and 3 segments(AB, BC, CD).
+GPSInsights uses Open Street Map (OSM) engine ~\cite{openstreetmap}. The Open Street Map's raw data consist of a mass of tag almost covering the whole world. Every node tag has some tags inside to determine its attributes (e.g. a type, a way name, coordinates, ..). the ``Way'' tag contains one or more node tags that used to define the shape of it. It is defined that a link is a section of road between two intersections. In most digital maps, a real road (or way) is digitized and is described with a set of many straight lines. Vertices are points which separate these straight lines, and each straight line is a segment. For example, the road AD in Fig.~\ref{fig:composition} is formed by 3 intersections (black points), 2 vertices (white points), 2 links (AD, DE) and 3 segments(AB, BC, CD).
 		
 \begin{figure}[h]
 \centering
@@ -229,7 +227,7 @@ GPSInsights uses Open Street Map (OSM) engine ~\cite{openstreetmap}. The Open St
 \label{fig:composition}
 \end{figure}
 	
-As location data captured by GPS device expose to distance errors (its standard deviation is around 3 meters at best), map matching is a difficult task. GPSInsights solves this task by enriching the OSM data with a lot of intermediate nodes (beside the nodes declared in OSM) to every road. Thus, each particular location point will be assigned to the road that the closest point belong to. To find closest point, we use KD-tree~\cite{moh2013approximate}. 
+As the location data captured by GPS device expose to distance errors (its standard deviation is around 3 meters at best), map matching is a difficult task. GPSInsights solves this task by enriching the OSM data with a lot of intermediate nodes (beside the nodes declared in OSM) to every road. Thus, each particular location point will be assigned to the road that the closest point belongs to. To find closest point, we use KD-tree~\cite{moh2013approximate}. 
 
 	
 \begin{figure}[h]
@@ -244,7 +242,7 @@ Technically, adding intermediate nodes (illustrated in Fig.~\ref{fig:addPointsTo
 \[ longitude_{B} = longitude_{A} + (longitude_{C} - longitude_{A}) \ast \frac{d_{AB}}{d_{AC}}\]
 where $d_{AC}$ is the metric distance between the point A and the point C, calculated on $Haversine$ formula~\cite{haversineweb}.
 
-While adding new points, we also remove all intersections and finally build a KD-Tree based on those nodes. Note that a node in the Kd-Tree consists of a coordinate and information of a link which associates it. Therefore, by taking a GPS point into the Kd-Tree and using the vertex-based map matching, we can determine nearest nodes as well as a link it is matched to.
+While adding new points, we also remove all intersections and finally build a KD-Tree based on those nodes. Note that a node in the Kd-Tree consists of the coordinates and information of a link which associates it. Therefore, by taking a GPS point into the Kd-Tree and using the vertex-based map matching, we can determine nearest nodes as well as a link it is matched to.
 	
 \subsection{Detail algorithm}
 		
@@ -256,13 +254,13 @@ As we have a parallelized collection formed, our algorithm will be divided into 
 
 This phase is responsible for matching coordinate of every transportation record q into a concrete segment of the road. The algorithm considers the following attributes of q: the latitude, the longitude and the speed. These records will be evaluated by kd-tree cached on each machine to find out which road the record q belongs to. Because of the fact that coordination GPS sent from satellites will have some deviations in comparison with the real coordinate, we have to choose a threshold distance in order to determine whether q belongs to the road or not. If the distance is smaller than the threshold distance, it will be much easier for us to conclude that q belongs to the road segment and vice versa. As a result, our algorithm can ignore q that its distance within the road segment is too far from. Therefore, we can enhance the accuracy of our algorithm to some extent.
 
-\subsubsection{Data Collecting Phase} \label{datacollectingphase} In data mapping phase, the transportation data on each time step are transferred to the distributed stream processing engine will be matched into road segments in-parallel. Our algorithm then collects the output form all the computing nodes to achieve the final statistic results.  In this phase, all the transportation data belong to the same road ID is aggregated. Hence, we can obtain $<$key, value$>$ pairs with the key being the road segment's ID, the value that contains the number of vehicles moving in that road segment and the sum of their speeds $v_{s}$. Then, we calculate the average speed of every links (a section of a road between two intersections, as we described in section \ref{ssec:links}) using the following ``space mean speed'' formula which we will give an detailed explanation in the $appendix$ section.
+\subsubsection{Data Collecting Phase} \label{datacollectingphase} In data mapping phase, the transportation data on each time step are transferred to the distributed stream processing engine will be matched into road segments in-parallel. Our algorithm then collects the output form all the computing nodes to achieve the final statistic results.  In this phase, all the transportation data belong to the same road ID is aggregated. Hence, we can obtain $<$key, value$>$ pairs with the key being the road segment's ID, the value that contains the number of vehicles moving in that road segment and the sum of their speeds $v_{s}$. Then, we calculate the average speed of every links (the section of the road between two intersections, as we described in section \ref{ssec:links}) using the following ``space mean speed'' formula which we will give the detailed explanation in the $appendix$ section.
 \[ v_{s} = \frac{N}{\sum_{i=1}^{N}\frac{1}{v_{i}}}\]
 where $v_{i}$ is the spot speed of $i^{th}$ vehicle, and n is the number of vehicles.
 
 \section{Experiments}
 
-Our data include about 12,565,521 GPS records collected by vehicles equipped with the GPS receiver from 22/03/2014 to 22/04/2014 in Ho Chi Minh city. Every record consists of the speed, the GPS coordinate and the state of the vehicle. The following table~\ref{table:location-data} shows the format of the data.
+Our data include about 12,565,521 GPS records collected by vehicles equipped with the GPS receiver from 22/03/2014 to 22/04/2014 in Ho Chi Minh city. Every record consists of the speed, the GPS coordinates and the state of the vehicle. The following table~\ref{table:location-data} shows the format of the data.
 
 \begin{table}[h]
 \centering
@@ -274,7 +272,7 @@ Our data include about 12,565,521 GPS records collected by vehicles equipped wit
 \end{table}
 
 
-GPSInsights system is set up on a cluster of HPCC super computer, consisting of 4 nodes, one master node and three slave nodes. Each cluster node is equipped with a  8-cores Intel Xeon 2.6GHz CPU, 32GB memory. We benchmarked GPSInsights configured with Spark Streaming against GPSInsights configured with Apache Storm and compared with the common system using Geomesa for map matching (based on the ability of querying K-nearest neighbor search of this database). For all experiments, the results are reported by averaging three runs. 
+GPSInsights system is set up on the cluster of HPCC super computer, consisting of 4 nodes, one master node and three slave nodes. Each cluster node is equipped with a  8-cores Intel Xeon 2.6GHz CPU, 32GB memory. We benchmarked GPSInsights configured with Spark Streaming against GPSInsights configured with Apache Storm and compared with the common system using Geomesa for map matching (based on the ability of querying K-nearest neighbor search of this database). For all experiments, the results are reported by averaging three runs. 
 	
 	% 	 Suppermicro SC815TQ-600WB\\ Intel Xeon E5-2670 Processor (20M Cache, 2.6 GHz, 8 Core)\\	 32 GB DDR3 RAM\\	 2*250 GB HDD\\	 FDR 56Gbps Infiniband\\
 	
@@ -294,20 +292,23 @@ Figure~\ref{fig:performance} presents the performance of GPSInsights using Spark
 		\label{fig:timedelay}
 	\end{figure}
 	
-Figure~\ref{fig:timedelay} shows the processing latency of GPSInsighs configured with two different frameworks (Spark streaming and Storm). Although the one using Spark Streaming is so much faster than using Storm, GPSInsights using Storm showed lower latency. Because Storm processes incoming events one at a time, so that its processing latency could be sub-second. Otherwise, after collecting the input data into a batch, Spark Streaming then divide it up into partitions and sent them to slave nodes. Thus, the processing latency of Spark Streaming depends on the batch interval (if the batch interval is 5 seconds, it means that Spark has to wait 5 seconds before starting processing the first batch)  and the number of records packed in the batch (the time for sending partitions to slave nodes is directly proportional to the quantity of records).
+Figure~\ref{fig:timedelay} shows the processing latency of GPSInsighs configured with two different frameworks (Spark streaming and Storm). Although the one using Spark Streaming is so much faster than using Storm, GPSInsights using Storm showed lower latency. Because Storm processes incoming events one at a time, so that its processing latency could be sub-second. Otherwise, after collecting the input data into the batch, Spark Streaming then divide it up into partitions and sent them to slave nodes. Thus, the processing latency of Spark Streaming depends on the batch interval (if the batch interval is 5 seconds, it means that Spark has to wait 5 seconds before starting processing the first batch) and the number of records packed in the batch (the time for sending partitions to slave nodes is directly proportional to the quantity of records).
 
 
 \section{Related work}
 
-PostGIS~\cite{posgis} is a spatial database extender for the PostgreeSQL relational database, adding support for geographic objects allowing location queries. It is undeniable that PostGIS completely meets most of the spatial-temporal query and there are a large number of software products that use PostGIS~\cite{backendposgis}. However, the spatio-temporal data sets have seen a rapid expansion in volume and velocity due to the rapid increase of means of transport and GPS device, which is about hundred millions and more records per day. Whereas PostGIS scalability is limited to small size clusters, GPSInsighs leverage Geomesa as temporal-spatial storage is efficient for tackling big transport data set.
+PostGIS~\cite{posgis} is a spatial database extender for the PostgreeSQL relational database, adding support for geographic objects allowing location queries. It is undeniable that PostGIS completely meets most of the spatial-temporal query and there are a large number of software products that use PostGIS~\cite{backendposgis}. However, the spatio-temporal data sets have seen a rapid expansion in volume and velocity due to the rapid increase of means of transport and the GPS device, which is about hundred millions and more records per day. Whereas PostGIS scalability is limited to small size clusters, GPSInsighs leverage Geomesa as temporal-spatial storage is efficient for tackling big transport data set.
 
-There are a number of studies on matching GPS observations on a digital map. Several map matching mechanisms consider only the relationships between GPS data and the digital map~\cite{noh1998map}. Recent works~\cite{yang2005map} leverage the topology of the road network and the GPS data trajectory to improve accuracy. However, non of those works designed for large-scale datasets.  
+There are a number of studies on matching GPS observations on the digital map. Several map matching mechanisms consider only the relationships between GPS data and the digital map~\cite{noh1998map}. Recent works~\cite{yang2005map} leverage the topology of the road network and the GPS data trajectory to improve accuracy. However, non of those works designed for large-scale datasets.  
 
 \section{Conclusion and Future Work}
 
-This paper presents GPSInsights, a scalable, extensible and reliable system for continuously storing and processing massive amounts of vehicle location data. We described the main components of the system, explained our design principles, and demonstrated the scalability of the system with the map-matching challenge. We also described our solution to insure that the stream of vehicle data is handled atomically and reliabily, by rewriting the Spark Streaming's receiver. In addition, through conducting experiments with real vehicle datasets, we proved that GPSInsights is able to address massive GPS vehicle data in a scalable fashion.
+This paper presents GPSInsights, the scalable, extensible and reliable system for continuously storing and processing massive amounts of vehicle location data. We described the main components of the system, explained our design principles, and demonstrated the scalability of the system with the map-matching challenge. We also described our solution to insure that the stream of vehicle data is handled atomically and reliabily, by rewriting the Spark Streaming's receiver. In addition, through conducting experiments with real vehicle datasets, we proved that GPSInsights is able to address massive GPS vehicle data in a scalable fashion.
 
 In the future work, we intent to pursue the system in the following directions. First, we aim at introducing into GPSInsights an advance map-matching algorithm with higher accurate on low-sampling-rate vehicle data. Second, we research real-time traffic jam prediction through mining stream datasets.This opens room for smart applications such as: to recommend mobile users the fastest route path that is calculated in real-time.
+
+\section{Acknowledgements}
+This work was supported by Vietnam National Foundation for Science and Technology Development (NAFOSTED Project No. 102.05-2014.28)
 %
 % The following two commands are all you need in the
 % initial runs of your .tex file to
@@ -338,7 +339,7 @@ It's equal to:
 
 \section{The visual display system}
 
-The visual display system is an application of GPSInsighs that shows real-time the result of road average speed computation for users. This application is built based on Java Spring MVC framework ~\cite{javaspringmvc} and the Open Street Map data~\cite{openstreetmap}. It pulls the data from the distributed result queue through the connector module illustrated in the Figure~\ref{fig:connectmodule}.
+The visual display system is an application of GPSInsighs that shows real-time the result of the road average speed computation for users. This application is built based on the Java Spring MVC framework ~\cite{javaspringmvc} and the Open Street Map data~\cite{openstreetmap}. It pulls the data from the distributed result queue through the connector module illustrated in the Figure~\ref{fig:connectmodule}.
 
 \begin{figure}[h]
 	\centering

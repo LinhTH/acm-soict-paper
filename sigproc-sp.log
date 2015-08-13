@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2015.6.26)  7 AUG 2015 17:27
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2015.6.26)  13 AUG 2015 20:06
 entering extended mode
 **sigproc-sp.tex
 (C:\Users\Rimberry\Desktop\acm-soict-paper\sigproc-sp.tex
@@ -467,19 +467,23 @@ LaTeX Font Info:    Try loading font information for U+lasy on input line 90.
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\ulasy.fd"
 File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
 )
+Overfull \hbox (8.2262pt too wide) in paragraph at lines 90--90
+ []\eaddfnt linhth.k55.hust@gmail.com| 
+ []
+
+
+Overfull \hbox (9.57054pt too wide) in paragraph at lines 90--90
+ []\eaddfnt duykhanh1412@gmail.com| 
+ []
+
+
 Overfull \hbox (3.09pt too wide) in paragraph at lines 90--90
  []\eaddfnt trungtv@soict.hust.edu.vn| 
  []
 
 
-Overfull \hbox (1.26794pt too wide) in paragraph at lines 97--98
-\T1/aer/m/n/9 H.4 [\T1/aer/bx/n/9 Information Sys-tems Ap-pli-ca-tions\T1/aer/m
-/n/9 ]: Mis-cel-la-neous;
- []
-
-
-Overfull \hbox (1.6272pt too wide) in paragraph at lines 122--123
-\T1/aer/m/n/9 put data dis-pers-edly on a large clus-ter for high through-
+Overfull \hbox (6.40652pt too wide) in paragraph at lines 120--121
+\T1/aer/m/n/9 mes-sage queue im-ple-ments the producer-consumer skele-
  []
 
 [1
@@ -495,8 +499,8 @@ Non-PDF special ignored!
 Non-PDF special ignored!
 
 ]
-Overfull \hbox (2.50026pt too wide) in paragraph at lines 128--129
-[]\T1/aer/m/n/9 Distributed spatio-temporal database: As lo-ca-tion data
+Overfull \hbox (8.8722pt too wide) in paragraph at lines 126--127
+\T1/aer/m/n/9 stores the data in a dis-tributed spatio-temporal database.
  []
 
 Package epstopdf Info: Source file: <architecture.eps>
@@ -507,14 +511,14 @@ Package epstopdf Info: Source file: <architecture.eps>
 (epstopdf)                    size: 26269 bytes
 (epstopdf)             Command: <epstopdf --outfile=architecture-eps-converted-
 to.pdf architecture.eps>
-(epstopdf)             \includegraphics on input line 136.
+(epstopdf)             \includegraphics on input line 134.
 Package epstopdf Info: Output file is already uptodate.
 <architecture-eps-converted-to.pdf, id=12, 533.995pt x 433.62pt>
 File: architecture-eps-converted-to.pdf Graphic file (type pdf)
 
 <use architecture-eps-converted-to.pdf>
 Package pdftex.def Info: architecture-eps-converted-to.pdf used on input line 1
-36.
+34.
 (pdftex.def)             Requested size: 220.82158pt x 175.65483pt.
 Package epstopdf Info: Source file: <architectureOfSystem.eps>
 (epstopdf)                    date: 2015-08-05 08:59:42
@@ -525,7 +529,7 @@ Package epstopdf Info: Source file: <architectureOfSystem.eps>
 (epstopdf)                    size: 19671 bytes
 (epstopdf)             Command: <epstopdf --outfile=architectureOfSystem-eps-co
 nverted-to.pdf architectureOfSystem.eps>
-(epstopdf)             \includegraphics on input line 148.
+(epstopdf)             \includegraphics on input line 146.
 Package epstopdf Info: Output file is already uptodate.
 
 <architectureOfSystem-eps-converted-to.pdf, id=13, 236.885pt x 120.45pt>
@@ -533,36 +537,30 @@ File: architectureOfSystem-eps-converted-to.pdf Graphic file (type pdf)
 
 <use architectureOfSystem-eps-converted-to.pdf>
 Package pdftex.def Info: architectureOfSystem-eps-converted-to.pdf used on inpu
-t line 148.
+t line 146.
 (pdftex.def)             Requested size: 220.8321pt x 100.37779pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-
-Overfull \hbox (2.54497pt too wide) in paragraph at lines 156--157
-[]\T1/aer/m/n/9 Kafka achieves fault-tolerance by repli-cat-ing par-ti-tions ac
-ross
- []
-
-
-Underfull \vbox (badness 2426) has occurred while \output is active []
-
- [2 <C:/Users/Rimberry/Desktop/acm-soict-paper/architecture-eps-converted-to.pd
-f> <C:/Users/Rimberry/Desktop/acm-soict-paper/architectureOfSystem-eps-converte
-d-to.pdf>]
-Overfull \hbox (3.95857pt too wide) in paragraph at lines 171--172
+[2 <C:/Users/Rimberry/Desktop/acm-soict-paper/architecture-eps-converted-to.pdf
+> <C:/Users/Rimberry/Desktop/acm-soict-paper/architectureOfSystem-eps-converted
+-to.pdf>]
+Overfull \hbox (3.95857pt too wide) in paragraph at lines 169--170
 []\T1/aer/m/n/9 GPSInsights is im-ple-mented to work with both Spark Stream-
  []
 
 
-Overfull \hbox (5.06482pt too wide) in paragraph at lines 177--178
+Overfull \hbox (5.06482pt too wide) in paragraph at lines 175--176
 \T1/aer/m/n/9 scale hor-i-zon-tally. It is de-signed for man-ag-ing semi-struct
 ured
  []
 
 
-Overfull \hbox (3.39096pt too wide) in paragraph at lines 183--184
+Underfull \vbox (badness 2698) has occurred while \output is active []
+
+
+Overfull \hbox (3.39096pt too wide) in paragraph at lines 181--182
 \T1/aer/m/n/9 data-base built on top of a column-family ori-ented dis-tributed
  []
 
@@ -574,14 +572,14 @@ Package epstopdf Info: Source file: <sendingcrash.eps>
 (epstopdf)                    size: 25623 bytes
 (epstopdf)             Command: <epstopdf --outfile=sendingcrash-eps-converted-
 to.pdf sendingcrash.eps>
-(epstopdf)             \includegraphics on input line 197.
+(epstopdf)             \includegraphics on input line 195.
 Package epstopdf Info: Output file is already uptodate.
 <sendingcrash-eps-converted-to.pdf, id=50, 165.61874pt x 75.28125pt>
 File: sendingcrash-eps-converted-to.pdf Graphic file (type pdf)
 
 <use sendingcrash-eps-converted-to.pdf>
 Package pdftex.def Info: sendingcrash-eps-converted-to.pdf used on input line 1
-97.
+95.
 (pdftex.def)             Requested size: 220.83623pt x 100.38469pt.
 Package epstopdf Info: Source file: <receivingcrash.eps>
 (epstopdf)                    date: 2015-08-05 08:59:42
@@ -591,7 +589,7 @@ Package epstopdf Info: Source file: <receivingcrash.eps>
 (epstopdf)                    size: 25546 bytes
 (epstopdf)             Command: <epstopdf --outfile=receivingcrash-eps-converte
 d-to.pdf receivingcrash.eps>
-(epstopdf)             \includegraphics on input line 206.
+(epstopdf)             \includegraphics on input line 204.
 Package epstopdf Info: Output file is already uptodate.
 
 <receivingcrash-eps-converted-to.pdf, id=51, 203.76125pt x 76.285pt>
@@ -599,10 +597,14 @@ File: receivingcrash-eps-converted-to.pdf Graphic file (type pdf)
 
 <use receivingcrash-eps-converted-to.pdf>
 Package pdftex.def Info: receivingcrash-eps-converted-to.pdf used on input line
- 206.
+ 204.
 (pdftex.def)             Requested size: 220.83614pt x 100.37988pt.
- [3 <C:/Users/Rimberry/Desktop/acm-soict-paper/sendingcrash-eps-converted-to.pd
-f>]
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[3 <C:/Users/Rimberry/Desktop/acm-soict-paper/sendingcrash-eps-converted-to.pdf
+>]
 Package epstopdf Info: Source file: <compositionOfRoad.eps>
 (epstopdf)                    date: 2015-08-05 08:59:42
 (epstopdf)                    size: 530958 bytes
@@ -611,15 +613,14 @@ Package epstopdf Info: Source file: <compositionOfRoad.eps>
 (epstopdf)                    size: 16915 bytes
 (epstopdf)             Command: <epstopdf --outfile=compositionOfRoad-eps-conve
 rted-to.pdf compositionOfRoad.eps>
-(epstopdf)             \includegraphics on input line 227.
+(epstopdf)             \includegraphics on input line 225.
 Package epstopdf Info: Output file is already uptodate.
-
-<compositionOfRoad-eps-converted-to.pdf, id=64, 145.54375pt x 79.29625pt>
+ <compositionOfRoad-eps-converted-to.pdf, id=64, 145.54375pt x 79.29625pt>
 File: compositionOfRoad-eps-converted-to.pdf Graphic file (type pdf)
 
 <use compositionOfRoad-eps-converted-to.pdf>
 Package pdftex.def Info: compositionOfRoad-eps-converted-to.pdf used on input l
-ine 227.
+ine 225.
 (pdftex.def)             Requested size: 220.84235pt x 100.38324pt.
 Package epstopdf Info: Source file: <addPointsTofRoad.eps>
 (epstopdf)                    date: 2015-08-05 08:59:42
@@ -629,7 +630,7 @@ Package epstopdf Info: Source file: <addPointsTofRoad.eps>
 (epstopdf)                    size: 14846 bytes
 (epstopdf)             Command: <epstopdf --outfile=addPointsTofRoad-eps-conver
 ted-to.pdf addPointsTofRoad.eps>
-(epstopdf)             \includegraphics on input line 237.
+(epstopdf)             \includegraphics on input line 235.
 Package epstopdf Info: Output file is already uptodate.
 
 <addPointsTofRoad-eps-converted-to.pdf, id=65, 145.54375pt x 67.25125pt>
@@ -637,19 +638,19 @@ File: addPointsTofRoad-eps-converted-to.pdf Graphic file (type pdf)
 
 <use addPointsTofRoad-eps-converted-to.pdf>
 Package pdftex.def Info: addPointsTofRoad-eps-converted-to.pdf used on input li
-ne 237.
+ne 235.
 (pdftex.def)             Requested size: 220.84235pt x 100.37685pt.
  [4 <C:/Users/Rimberry/Desktop/acm-soict-paper/receivingcrash-eps-converted-to.
 pdf> <C:/Users/Rimberry/Desktop/acm-soict-paper/compositionOfRoad-eps-converted
 -to.pdf> <C:/Users/Rimberry/Desktop/acm-soict-paper/addPointsTofRoad-eps-conver
 ted-to.pdf>]
-Overfull \hbox (8.67342pt too wide) in paragraph at lines 251--252
+Overfull \hbox (8.67342pt too wide) in paragraph at lines 249--250
 \T1/aer/m/n/9 After get-ting in-put data from the dis-tributed publish-subscrib
 e
  []
 
 
-Overfull \hbox (5.3891pt too wide) in paragraph at lines 277--278
+Overfull \hbox (5.3891pt too wide) in paragraph at lines 275--276
 \T1/aer/m/n/9 GPSIn-sights con-fig-ured with Spark Stream-ing against GPSIn-
  []
 
@@ -661,21 +662,20 @@ Package epstopdf Info: Source file: <thesis-7.eps>
 (epstopdf)                    size: 21811 bytes
 (epstopdf)             Command: <epstopdf --outfile=thesis-7-eps-converted-to.p
 df thesis-7.eps>
-(epstopdf)             \includegraphics on input line 283.
+(epstopdf)             \includegraphics on input line 281.
 Package epstopdf Info: Output file is already uptodate.
 <thesis-7-eps-converted-to.pdf, id=88, 211.79124pt x 101.37875pt>
 File: thesis-7-eps-converted-to.pdf Graphic file (type pdf)
 
 <use thesis-7-eps-converted-to.pdf>
-Package pdftex.def Info: thesis-7-eps-converted-to.pdf used on input line 283.
+Package pdftex.def Info: thesis-7-eps-converted-to.pdf used on input line 281.
 (pdftex.def)             Requested size: 220.83293pt x 100.37764pt.
 
-Overfull \hbox (4.48897pt too wide) in paragraph at lines 288--289
+Overfull \hbox (4.48897pt too wide) in paragraph at lines 286--287
 []\T1/aer/m/n/9 Figure 7[] presents the per-for-mance of GPSIn-sights us-ing Sp
 ark
  []
 
-[5 <C:/Users/Rimberry/Desktop/acm-soict-paper/thesis-7-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <thesis-6.eps>
 (epstopdf)                    date: 2015-08-05 08:59:42
 (epstopdf)                    size: 582590 bytes
@@ -684,27 +684,26 @@ Package epstopdf Info: Source file: <thesis-6.eps>
 (epstopdf)                    size: 17829 bytes
 (epstopdf)             Command: <epstopdf --outfile=thesis-6-eps-converted-to.p
 df thesis-6.eps>
-(epstopdf)             \includegraphics on input line 292.
+(epstopdf)             \includegraphics on input line 290.
 Package epstopdf Info: Output file is already uptodate.
-
-<thesis-6-eps-converted-to.pdf, id=105, 211.79124pt x 101.37875pt>
+<thesis-6-eps-converted-to.pdf, id=89, 211.79124pt x 101.37875pt>
 File: thesis-6-eps-converted-to.pdf Graphic file (type pdf)
 
 <use thesis-6-eps-converted-to.pdf>
-Package pdftex.def Info: thesis-6-eps-converted-to.pdf used on input line 292.
+Package pdftex.def Info: thesis-6-eps-converted-to.pdf used on input line 290.
 (pdftex.def)             Requested size: 220.83293pt x 100.37764pt.
-
-(C:\Users\Rimberry\Desktop\acm-soict-paper\sigproc-sp.bbl
-Overfull \hbox (1.47444pt too wide) in paragraph at lines 310--1
+ [5 <C:/Users/Rimberry/Desktop/acm-soict-paper/thesis-7-eps-converted-to.pdf>]
+Overfull \hbox (1.47444pt too wide) in paragraph at lines 308--309
 \T1/aer/m/n/9 search real-time traf-fic jam pre-dic-tion through min-ing stream
 
  []
 
-[6 <C:/Users/Rimberry/Desktop/acm-soict-paper/thesis-6-eps-converted-to.pdf>])
-Overfull \hbox (9.52876pt too wide) in paragraph at lines 341--342
-\T1/aer/m/n/9 Spring MVC frame-work  [8] and the Open Street Map data [14].
+(C:\Users\Rimberry\Desktop\acm-soict-paper\sigproc-sp.bbl
+Overfull \hbox (10.70766pt too wide) in paragraph at lines 311--1
+\T1/aer/m/n/9 for Sci-ence and Tech-nol-ogy De-vel-op-ment (NAFOS-TED Project
  []
 
+[6 <C:/Users/Rimberry/Desktop/acm-soict-paper/thesis-6-eps-converted-to.pdf>])
 Package epstopdf Info: Source file: <connectmodule.eps>
 (epstopdf)                    date: 2015-08-05 08:59:42
 (epstopdf)                    size: 607938 bytes
@@ -713,160 +712,161 @@ Package epstopdf Info: Source file: <connectmodule.eps>
 (epstopdf)                    size: 20392 bytes
 (epstopdf)             Command: <epstopdf --outfile=connectmodule-eps-converted
 -to.pdf connectmodule.eps>
-(epstopdf)             \includegraphics on input line 345.
+(epstopdf)             \includegraphics on input line 346.
 Package epstopdf Info: Output file is already uptodate.
+
 <connectmodule-eps-converted-to.pdf, id=117, 242.9075pt x 151.56625pt>
 File: connectmodule-eps-converted-to.pdf Graphic file (type pdf)
 
 <use connectmodule-eps-converted-to.pdf>
 Package pdftex.def Info: connectmodule-eps-converted-to.pdf used on input line 
-345.
+346.
 (pdftex.def)             Requested size: 220.82376pt x 110.41347pt.
 
 <Picture1.png, id=118, 722.7pt x 324.80899pt>
 File: Picture1.png Graphic file (type png)
  <use Picture1.png>
-Package pdftex.def Info: Picture1.png used on input line 354.
+Package pdftex.def Info: Picture1.png used on input line 355.
 (pdftex.def)             Requested size: 220.82567pt x 110.41376pt.
-LaTeX Font Info:    Try loading font information for T1+aett on input line 365.
+LaTeX Font Info:    Try loading font information for T1+aett on input line 366.
 
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\ae\t1aett.fd"
 File: t1aett.fd 1997/11/16 Font definitions for T1/aett.
 )
-Overfull \hbox (5.22821pt too wide) in paragraph at lines 416--416
+Overfull \hbox (5.22821pt too wide) in paragraph at lines 417--417
 []\T1/aett/m/n/9 // kdTree: a KD-Tree build up from nodes of OSM data[] 
  []
 
 
-Overfull \hbox (57.10341pt too wide) in paragraph at lines 416--416
+Overfull \hbox (57.10341pt too wide) in paragraph at lines 417--417
 []\T1/aett/m/n/9 // output: a list of tuple2<key, value> with key being a roadI
 D[] 
  []
 
 
-Overfull \hbox (24.09192pt too wide) in paragraph at lines 416--416
+Overfull \hbox (24.09192pt too wide) in paragraph at lines 417--417
 []\T1/aett/m/n/9 // and value being a number of vehicle and average speed[] 
  []
 
 
-Overfull \hbox (24.09192pt too wide) in paragraph at lines 416--416
+Overfull \hbox (24.09192pt too wide) in paragraph at lines 417--417
 []\T1/aett/m/n/9 // broadcastVal: keep a read-only variable of the kdTree[] 
  []
 
 
-Overfull \hbox (33.52377pt too wide) in paragraph at lines 416--416
+Overfull \hbox (33.52377pt too wide) in paragraph at lines 417--417
 []\T1/aett/m/n/9 // distance: distance between currentPoint and nearestNode[] 
  []
 
 
-Overfull \hbox (66.53526pt too wide) in paragraph at lines 416--416
+Overfull \hbox (66.53526pt too wide) in paragraph at lines 417--417
 []\T1/aett/m/n/9 // listRoad: a <key,value> generated after mapping lines with 
 key[] 
  []
 
 
-Overfull \hbox (61.81934pt too wide) in paragraph at lines 416--416
+Overfull \hbox (61.81934pt too wide) in paragraph at lines 417--417
 []\T1/aett/m/n/9 // being a roadID, value being a iterable of vehicleID and spe
 ed[] 
  []
 
 
-Overfull \hbox (75.96712pt too wide) in paragraph at lines 416--416
+Overfull \hbox (75.96712pt too wide) in paragraph at lines 417--417
 []\T1/aett/m/n/9 // result: a <key, value> generated after mapping listRoad wit
 h key[] 
  []
 
-
-Overfull \hbox (57.10341pt too wide) in paragraph at lines 416--416
+[7 <C:/Users/Rimberry/Desktop/acm-soict-paper/connectmodule-eps-converted-to.pd
+f> <C:/Users/Rimberry/Desktop/acm-soict-paper/Picture1.png>]
+Overfull \hbox (57.10341pt too wide) in paragraph at lines 417--417
 []\T1/aett/m/n/9 // being a roadID, value being vehicle volume and average spee
 d[] 
  []
 
-[7 <C:/Users/Rimberry/Desktop/acm-soict-paper/connectmodule-eps-converted-to.pd
-f> <C:/Users/Rimberry/Desktop/acm-soict-paper/Picture1.png>]
-Overfull \hbox (61.81934pt too wide) in paragraph at lines 416--416
+
+Overfull \hbox (61.81934pt too wide) in paragraph at lines 417--417
 []\T1/aett/m/n/9 Broadcast<KDTree<GeoName>> broadcastVal = scc.broadcast(kdTree
 );[] 
  []
 
 
-Overfull \hbox (19.37599pt too wide) in paragraph at lines 416--416
+Overfull \hbox (19.37599pt too wide) in paragraph at lines 417--417
 []\T1/aett/m/n/9 JavaRDD<String> lines = scc.parallelize(input).cache();[] 
  []
 
 
-Overfull \hbox (14.66006pt too wide) in paragraph at lines 416--416
+Overfull \hbox (14.66006pt too wide) in paragraph at lines 417--417
 []\T1/aett/m/n/9 JavaPairRDD<String, Iterable<String>> listRoad = lines[] 
  []
 
 
-Overfull \hbox (38.2397pt too wide) in paragraph at lines 416--416
+Overfull \hbox (38.2397pt too wide) in paragraph at lines 417--417
 []    \T1/aett/m/n/9 .mapToPair(New PairFunction<String, String, String>() {[] 
 
  []
 
 
-Overfull \hbox (9.94414pt too wide) in paragraph at lines 416--416
+Overfull \hbox (9.94414pt too wide) in paragraph at lines 417--417
 []        \T1/aett/m/n/9 Public Tuple2<String, String> call(String p1)[] 
  []
 
 
-Overfull \hbox (24.09192pt too wide) in paragraph at lines 416--416
+Overfull \hbox (24.09192pt too wide) in paragraph at lines 417--417
 []                              \T1/aett/m/n/9 findNearest(currentPoint);[] 
  []
 
 
-Overfull \hbox (52.38748pt too wide) in paragraph at lines 416--416
+Overfull \hbox (52.38748pt too wide) in paragraph at lines 417--417
 []        \T1/aett/m/n/9 Return New Tuple2<String, String>(roadID, attributes);
 [] 
  []
 
 
-Overfull \hbox (66.53526pt too wide) in paragraph at lines 416--416
+Overfull \hbox (66.53526pt too wide) in paragraph at lines 417--417
 []    \T1/aett/m/n/9 .mapToPair(New PairFunction<Tuple2<String, Iterable<String
 >>,[] 
  []
 
 
-Overfull \hbox (28.80785pt too wide) in paragraph at lines 416--416
+Overfull \hbox (28.80785pt too wide) in paragraph at lines 417--417
 []        \T1/aett/m/n/9 Public Tuple2<String, String> call(Tuple2<String,[] 
  []
 
 
-Overfull \hbox (38.2397pt too wide) in paragraph at lines 416--416
+Overfull \hbox (38.2397pt too wide) in paragraph at lines 417--417
 []               \T1/aett/m/n/9 Iterable<String>> tuple1) Throws Exception {[] 
 
  []
 
 
-Overfull \hbox (28.80785pt too wide) in paragraph at lines 416--416
+Overfull \hbox (28.80785pt too wide) in paragraph at lines 417--417
 []            \T1/aett/m/n/9 numberOfVehicle = Count the number of element[] 
  []
 
 
-Overfull \hbox (42.95563pt too wide) in paragraph at lines 416--416
+Overfull \hbox (42.95563pt too wide) in paragraph at lines 417--417
 []                              \T1/aett/m/n/9 in iterable value of listRoad;[]
  
  []
 
 
-Overfull \hbox (19.37599pt too wide) in paragraph at lines 416--416
+Overfull \hbox (19.37599pt too wide) in paragraph at lines 417--417
 []            \T1/aett/m/n/9 averageSpeed = Calculate average speed from[] 
  []
 
 
-Overfull \hbox (28.80785pt too wide) in paragraph at lines 416--416
+Overfull \hbox (28.80785pt too wide) in paragraph at lines 417--417
 []                              \T1/aett/m/n/9 iterable value of listRoad;[] 
  []
 
 
-Overfull \hbox (19.37599pt too wide) in paragraph at lines 416--416
+Overfull \hbox (19.37599pt too wide) in paragraph at lines 417--417
 []            \T1/aett/m/n/9 statistic = numberOfVehicle + averageSpeed;[] 
  []
 
 
-Overfull \hbox (47.67155pt too wide) in paragraph at lines 416--416
+Overfull \hbox (47.67155pt too wide) in paragraph at lines 417--417
 []        \T1/aett/m/n/9 Return New Tuple2<String, String>(roadID, statistic);[
 ] 
  []
@@ -877,11 +877,11 @@ Overfull \hbox (47.67155pt too wide) in paragraph at lines 416--416
 Here is how much of TeX's memory you used:
  9863 strings out of 493921
  167894 string characters out of 3144867
- 223239 words of memory out of 3000000
+ 224239 words of memory out of 3000000
  12970 multiletter control sequences out of 15000+200000
  48939 words of font info for 67 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 42i,11n,40p,1376b,299s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 42i,11n,40p,1373b,299s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files
  (x86)/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc}<C:/Program Files (x86)/MiKTe
 X 2.9/fonts/type1/public/amsfonts/cm/cmbx9.pfb><C:/Program Files (x86)/MiKTeX 2
@@ -897,7 +897,7 @@ lic/amsfonts/cm/cmti9.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public
 tic/uhvb8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvr
 8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmb8a.pfb><C:/
 Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
-Output written on sigproc-sp.pdf (8 pages, 791216 bytes).
+Output written on sigproc-sp.pdf (8 pages, 792268 bytes).
 PDF statistics:
  182 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
