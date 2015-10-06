@@ -1,7 +1,7 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2015.6.26)  13 AUG 2015 20:06
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2015.6.26)  6 OCT 2015 09:34
 entering extended mode
-**sigproc-sp.tex
-(C:\Users\Rimberry\Desktop\acm-soict-paper\sigproc-sp.tex
+**paper.tex
+(C:\Users\Rimberry\Desktop\acm-soict-paper\paper.tex
 LaTeX2e <2011/06/27>
 Babel <v3.8m> and hyphenation patterns for english, afrikaans, ancientgreek, ar
 abic, armenian, assamese, basque, bengali, bokmal, bulgarian, catalan, coptic, 
@@ -13,7 +13,7 @@ german-x-2013-05-26, nynorsk, oriya, panjabi, pinyin, polish, portuguese, roman
 ian, russian, sanskrit, serbian, slovak, slovenian, spanish, swedish, swissgerm
 an, tamil, telugu, turkish, turkmen, ukenglish, ukrainian, uppersorbian, usengl
 ishmax, welsh, loaded.
-(C:\Users\Rimberry\Desktop\acm-soict-paper\acm_proc_article-sp.cls
+(C:\Users\Rimberry\Desktop\acm-soict-paper\sig-alternate-05-2015.cls
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\graphics\epsfig.sty"
 Package: epsfig 1999/02/16 v1.7a (e)psfig emulation (SPQR)
 
@@ -121,33 +121,51 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 567.
 LaTeX Info: Redefining \[ on input line 2665.
 LaTeX Info: Redefining \] on input line 2666.
 )
-Document Class 'acm_proc_article-sp' <22nd. April '09>. Modified by G.K.M. Tobi
-n
+Document Class 'sig-alternate' <9th June '13>. Modified by G.K.M. Tobin/Gerry M
+urray/Boris Veytsman
 Based in part upon document Style `acmconf' <22 May 89>. Hacked 4/91 by
 shivers@cs.cmu.edu, 4/93 by theobald@cs.mcgill.ca
 Excerpts were taken from (Journal Style) 'esub2acm.cls'.
-****** Bugs/comments/suggestions to Gerry Murray -- murray@hq.acm.org ******
+****** Bugs/comments/suggestions/technicalities to Gerry Murray -- murray@hq.ac
+m.org ******
+Questions on the style, SIGS policies, etc. to Adrienne Griscti griscti@acm.org
+
+\ACM@basesize=\count92
+(C:\Users\Rimberry\AppData\Roaming\MiKTeX\2.9\tex\latex\comment\comment.sty
+\CommentStream=\write3
+
+Excluding comment 'comment') Excluding comment 'CCSXML'
 \footheight=\dimen115
 \@maxsep=\dimen116
 \@dblmaxsep=\dimen117
-\aucount=\count92
-\originalaucount=\count93
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\ifpdf.sty"
+Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
+Package ifpdf Info: pdfTeX in PDF mode is detected.
+)
+\aucount=\count93
+\originalaucount=\count94
 \auwidth=\dimen118
 \auskip=\dimen119
-\auskipcount=\count94
+\auskipcount=\count95
 \auskip=\dimen120
 \allauboxes=\dimen121
 \addauthors=\toks21
-\addauflag=\count95
+\addauflag=\count96
 \subtitletext=\toks22
-\savesection=\count96
-\sectioncntr=\count97
-\c@figure=\count98
-\c@table=\count99
+\savesection=\count97
+\sectioncntr=\count98
+\c@figure=\count99
+\c@table=\count100
 \titleboxnotes=\toks23
-\titleboxnoteflag=\count100
-Document Class: acm_proc_article-sp 2009/04/22 - V3.2SP - based on esub2acm.sty
- <23 April 96>
+\titleboxnoteflag=\count101
+
+
+LaTeX Warning: You have requested document class `sig-alternate-05-2015',
+               but the document class provides `sig-alternate'.
+
+Document Class: sig-alternate 2013/05/12 v2.7 based on acmproc.cls V1.3 <Nov. 3
+0 '99>
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\latexsym.sty"
 Package: latexsym 1998/08/17 v2.2e Standard LaTeX package (lasy symbols)
 \symlasy=\mathgroup6
@@ -155,31 +173,48 @@ LaTeX Font Info:    Overwriting symbol font `lasy' in version `bold'
 (Font)                  U/lasy/m/n --> U/lasy/b/n on input line 47.
 )
 \@acmtitlebox=\box28
-\titlenotecount=\count101
+\titlenotecount=\count102
 \tntoks=\toks24
 \tntokstwo=\toks25
 \tntoksthree=\toks26
 \tntoksfour=\toks27
 \tntoksfive=\toks28
-\catcount=\count102
+\catcount=\count103
 \copyrightnotice=\toks29
 \conf=\toks30
 \confinfo=\toks31
-\c@part=\count103
-\c@section=\count104
-\c@subsection=\count105
-\c@subsubsection=\count106
-\c@paragraph=\count107
+\c@part=\count104
+\c@section=\count105
+\c@subsection=\count106
+\c@subsubsection=\count107
+\c@paragraph=\count108
 
 Using 'Abbrev' bibliography style
-LaTeX Info: Redefining \cite on input line 1236.
+LaTeX Info: Redefining \cite on input line 1408.
 \bibindent=\dimen122
-\colcntr=\count108
+\colcntr=\count109
 \saveb@x=\box29
 \copyrtyr=\toks32
 \acmcopyr=\toks33
 \boilerplate=\toks34
-\copyrightetc=\toks35
+(C:\Users\Rimberry\AppData\Roaming\MiKTeX\2.9\tex\latex\url\url.sty
+\Urlmuskip=\muskip11
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+)
+(C:\Users\Rimberry\Desktop\acm-soict-paper\acmcopyright.sty
+Package: acmcopyright 2014/06/29 v1.2 Copyright statemens for ACM classes
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\xkeyval\xkeyval.sty"
+Package: xkeyval 2012/10/14 v2.6b package option processing (HA)
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\xkeyval\xkeyval.tex"
+\XKV@toks=\toks35
+\XKV@tempa@toks=\toks36
+\XKV@depth=\count110
+File: xkeyval.tex 2012/10/14 v2.6b key=value parser (HA)
+)))
+\copyrightetc=\toks37
+
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\fontenc.sty"
 Package: fontenc 2005/09/27 v1.99g Standard LaTeX package
 
@@ -194,10 +229,10 @@ File: t1aer.fd 1997/11/16 Font definitions for T1/aer.
 )))
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\float\float.sty"
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
-\c@float@type=\count109
-\float@exts=\toks36
+\c@float@type=\count111
+\float@exts=\toks38
 \float@box=\box30
-\@float@everytoks=\toks37
+\@float@everytoks=\toks39
 \@floatcapt=\box31
 )
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\oberdiek\epstopdf.sty"
@@ -233,11 +268,6 @@ Package etexcmds Info: Could not find \expanded.
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\pdftexcmds.sty"
 Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
 )
-
-("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\ifpdf.sty"
-Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
-Package ifpdf Info: pdfTeX in PDF mode is detected.
-)
 Package pdftexcmds Info: LuaTeX not detected.
 Package pdftexcmds Info: \pdf@primitive is available.
 Package pdftexcmds Info: \pdf@ifprimitive is available.
@@ -254,27 +284,18 @@ Package: pstricks 2013/12/12 v0.60 LaTeX wrapper for `PSTricks' (RN,HV)
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pstricks\base\pstricks.tex"
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\xkeyval\pst-xkey.tex"
 File: pst-xkey.tex 2005/11/25 v1.6 PSTricks specialization of xkeyval (HA)
-
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\xkeyval\xkeyval.sty"
-Package: xkeyval 2012/10/14 v2.6b package option processing (HA)
-
-("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\xkeyval\xkeyval.tex"
-\XKV@toks=\toks38
-\XKV@tempa@toks=\toks39
-\XKV@depth=\count110
-File: xkeyval.tex 2012/10/14 v2.6b key=value parser (HA)
-)))
+)
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pstricks\base\pst-fp.tex"
 `pst-fp' v0.05, 2010/01/17 (hv)
-\pstFP@xs=\count111
-\pstFP@xia=\count112
-\pstFP@xib=\count113
-\pstFP@xfa=\count114
-\pstFP@xfb=\count115
-\pstFP@rega=\count116
-\pstFP@regb=\count117
-\pstFP@regs=\count118
-\pstFP@times=\count119
+\pstFP@xs=\count112
+\pstFP@xia=\count113
+\pstFP@xib=\count114
+\pstFP@xfa=\count115
+\pstFP@xfb=\count116
+\pstFP@rega=\count117
+\pstFP@regb=\count118
+\pstFP@regs=\count119
+\pstFP@times=\count120
 )
 (C:\Users\Rimberry\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\utilities\pgfutil
 -common.tex
@@ -309,17 +330,17 @@ code.tex
 \pgf@ya=\dimen130
 \pgf@yb=\dimen131
 \pgf@yc=\dimen132
-\c@pgf@counta=\count120
-\c@pgf@countb=\count121
-\c@pgf@countc=\count122
-\c@pgf@countd=\count123
-\pgfutil@tempcnta=\count124
-\pgfutil@tempcntb=\count125
+\c@pgf@counta=\count121
+\c@pgf@countb=\count122
+\c@pgf@countc=\count123
+\c@pgf@countd=\count124
+\pgfutil@tempcnta=\count125
+\pgfutil@tempcntb=\count126
 )
 (C:\Users\Rimberry\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\math\pgfmathparse
 r.code.tex
 \pgfmath@dimen=\dimen133
-\pgfmath@count=\count126
+\pgfmath@count=\count127
 \pgfmath@box=\box32
 \pgfmath@toks=\toks44
 \pgfmath@stack@operand=\toks45
@@ -345,14 +366,14 @@ ions.misc.code.tex)
 ions.integerarithmetics.code.tex)))
 (C:\Users\Rimberry\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\math\pgfmathfloat
 .code.tex
-\c@pgfmathroundto@lastzeros=\count127
+\c@pgfmathroundto@lastzeros=\count128
 ))
 \pgffor@iter=\dimen134
 \pgffor@skip=\dimen135
 \pgffor@stack=\toks47
 \pgffor@toks=\toks48
 )
-\psLoopIndex=\count128
+\psLoopIndex=\count129
 
 `PSTricks' v2.49b  <2013/12/21> (tvz)
 \pst@dima=\dimen136
@@ -368,23 +389,23 @@ ions.integerarithmetics.code.tex)))
 \pst@hbox=\box33
 \pst@ibox=\box34
 \pst@boxg=\box35
-\pst@cnta=\count129
-\pst@cntb=\count130
-\pst@cntc=\count131
-\pst@cntd=\count132
-\pst@cntg=\count133
-\pst@cnth=\count134
-\pst@cntm=\count135
-\pst@cntn=\count136
-\pst@cnto=\count137
-\pst@cntp=\count138
-\@zero=\count139
+\pst@cnta=\count130
+\pst@cntb=\count131
+\pst@cntc=\count132
+\pst@cntd=\count133
+\pst@cntg=\count134
+\pst@cnth=\count135
+\pst@cntm=\count136
+\pst@cntn=\count137
+\pst@cnto=\count138
+\pst@cntp=\count139
+\@zero=\count140
 \pst@toks=\toks49
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pstricks\base\pstricks.con")
 \psunit=\dimen146
 \psxunit=\dimen147
 \psyunit=\dimen148
-\pst@C@@rType=\count140
+\pst@C@@rType=\count141
 \pslinewidth=\dimen149
 \psk@startLW=\dimen150
 \psk@endLW=\dimen151
@@ -425,64 +446,86 @@ Package xcolor Info: Model `wave' substituted by `hsb' on input line 1360.
 (C:\Users\Rimberry\AppData\Roaming\MiKTeX\2.9\tex\latex\placeins\placeins.sty
 Package: placeins 2005/04/18  v 2.2
 )
-(C:\Users\Rimberry\Desktop\acm-soict-paper\sigproc-sp.aux)
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 9.
-LaTeX Font Info:    ... okay on input line 9.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 9.
-LaTeX Font Info:    ... okay on input line 9.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 9.
-LaTeX Font Info:    ... okay on input line 9.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 9.
-LaTeX Font Info:    ... okay on input line 9.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 9.
-LaTeX Font Info:    ... okay on input line 9.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 9.
-LaTeX Font Info:    ... okay on input line 9.
+(C:\Users\Rimberry\Desktop\acm-soict-paper\paper.aux)
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
 
 (C:\Users\Rimberry\AppData\Roaming\MiKTeX\2.9\tex\context\base\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count141
+\scratchcounter=\count142
 \scratchdimen=\dimen161
 \scratchbox=\box36
-\nofMPsegments=\count142
-\nofMParguments=\count143
+\nofMPsegments=\count143
+\nofMParguments=\count144
 \everyMPshowfont=\toks52
-\MPscratchCnt=\count144
+\MPscratchCnt=\count145
 \MPscratchDim=\dimen162
-\MPnumerator=\count145
-\makeMPintoPDFobject=\count146
+\MPnumerator=\count146
+\makeMPintoPDFobject=\count147
 \everyMPtoPDFconversion=\toks53
 )
-LaTeX Font Info:    Try loading font information for U+msa on input line 90.
+LaTeX Font Info:    Try loading font information for U+msa on input line 160.
  ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 90.
+LaTeX Font Info:    Try loading font information for U+msb on input line 160.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for U+lasy on input line 90.
+LaTeX Font Info:    Try loading font information for U+lasy on input line 160.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\ulasy.fd"
 File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
 )
-Overfull \hbox (8.2262pt too wide) in paragraph at lines 90--90
+Overfull \hbox (8.2262pt too wide) in paragraph at lines 160--160
  []\eaddfnt linhth.k55.hust@gmail.com| 
  []
 
 
-Overfull \hbox (9.57054pt too wide) in paragraph at lines 90--90
+Overfull \hbox (9.57054pt too wide) in paragraph at lines 160--160
  []\eaddfnt duykhanh1412@gmail.com| 
  []
 
 
-Overfull \hbox (3.09pt too wide) in paragraph at lines 90--90
+Overfull \hbox (3.09pt too wide) in paragraph at lines 160--160
  []\eaddfnt trungtv@soict.hust.edu.vn| 
  []
 
+LaTeX Font Info:    Try loading font information for T1+ptm on input line 160.
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\psnfss\t1ptm.fd"
+File: t1ptm.fd 2001/06/04 font definitions for T1/ptm.
+)
+LaTeX Font Info:    Try loading font information for OMS+ptm on input line 160.
 
-Overfull \hbox (6.40652pt too wide) in paragraph at lines 120--121
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\psnfss\omsptm.fd"
+File: omsptm.fd 
+)
+LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <7> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 160.
+
+Excluding 'CCSXML' comment.
+LaTeX Font Info:    Try loading font information for OMS+aer on input line 204.
+
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\ae\omsaer.fd"
+File: omsaer.fd 1999/12/27
+)
+LaTeX Font Info:    Font shape `OMS/aer/m/n' in size <9> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 204.
+
+Overfull \hbox (6.40652pt too wide) in paragraph at lines 229--230
 \T1/aer/m/n/9 mes-sage queue im-ple-ments the producer-consumer skele-
  []
 
@@ -499,26 +542,26 @@ Non-PDF special ignored!
 Non-PDF special ignored!
 
 ]
-Overfull \hbox (8.8722pt too wide) in paragraph at lines 126--127
+Overfull \hbox (8.8722pt too wide) in paragraph at lines 235--236
 \T1/aer/m/n/9 stores the data in a dis-tributed spatio-temporal database.
  []
 
 Package epstopdf Info: Source file: <architecture.eps>
-(epstopdf)                    date: 2015-08-06 20:34:14
-(epstopdf)                    size: 1035294 bytes
+(epstopdf)                    date: 2015-10-06 01:11:16
+(epstopdf)                    size: 1033794 bytes
 (epstopdf)             Output file: <architecture-eps-converted-to.pdf>
-(epstopdf)                    date: 2015-08-06 20:34:18
-(epstopdf)                    size: 26269 bytes
+(epstopdf)                    date: 2015-10-06 01:11:20
+(epstopdf)                    size: 23524 bytes
 (epstopdf)             Command: <epstopdf --outfile=architecture-eps-converted-
 to.pdf architecture.eps>
-(epstopdf)             \includegraphics on input line 134.
+(epstopdf)             \includegraphics on input line 243.
 Package epstopdf Info: Output file is already uptodate.
-<architecture-eps-converted-to.pdf, id=12, 533.995pt x 433.62pt>
+<architecture-eps-converted-to.pdf, id=16, 533.995pt x 433.62pt>
 File: architecture-eps-converted-to.pdf Graphic file (type pdf)
 
 <use architecture-eps-converted-to.pdf>
-Package pdftex.def Info: architecture-eps-converted-to.pdf used on input line 1
-34.
+Package pdftex.def Info: architecture-eps-converted-to.pdf used on input line 2
+43.
 (pdftex.def)             Requested size: 220.82158pt x 175.65483pt.
 Package epstopdf Info: Source file: <architectureOfSystem.eps>
 (epstopdf)                    date: 2015-08-05 08:59:42
@@ -529,15 +572,15 @@ Package epstopdf Info: Source file: <architectureOfSystem.eps>
 (epstopdf)                    size: 19671 bytes
 (epstopdf)             Command: <epstopdf --outfile=architectureOfSystem-eps-co
 nverted-to.pdf architectureOfSystem.eps>
-(epstopdf)             \includegraphics on input line 146.
+(epstopdf)             \includegraphics on input line 255.
 Package epstopdf Info: Output file is already uptodate.
 
-<architectureOfSystem-eps-converted-to.pdf, id=13, 236.885pt x 120.45pt>
+<architectureOfSystem-eps-converted-to.pdf, id=17, 236.885pt x 120.45pt>
 File: architectureOfSystem-eps-converted-to.pdf Graphic file (type pdf)
 
 <use architectureOfSystem-eps-converted-to.pdf>
 Package pdftex.def Info: architectureOfSystem-eps-converted-to.pdf used on inpu
-t line 146.
+t line 255.
 (pdftex.def)             Requested size: 220.8321pt x 100.37779pt.
 
 
@@ -546,21 +589,17 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 [2 <C:/Users/Rimberry/Desktop/acm-soict-paper/architecture-eps-converted-to.pdf
 > <C:/Users/Rimberry/Desktop/acm-soict-paper/architectureOfSystem-eps-converted
 -to.pdf>]
-Overfull \hbox (3.95857pt too wide) in paragraph at lines 169--170
+Overfull \hbox (12.95857pt too wide) in paragraph at lines 278--279
 []\T1/aer/m/n/9 GPSInsights is im-ple-mented to work with both Spark Stream-
  []
 
 
-Overfull \hbox (5.06482pt too wide) in paragraph at lines 175--176
-\T1/aer/m/n/9 scale hor-i-zon-tally. It is de-signed for man-ag-ing semi-struct
-ured
+Overfull \hbox (3.81932pt too wide) in paragraph at lines 290--291
+[]\T1/aer/m/n/9 Geomesa [5] is an open-source, dis-tributed, spatio-temporal
  []
 
 
-Underfull \vbox (badness 2698) has occurred while \output is active []
-
-
-Overfull \hbox (3.39096pt too wide) in paragraph at lines 181--182
+Overfull \hbox (3.39096pt too wide) in paragraph at lines 290--291
 \T1/aer/m/n/9 data-base built on top of a column-family ori-ented dis-tributed
  []
 
@@ -572,14 +611,14 @@ Package epstopdf Info: Source file: <sendingcrash.eps>
 (epstopdf)                    size: 25623 bytes
 (epstopdf)             Command: <epstopdf --outfile=sendingcrash-eps-converted-
 to.pdf sendingcrash.eps>
-(epstopdf)             \includegraphics on input line 195.
+(epstopdf)             \includegraphics on input line 304.
 Package epstopdf Info: Output file is already uptodate.
-<sendingcrash-eps-converted-to.pdf, id=50, 165.61874pt x 75.28125pt>
+<sendingcrash-eps-converted-to.pdf, id=32, 165.61874pt x 75.28125pt>
 File: sendingcrash-eps-converted-to.pdf Graphic file (type pdf)
 
 <use sendingcrash-eps-converted-to.pdf>
-Package pdftex.def Info: sendingcrash-eps-converted-to.pdf used on input line 1
-95.
+Package pdftex.def Info: sendingcrash-eps-converted-to.pdf used on input line 3
+04.
 (pdftex.def)             Requested size: 220.83623pt x 100.38469pt.
 Package epstopdf Info: Source file: <receivingcrash.eps>
 (epstopdf)                    date: 2015-08-05 08:59:42
@@ -589,22 +628,23 @@ Package epstopdf Info: Source file: <receivingcrash.eps>
 (epstopdf)                    size: 25546 bytes
 (epstopdf)             Command: <epstopdf --outfile=receivingcrash-eps-converte
 d-to.pdf receivingcrash.eps>
-(epstopdf)             \includegraphics on input line 204.
+(epstopdf)             \includegraphics on input line 313.
 Package epstopdf Info: Output file is already uptodate.
 
-<receivingcrash-eps-converted-to.pdf, id=51, 203.76125pt x 76.285pt>
+<receivingcrash-eps-converted-to.pdf, id=33, 203.76125pt x 76.285pt>
 File: receivingcrash-eps-converted-to.pdf Graphic file (type pdf)
 
 <use receivingcrash-eps-converted-to.pdf>
 Package pdftex.def Info: receivingcrash-eps-converted-to.pdf used on input line
- 204.
+ 313.
 (pdftex.def)             Requested size: 220.83614pt x 100.37988pt.
+ [3 <C:/Users/Rimberry/Desktop/acm-soict-paper/sendingcrash-eps-converted-to.pd
+f> <C:/Users/Rimberry/Desktop/acm-soict-paper/receivingcrash-eps-converted-to.p
+df>]
+Overfull \hbox (2.03175pt too wide) in paragraph at lines 320--321
+\T1/aer/m/n/9 ``re-ceiver-Stream'' API and the Kafka's Sim-ple Con-sumer API.
+ []
 
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[3 <C:/Users/Rimberry/Desktop/acm-soict-paper/sendingcrash-eps-converted-to.pdf
->]
 Package epstopdf Info: Source file: <compositionOfRoad.eps>
 (epstopdf)                    date: 2015-08-05 08:59:42
 (epstopdf)                    size: 530958 bytes
@@ -613,14 +653,14 @@ Package epstopdf Info: Source file: <compositionOfRoad.eps>
 (epstopdf)                    size: 16915 bytes
 (epstopdf)             Command: <epstopdf --outfile=compositionOfRoad-eps-conve
 rted-to.pdf compositionOfRoad.eps>
-(epstopdf)             \includegraphics on input line 225.
+(epstopdf)             \includegraphics on input line 334.
 Package epstopdf Info: Output file is already uptodate.
- <compositionOfRoad-eps-converted-to.pdf, id=64, 145.54375pt x 79.29625pt>
+<compositionOfRoad-eps-converted-to.pdf, id=55, 145.54375pt x 79.29625pt>
 File: compositionOfRoad-eps-converted-to.pdf Graphic file (type pdf)
 
 <use compositionOfRoad-eps-converted-to.pdf>
 Package pdftex.def Info: compositionOfRoad-eps-converted-to.pdf used on input l
-ine 225.
+ine 334.
 (pdftex.def)             Requested size: 220.84235pt x 100.38324pt.
 Package epstopdf Info: Source file: <addPointsTofRoad.eps>
 (epstopdf)                    date: 2015-08-05 08:59:42
@@ -630,28 +670,33 @@ Package epstopdf Info: Source file: <addPointsTofRoad.eps>
 (epstopdf)                    size: 14846 bytes
 (epstopdf)             Command: <epstopdf --outfile=addPointsTofRoad-eps-conver
 ted-to.pdf addPointsTofRoad.eps>
-(epstopdf)             \includegraphics on input line 235.
+(epstopdf)             \includegraphics on input line 344.
 Package epstopdf Info: Output file is already uptodate.
 
-<addPointsTofRoad-eps-converted-to.pdf, id=65, 145.54375pt x 67.25125pt>
+<addPointsTofRoad-eps-converted-to.pdf, id=56, 145.54375pt x 67.25125pt>
 File: addPointsTofRoad-eps-converted-to.pdf Graphic file (type pdf)
 
 <use addPointsTofRoad-eps-converted-to.pdf>
 Package pdftex.def Info: addPointsTofRoad-eps-converted-to.pdf used on input li
-ne 235.
+ne 344.
 (pdftex.def)             Requested size: 220.84235pt x 100.37685pt.
- [4 <C:/Users/Rimberry/Desktop/acm-soict-paper/receivingcrash-eps-converted-to.
-pdf> <C:/Users/Rimberry/Desktop/acm-soict-paper/compositionOfRoad-eps-converted
--to.pdf> <C:/Users/Rimberry/Desktop/acm-soict-paper/addPointsTofRoad-eps-conver
-ted-to.pdf>]
-Overfull \hbox (8.67342pt too wide) in paragraph at lines 249--250
-\T1/aer/m/n/9 After get-ting in-put data from the dis-tributed publish-subscrib
-e
+
+Overfull \hbox (7.87138pt too wide) in paragraph at lines 349--350
+[]\T1/aer/m/n/9 Technically, adding in-ter-me-di-ate nodes (il-lus-trated in Fi
+g. 6[])
  []
 
 
-Overfull \hbox (5.3891pt too wide) in paragraph at lines 275--276
-\T1/aer/m/n/9 GPSIn-sights con-fig-ured with Spark Stream-ing against GPSIn-
+Overfull \hbox (4.21016pt too wide) in paragraph at lines 358--359
+\T1/aer/m/n/9 (servers) of the stream-ing pro-cess-ing en-gine (Storm or Apache
+
+ []
+
+[4 <C:/Users/Rimberry/Desktop/acm-soict-paper/compositionOfRoad-eps-converted-t
+o.pdf> <C:/Users/Rimberry/Desktop/acm-soict-paper/addPointsTofRoad-eps-converte
+d-to.pdf>]
+Overfull \hbox (4.98433pt too wide) in paragraph at lines 384--385
+\T1/aer/m/n/9 marked GPSIn-sights con-fig-ured with Spark Stream-ing against
  []
 
 Package epstopdf Info: Source file: <thesis-7.eps>
@@ -662,20 +707,14 @@ Package epstopdf Info: Source file: <thesis-7.eps>
 (epstopdf)                    size: 21811 bytes
 (epstopdf)             Command: <epstopdf --outfile=thesis-7-eps-converted-to.p
 df thesis-7.eps>
-(epstopdf)             \includegraphics on input line 281.
+(epstopdf)             \includegraphics on input line 390.
 Package epstopdf Info: Output file is already uptodate.
-<thesis-7-eps-converted-to.pdf, id=88, 211.79124pt x 101.37875pt>
+<thesis-7-eps-converted-to.pdf, id=72, 211.79124pt x 101.37875pt>
 File: thesis-7-eps-converted-to.pdf Graphic file (type pdf)
 
 <use thesis-7-eps-converted-to.pdf>
-Package pdftex.def Info: thesis-7-eps-converted-to.pdf used on input line 281.
+Package pdftex.def Info: thesis-7-eps-converted-to.pdf used on input line 390.
 (pdftex.def)             Requested size: 220.83293pt x 100.37764pt.
-
-Overfull \hbox (4.48897pt too wide) in paragraph at lines 286--287
-[]\T1/aer/m/n/9 Figure 7[] presents the per-for-mance of GPSIn-sights us-ing Sp
-ark
- []
-
 Package epstopdf Info: Source file: <thesis-6.eps>
 (epstopdf)                    date: 2015-08-05 08:59:42
 (epstopdf)                    size: 582590 bytes
@@ -684,26 +723,31 @@ Package epstopdf Info: Source file: <thesis-6.eps>
 (epstopdf)                    size: 17829 bytes
 (epstopdf)             Command: <epstopdf --outfile=thesis-6-eps-converted-to.p
 df thesis-6.eps>
-(epstopdf)             \includegraphics on input line 290.
+(epstopdf)             \includegraphics on input line 399.
 Package epstopdf Info: Output file is already uptodate.
-<thesis-6-eps-converted-to.pdf, id=89, 211.79124pt x 101.37875pt>
+
+<thesis-6-eps-converted-to.pdf, id=73, 211.79124pt x 101.37875pt>
 File: thesis-6-eps-converted-to.pdf Graphic file (type pdf)
 
 <use thesis-6-eps-converted-to.pdf>
-Package pdftex.def Info: thesis-6-eps-converted-to.pdf used on input line 290.
+Package pdftex.def Info: thesis-6-eps-converted-to.pdf used on input line 399.
 (pdftex.def)             Requested size: 220.83293pt x 100.37764pt.
- [5 <C:/Users/Rimberry/Desktop/acm-soict-paper/thesis-7-eps-converted-to.pdf>]
-Overfull \hbox (1.47444pt too wide) in paragraph at lines 308--309
+ [5 <C:/Users/Rimberry/Desktop/acm-soict-paper/thesis-7-eps-converted-to.pdf> <
+C:/Users/Rimberry/Desktop/acm-soict-paper/thesis-6-eps-converted-to.pdf>]
+Overfull \hbox (4.10246pt too wide) in paragraph at lines 417--418
+\T1/aer/m/n/9 GPSIn-sights an ad-vance map-matching al-go-rithm with higher
+ []
+
+
+Overfull \hbox (1.47444pt too wide) in paragraph at lines 417--418
 \T1/aer/m/n/9 search real-time traf-fic jam pre-dic-tion through min-ing stream
 
  []
 
-(C:\Users\Rimberry\Desktop\acm-soict-paper\sigproc-sp.bbl
-Overfull \hbox (10.70766pt too wide) in paragraph at lines 311--1
-\T1/aer/m/n/9 for Sci-ence and Tech-nol-ogy De-vel-op-ment (NAFOS-TED Project
- []
+(C:\Users\Rimberry\Desktop\acm-soict-paper\paper.bbl
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[6 <C:/Users/Rimberry/Desktop/acm-soict-paper/thesis-6-eps-converted-to.pdf>])
+ [6])
 Package epstopdf Info: Source file: <connectmodule.eps>
 (epstopdf)                    date: 2015-08-05 08:59:42
 (epstopdf)                    size: 607938 bytes
@@ -712,194 +756,197 @@ Package epstopdf Info: Source file: <connectmodule.eps>
 (epstopdf)                    size: 20392 bytes
 (epstopdf)             Command: <epstopdf --outfile=connectmodule-eps-converted
 -to.pdf connectmodule.eps>
-(epstopdf)             \includegraphics on input line 346.
+(epstopdf)             \includegraphics on input line 455.
 Package epstopdf Info: Output file is already uptodate.
 
-<connectmodule-eps-converted-to.pdf, id=117, 242.9075pt x 151.56625pt>
+<connectmodule-eps-converted-to.pdf, id=99, 242.9075pt x 151.56625pt>
 File: connectmodule-eps-converted-to.pdf Graphic file (type pdf)
 
 <use connectmodule-eps-converted-to.pdf>
 Package pdftex.def Info: connectmodule-eps-converted-to.pdf used on input line 
-346.
+455.
 (pdftex.def)             Requested size: 220.82376pt x 110.41347pt.
 
-<Picture1.png, id=118, 722.7pt x 324.80899pt>
+<Picture1.png, id=100, 722.7pt x 324.80899pt>
 File: Picture1.png Graphic file (type png)
  <use Picture1.png>
-Package pdftex.def Info: Picture1.png used on input line 355.
+Package pdftex.def Info: Picture1.png used on input line 464.
 (pdftex.def)             Requested size: 220.82567pt x 110.41376pt.
-LaTeX Font Info:    Try loading font information for T1+aett on input line 366.
+LaTeX Font Info:    Try loading font information for T1+aett on input line 475.
 
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\ae\t1aett.fd"
 File: t1aett.fd 1997/11/16 Font definitions for T1/aett.
 )
-Overfull \hbox (5.22821pt too wide) in paragraph at lines 417--417
-[]\T1/aett/m/n/9 // kdTree: a KD-Tree build up from nodes of OSM data[] 
+Overfull \hbox (5.22821pt too wide) in paragraph at lines 526--526
+[]\T1/aett/m/n/9 // kdTree: a kd-tree build up from nodes of OSM data[] 
  []
 
 
-Overfull \hbox (57.10341pt too wide) in paragraph at lines 417--417
+Overfull \hbox (57.10341pt too wide) in paragraph at lines 526--526
 []\T1/aett/m/n/9 // output: a list of tuple2<key, value> with key being a roadI
 D[] 
  []
 
 
-Overfull \hbox (24.09192pt too wide) in paragraph at lines 417--417
+Overfull \hbox (24.09192pt too wide) in paragraph at lines 526--526
 []\T1/aett/m/n/9 // and value being a number of vehicle and average speed[] 
  []
 
 
-Overfull \hbox (24.09192pt too wide) in paragraph at lines 417--417
+Overfull \hbox (24.09192pt too wide) in paragraph at lines 526--526
 []\T1/aett/m/n/9 // broadcastVal: keep a read-only variable of the kdTree[] 
  []
 
 
-Overfull \hbox (33.52377pt too wide) in paragraph at lines 417--417
+Overfull \hbox (33.52377pt too wide) in paragraph at lines 526--526
 []\T1/aett/m/n/9 // distance: distance between currentPoint and nearestNode[] 
  []
 
 
-Overfull \hbox (66.53526pt too wide) in paragraph at lines 417--417
+Overfull \hbox (66.53526pt too wide) in paragraph at lines 526--526
 []\T1/aett/m/n/9 // listRoad: a <key,value> generated after mapping lines with 
 key[] 
  []
 
 
-Overfull \hbox (61.81934pt too wide) in paragraph at lines 417--417
+Overfull \hbox (61.81934pt too wide) in paragraph at lines 526--526
 []\T1/aett/m/n/9 // being a roadID, value being a iterable of vehicleID and spe
 ed[] 
  []
 
 
-Overfull \hbox (75.96712pt too wide) in paragraph at lines 417--417
+Overfull \hbox (75.96712pt too wide) in paragraph at lines 526--526
 []\T1/aett/m/n/9 // result: a <key, value> generated after mapping listRoad wit
 h key[] 
  []
 
-[7 <C:/Users/Rimberry/Desktop/acm-soict-paper/connectmodule-eps-converted-to.pd
-f> <C:/Users/Rimberry/Desktop/acm-soict-paper/Picture1.png>]
-Overfull \hbox (57.10341pt too wide) in paragraph at lines 417--417
+
+Overfull \hbox (57.10341pt too wide) in paragraph at lines 526--526
 []\T1/aett/m/n/9 // being a roadID, value being vehicle volume and average spee
 d[] 
  []
 
 
-Overfull \hbox (61.81934pt too wide) in paragraph at lines 417--417
+Overfull \hbox (61.81934pt too wide) in paragraph at lines 526--526
 []\T1/aett/m/n/9 Broadcast<KDTree<GeoName>> broadcastVal = scc.broadcast(kdTree
 );[] 
  []
 
 
-Overfull \hbox (19.37599pt too wide) in paragraph at lines 417--417
+Overfull \hbox (19.37599pt too wide) in paragraph at lines 526--526
 []\T1/aett/m/n/9 JavaRDD<String> lines = scc.parallelize(input).cache();[] 
  []
 
 
-Overfull \hbox (14.66006pt too wide) in paragraph at lines 417--417
+Overfull \hbox (14.66006pt too wide) in paragraph at lines 526--526
 []\T1/aett/m/n/9 JavaPairRDD<String, Iterable<String>> listRoad = lines[] 
  []
 
 
-Overfull \hbox (38.2397pt too wide) in paragraph at lines 417--417
+Overfull \hbox (38.2397pt too wide) in paragraph at lines 526--526
 []    \T1/aett/m/n/9 .mapToPair(New PairFunction<String, String, String>() {[] 
 
  []
 
 
-Overfull \hbox (9.94414pt too wide) in paragraph at lines 417--417
+Overfull \hbox (9.94414pt too wide) in paragraph at lines 526--526
 []        \T1/aett/m/n/9 Public Tuple2<String, String> call(String p1)[] 
  []
 
 
-Overfull \hbox (24.09192pt too wide) in paragraph at lines 417--417
+Overfull \hbox (24.09192pt too wide) in paragraph at lines 526--526
 []                              \T1/aett/m/n/9 findNearest(currentPoint);[] 
  []
 
 
-Overfull \hbox (52.38748pt too wide) in paragraph at lines 417--417
+Overfull \hbox (52.38748pt too wide) in paragraph at lines 526--526
 []        \T1/aett/m/n/9 Return New Tuple2<String, String>(roadID, attributes);
 [] 
  []
 
 
-Overfull \hbox (66.53526pt too wide) in paragraph at lines 417--417
+Overfull \hbox (66.53526pt too wide) in paragraph at lines 526--526
 []    \T1/aett/m/n/9 .mapToPair(New PairFunction<Tuple2<String, Iterable<String
 >>,[] 
  []
 
 
-Overfull \hbox (28.80785pt too wide) in paragraph at lines 417--417
+Overfull \hbox (28.80785pt too wide) in paragraph at lines 526--526
 []        \T1/aett/m/n/9 Public Tuple2<String, String> call(Tuple2<String,[] 
  []
 
 
-Overfull \hbox (38.2397pt too wide) in paragraph at lines 417--417
+Overfull \hbox (38.2397pt too wide) in paragraph at lines 526--526
 []               \T1/aett/m/n/9 Iterable<String>> tuple1) Throws Exception {[] 
 
  []
 
 
-Overfull \hbox (28.80785pt too wide) in paragraph at lines 417--417
+Overfull \hbox (28.80785pt too wide) in paragraph at lines 526--526
 []            \T1/aett/m/n/9 numberOfVehicle = Count the number of element[] 
  []
 
 
-Overfull \hbox (42.95563pt too wide) in paragraph at lines 417--417
+Overfull \hbox (42.95563pt too wide) in paragraph at lines 526--526
 []                              \T1/aett/m/n/9 in iterable value of listRoad;[]
  
  []
 
 
-Overfull \hbox (19.37599pt too wide) in paragraph at lines 417--417
+Overfull \hbox (19.37599pt too wide) in paragraph at lines 526--526
 []            \T1/aett/m/n/9 averageSpeed = Calculate average speed from[] 
  []
 
-
-Overfull \hbox (28.80785pt too wide) in paragraph at lines 417--417
+[7 <C:/Users/Rimberry/Desktop/acm-soict-paper/connectmodule-eps-converted-to.pd
+f> <C:/Users/Rimberry/Desktop/acm-soict-paper/Picture1.png>]
+Overfull \hbox (28.80785pt too wide) in paragraph at lines 526--526
 []                              \T1/aett/m/n/9 iterable value of listRoad;[] 
  []
 
 
-Overfull \hbox (19.37599pt too wide) in paragraph at lines 417--417
+Overfull \hbox (19.37599pt too wide) in paragraph at lines 526--526
 []            \T1/aett/m/n/9 statistic = numberOfVehicle + averageSpeed;[] 
  []
 
 
-Overfull \hbox (47.67155pt too wide) in paragraph at lines 417--417
+Overfull \hbox (47.67155pt too wide) in paragraph at lines 526--526
 []        \T1/aett/m/n/9 Return New Tuple2<String, String>(roadID, statistic);[
 ] 
  []
 
 [8
 
-] (C:\Users\Rimberry\Desktop\acm-soict-paper\sigproc-sp.aux) ) 
+] (C:\Users\Rimberry\Desktop\acm-soict-paper\paper.aux) ) 
 Here is how much of TeX's memory you used:
- 9863 strings out of 493921
- 167894 string characters out of 3144867
- 224239 words of memory out of 3000000
- 12970 multiletter control sequences out of 15000+200000
- 48939 words of font info for 67 fonts, out of 3000000 for 9000
+ 10092 strings out of 493921
+ 171265 string characters out of 3144867
+ 233710 words of memory out of 3000000
+ 13170 multiletter control sequences out of 15000+200000
+ 56596 words of font info for 80 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 42i,11n,40p,1373b,299s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Program Files
- (x86)/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc}<C:/Program Files (x86)/MiKTe
-X 2.9/fonts/type1/public/amsfonts/cm/cmbx9.pfb><C:/Program Files (x86)/MiKTeX 2
-.9/fonts/type1/public/amsfonts/cmextra/cmex9.pfb><C:/Program Files (x86)/MiKTeX
- 2.9/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Program Files (x86)/MiKTeX 2.
-9/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Program Files (x86)/MiKTeX 2.9/f
-onts/type1/public/amsfonts/cm/cmmi9.pfb><C:/Program Files (x86)/MiKTeX 2.9/font
-s/type1/public/amsfonts/cm/cmr6.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/ty
-pe1/public/amsfonts/cm/cmr9.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/
-public/amsfonts/cm/cmsy9.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/pub
-lic/amsfonts/cm/cmti9.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public
-/amsfonts/cm/cmtt9.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/helve
-tic/uhvb8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvr
-8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmb8a.pfb><C:/
-Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
-Output written on sigproc-sp.pdf (8 pages, 792268 bytes).
+ 42i,11n,40p,1368b,478s stack positions out of 5000i,500n,10000p,200000b,50000s
+{C:/Program Files (x86
+)/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc}<C:/Program Files (x86)/MiKTeX 2.9
+/fonts/type1/public/amsfonts/cm/cmbx9.pfb><C:/Program Files (x86)/MiKTeX 2.9/fo
+nts/type1/public/amsfonts/cmextra/cmex9.pfb><C:/Program Files (x86)/MiKTeX 2.9/
+fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Program Files (x86)/MiKTeX 2.9/fon
+ts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/
+type1/public/amsfonts/cm/cmmi9.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/typ
+e1/public/amsfonts/cm/cmr6.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/p
+ublic/amsfonts/cm/cmr8.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/publi
+c/amsfonts/cm/cmr9.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/am
+sfonts/cm/cmsy7.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfo
+nts/cm/cmsy9.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts
+/cm/cmti9.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm
+/cmtt9.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvb8a.p
+fb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvr8a.pfb><C:/P
+rogram Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmb8a.pfb><C:/Program File
+s (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb><C:/Program Files (x86)/MiK
+TeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
+Output written on paper.pdf (8 pages, 824166 bytes).
 PDF statistics:
- 182 PDF objects out of 1000 (max. 8388607)
+ 173 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  51 words of extra memory for PDF output out of 10000 (max. 10000000)
 
